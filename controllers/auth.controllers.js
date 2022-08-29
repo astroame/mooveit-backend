@@ -45,6 +45,7 @@ export const login = asyncHandler(async (req, res, next) => {
   if (!isMatch) {
     return next(new ErrorResponse("Invalid Credentials", 401));
   }
+
   sendTokenResponse(user, 200, res);
 });
 
@@ -191,8 +192,6 @@ export const verifyResetToken = asyncHandler(async (req, res, next) => {
     resetPasswordToken: req.params.resetToken,
     resetPasswordExpire: { $gt: Date.now() },
   });
-
-  console.log(user);
 
   if (!user) {
     return next(new ErrorResponse(`Token is invalid`, 401));
