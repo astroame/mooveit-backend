@@ -26,7 +26,7 @@ $ yarn dev
 $ yarn start
 ```
 ## For API documentation
-- Import pulse.postman_collection.json in postman
+- Import mooveit-api.postman_collection.json in postman
 - After working on it API, always export your API folder to the root of this application with the same name as above *mooveit.postman_collection.json*
 - Then run the command to auto generate the api documentation and automatically push to github
 ```
