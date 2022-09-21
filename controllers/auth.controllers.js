@@ -2,6 +2,7 @@ import asyncHandler from "../middlewares/async.js";
 import ErrorResponse from "../utils/errorResponse.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import User from "../models/UserModel.js";
+import sendInBlue from "../utils/sendInBlue.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
@@ -103,7 +104,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       "
     >
-      <img src="https://radartrail.com/RDT-logo-primary.png" style="width: 70%; height: auto" alt="logo" /> <br />
 
       <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
        Hi ${user.firstName}, you are receiving this email because you (or someone else) has requested to reset your password. If this is you, kindly click on the link to continue or just ignore this email if it was not initiated by you
@@ -113,8 +113,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 
         <br />
         <br />
-        Best, <br />
-        ${user.organization.organizationName}
       </p>
       <a
         href="${resetUrl}"
@@ -141,17 +139,17 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
       receiverName: `${user.firstName} ${user.lastName}`,
       message,
       subject: "Password Reset",
-      organizationName: user.organization.organizationName,
     });
 
     res.status(200).json({
       success: true,
-      message: "Invitation sent!",
+      message: "Reset Token Sent!",
     });
   } catch (error) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save({ validateBeforeSave: false });
+    console.log(error);
     return next(new ErrorResponse(`Password reset link could not be sent!`, 500));
   }
 });
@@ -179,7 +177,7 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
 
-  await user.save();
+  await user.save({ validateBeforeSave: true });
 
   sendTokenResponse(user, 200, res);
 });

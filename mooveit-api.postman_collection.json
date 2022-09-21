@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@gmmail.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,6 +38,29 @@
 				},
 				{
 					"name": "Login User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", JSON.parse(pm.request.body));",
+									"",
+									"// console.log(pm.request)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(pm.response.body)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -53,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@gmmail.com\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"password\": \"dfmendkjsd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,6 +91,149 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forgot-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Customer@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/reset-password/daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Reset Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/reset-password/daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partner",
+			"item": [
+				{
+					"name": "Create a listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/listings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Lisitings by a partner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/listings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings"
 							]
 						}
 					},

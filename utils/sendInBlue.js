@@ -1,6 +1,6 @@
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
-const sendInBlue = async ({ receiverEmail, receiverName, message, subject, organizationName }) => {
+const sendInBlue = async ({ receiverEmail, receiverName, message, subject }) => {
   const defaultClient = SibApiV3Sdk.ApiClient.instance;
 
   let apiKey = defaultClient.authentications["api-key"];
@@ -11,8 +11,8 @@ const sendInBlue = async ({ receiverEmail, receiverName, message, subject, organ
   let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
   const sender = {
-    name: `Pulse | ${organizationName}`,
-    email: "noreply@pulse.radartrail.com",
+    name: "MooveIT",
+    email: "noreply@mooveit.com",
   };
 
   const receiver = [
@@ -23,7 +23,7 @@ const sendInBlue = async ({ receiverEmail, receiverName, message, subject, organ
   ];
 
   const replyTo = {
-    email: "noreply@pulse.radartrail.com",
+    email: "noreply@mooveit.com",
   };
 
   sendSmtpEmail = {
