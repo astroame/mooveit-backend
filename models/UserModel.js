@@ -19,7 +19,7 @@ const UserSchema = Schema(
     },
     role: {
       type: String,
-      enum: ["partner", "admin", "customer"],
+      enum: ["partner", "customer"],
       default: "customer",
     },
 
@@ -28,6 +28,10 @@ const UserSchema = Schema(
       required: [true, "Please enter a password"],
       minlength: 6,
       select: false,
+      match: [
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i,
+        "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
+      ],
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,

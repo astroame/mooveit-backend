@@ -15,7 +15,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   }
 
   // Encrypt user object
-  var response = CryptoJS.AES.encrypt(JSON.stringify(user), process.env.ENCRYPTION_KEY).toString();
+  const response = CryptoJS.AES.encrypt(JSON.stringify(user), process.env.ENCRYPTION_KEY).toString();
 
   res.status(statusCode).cookie("token", token, options).json({
     success: true,

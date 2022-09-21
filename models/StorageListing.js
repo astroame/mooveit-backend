@@ -4,31 +4,35 @@ const { Schema, model } = mongoose;
 const StorageListingSchema = Schema(
   {
     // BASIC INFORMATION
-    address: { type: String, required: [true, "Please enter an address"] },
-    storageType: { type: String, required: [true, "Please choose a storage type"] },
-    storageFloor: { type: String, required: [true, "Please choose a storage floor"] },
+    address: String,
+    storageType: String,
+    storageFloor: String,
     storageFeatures: [String],
     services: [String],
 
     // SPACE DETAILS
-    storageSize: { type: String, required: [true, "Please choose a storage size"] },
+    storageSize: String,
     streetView: { type: Boolean, default: false },
     image: [String],
-    storageTitle: { type: String, required: [true, "Please give your listing a title"] },
-    description: { type: String, required: [true, "Please add a description"] },
+    storageTitle: String,
+    description: String,
 
     // AVAILABILITY
     unavailabilityReason: String,
-    unavailabilityPeriodStart: { type: Date },
-    unavailabilityPeriodEnd: { type: Date },
-    storageAccessPeriod: { type: String },
-    storageAccessType: { type: String },
+    unavailabilityPeriodStart: Date,
+    unavailabilityPeriodEnd: Date,
+    storageAccessPeriod: String,
+    storageAccessType: String,
     parkingPermit: { type: Boolean, default: false },
-    parkingInstruction: { type: String },
-    bookingDuration: { type: String },
-    bookingNotice: { type: String },
+    parkingInstruction: String,
+    bookingDuration: String,
+    bookingNotice: String,
 
     // PRICING
+    pricing: Number,
+
+    // User
+    user: { type: Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
