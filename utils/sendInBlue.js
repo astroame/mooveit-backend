@@ -30,7 +30,7 @@ const sendInBlue = async ({ receiverEmail, receiverName, message, subject }) => 
     sender,
     to: receiver,
     replyTo,
-    subject: subject,
+    subject,
     htmlContent: message,
   };
 

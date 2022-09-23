@@ -30,6 +30,32 @@ export const createListing = asyncHandler(async (req, res, next) => {
     bookingNotice,
   } = req.body;
 
+  let completed;
+
+  if (
+    address &&
+    storageType &&
+    storageFloor &&
+    storageFeatures &&
+    services &&
+    storageSize &&
+    streetView &&
+    image &&
+    storageTitle &&
+    description &&
+    unavailabilityReason &&
+    unavailabilityPeriodStart &&
+    unavailabilityPeriodEnd &&
+    storageAccessPeriod &&
+    storageAccessType &&
+    parkingPermit &&
+    parkingInstruction &&
+    bookingDuration &&
+    bookingNotice
+  ) {
+    completed = true;
+  }
+
   const storageListing = await StorageListing.create({
     address,
     storageType,
@@ -51,7 +77,24 @@ export const createListing = asyncHandler(async (req, res, next) => {
     bookingDuration,
     bookingNotice,
     user: req.user,
+    completed,
   });
+
+  res.status(200).json({
+    success: true,
+    data: storageListing,
+  });
+});
+
+// @desc    Create a listing
+// @route   PATCH /api/v1/auth/register
+// @access  Public
+export const updateListing = asyncHandler(async (req, res, next) => {
+  const storageListing = await StorageListing.findByIdAndUpdate(req.body);
+
+  if (!storageListing) {
+    return next(new ErrorResponse("There is no listing with that id", 404));
+  }
 
   res.status(200).json({
     success: true,
