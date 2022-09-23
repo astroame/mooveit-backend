@@ -33,8 +33,11 @@ const UserSchema = Schema(
         "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
       ],
     },
+    isVerified: { type: Boolean, default: false },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
+    verifyToken: String,
+    verifyTokenExpire: Date,
   },
   { timestamps: true }
 );
@@ -71,7 +74,6 @@ UserSchema.methods.getResetPasswordToken = async function (user) {
   // Set expire
   const tokenExpiry = Date.now() + 10 * 60 * 1000;
 
-  // await user.save({ validateBeforeSave: false }, console.log("saved"));
   await User.findOneAndUpdate(
     { _id: user },
     {
@@ -84,8 +86,35 @@ UserSchema.methods.getResetPasswordToken = async function (user) {
   return resetToken;
 };
 
+// Generate and hash token for email verification
+UserSchema.methods.getVerificationToken = async function (user) {
+  // Generate token
+  const genVerificationToken = crypto.randomBytes(20).toString("hex");
+
+  // Hash token and set to resetPasswordToken field
+  const verificationToken = crypto.createHash("sha256").update(genVerificationToken).digest("hex");
+
+  // Set expire
+  const tokenExpiry = Date.now() + 24 * 60 * 60 * 1000;
+
+  await User.findOneAndUpdate(
+    { _id: user },
+    {
+      verifyToken: verificationToken,
+      verifyTokenExpire: tokenExpiry,
+    },
+    { new: true }
+  );
+
+  return verificationToken;
+};
+
 UserSchema.methods.isExpired = function () {
   return Date.now() > this.resetPasswordExpire;
+};
+
+UserSchema.methods.verifyTokenExpired = function () {
+  return Date.now() > this.verifyTokenExpire;
 };
 
 const User = model("User", UserSchema);

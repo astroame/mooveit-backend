@@ -33,6 +33,10 @@ const StorageListingSchema = Schema(
 
     // User
     user: { type: Schema.Types.ObjectId, ref: "User" },
+
+    // general
+    completed: { type: Boolean, default: false },
+    status: { type: String, default: "pending", enum: ["pending", "approved"] },
   },
   { timestamps: true }
 );

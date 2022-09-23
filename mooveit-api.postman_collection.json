@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"password\": \"dfmendkjsd\"\n}",
+							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"password\": \"Customer@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,6 +169,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/verify/632d8a57cf02728f30f50b9e/710c9010fb5430886a04bd0c4a77f4e47042a9a9b91dd77112465c600b8a6bae",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								"632d8a57cf02728f30f50b9e",
+								"710c9010fb5430886a04bd0c4a77f4e47042a9a9b91dd77112465c600b8a6bae"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -221,10 +241,12 @@
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "",
-								"variables": ""
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
 							}
 						},
 						"url": {
