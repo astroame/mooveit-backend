@@ -26,7 +26,7 @@ export const register = asyncHandler(async (req, res, next) => {
   const verificationToken = await user.getVerificationToken(user);
 
   // send the invite
-  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${user.id}/${verificationToken}`;
+  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
 
   const message = `
     <html>
@@ -70,9 +70,6 @@ export const register = asyncHandler(async (req, res, next) => {
        Hi ${firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
         <br />
         <br />
-        Verify Email
-
-        <br />
         <br />
       </p>
       <a
@@ -87,7 +84,7 @@ export const register = asyncHandler(async (req, res, next) => {
           text-decoration: none;
         "
       >
-        Reset Password
+      Verify Email Address
       </a>
     </div>
   </body>
@@ -116,12 +113,115 @@ export const register = asyncHandler(async (req, res, next) => {
   }
 });
 
+// @desc    Resend Verify Email Address
+// @route   POST /api/v1/auth/verify/:token
+// @access  Public
+export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) return next(new ErrorResponse("There is no user with that email.", 404));
+  
+  if (user.isVerified) return next(new ErrorResponse("Email already verified.", 400));
+
+  // Get reset token
+  const verificationToken = await user.getVerificationToken(user);
+
+  // send the invite
+  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
+
+  const message = `
+    <html>
+    <head>
+    <style>
+      @media (max-width: 450px) {
+        img {
+          width: 95%;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .container {
+          width: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(214, 214, 214);
+    "
+  >
+    <div
+      class="container"
+      style="
+        border: 1px solid rgb(222, 222, 222);
+        border-radius: 10px;
+        background-color: white;
+        margin: 50px auto;
+        text-align: center;
+        padding: 30px 40px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      "
+    >
+
+      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
+       Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
+        <br />
+
+        <br />
+        <br />
+      </p>
+      <a
+        href="${verificationURL}"
+        style="
+          background: #26348c;
+          padding: 10px 20px;
+          border-radius: 15px;
+          color: white;
+          display: inline-block;
+          margin-bottom: 10px;
+          text-decoration: none;
+        "
+      >
+        Verify Email Address
+      </a>
+    </div>
+  </body>
+    </html>
+   `;
+
+  // Send verification email
+  try {
+    await sendInBlue({
+      receiverEmail: email,
+      receiverName: `${user.firstName}`,
+      message,
+      subject: "Verification Email Resent",
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "A new verification link has been sent to your email address!",
+    });
+  } catch (error) {
+    user.verifyToken = undefined;
+    user.verifyTokenExpire = undefined;
+    await user.save({ validateBeforeSave: false });
+    console.log(error);
+    return next(new ErrorResponse(`Email verification link could not be sent!`, 500));
+  }
+});
+
 // @desc    Verify Email Address
 // @route   GET /api/v1/auth/verify/:id/:token
 // @access  Public
 export const verifyEmail = asyncHandler(async (req, res, next) => {
   let user = await User.findOne({
-    _id: req.params.id,
     verifyToken: req.params.token,
     verifyTokenExpire: { $gt: Date.now() },
   });

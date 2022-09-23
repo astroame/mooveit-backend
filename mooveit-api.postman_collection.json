@@ -176,15 +176,41 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/auth/verify/632d8a57cf02728f30f50b9e/710c9010fb5430886a04bd0c4a77f4e47042a9a9b91dd77112465c600b8a6bae",
+							"raw": "{{URL}}/auth/verify/066d73f953c7a9f9f327651ba16e719aff7de1347a1cd77d24eedbebae527ba9",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"auth",
 								"verify",
-								"632d8a57cf02728f30f50b9e",
-								"710c9010fb5430886a04bd0c4a77f4e47042a9a9b91dd77112465c600b8a6bae"
+								"066d73f953c7a9f9f327651ba16e719aff7de1347a1cd77d24eedbebae527ba9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Verification Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verify",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify"
 							]
 						}
 					},
