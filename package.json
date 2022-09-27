@@ -9,8 +9,7 @@
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server",
     "doc": "docgen build -i mooveit-api.postman_collection.json -o ./public/index.html",
     "git": "yarn doc && git commit -am 'Updated api documentation' && git push origin main",
-    "start": "NODE_ENV=production node server",
-    "deploy": "yarn git && git push heroku main"
+    "start": "NODE_ENV=production node server"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

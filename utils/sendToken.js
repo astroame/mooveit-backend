@@ -1,7 +1,7 @@
 import CryptoJS from "crypto-js";
 
 // Get token from model, create a cookie and send response
-const sendTokenResponse = (user, statusCode, res) => {
+const sendTokenResponse = (user, statusCode, res, message) => {
   // create token
   const token = user.getSignedJwtToken();
 
@@ -17,8 +17,11 @@ const sendTokenResponse = (user, statusCode, res) => {
   // Encrypt user object
   const response = CryptoJS.AES.encrypt(JSON.stringify(user), process.env.ENCRYPTION_KEY).toString();
 
+  message = message != "" ? message : null;
+
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
+    message,
     token,
     response,
   });
