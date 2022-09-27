@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"password\": \"Customer@123\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -176,14 +176,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/auth/verify/066d73f953c7a9f9f327651ba16e719aff7de1347a1cd77d24eedbebae527ba9",
+							"raw": "{{URL}}/auth/verify/7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"auth",
 								"verify",
-								"066d73f953c7a9f9f327651ba16e719aff7de1347a1cd77d24eedbebae527ba9"
+								"7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934"
 							]
 						}
 					},
@@ -234,8 +234,17 @@
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Some default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\"cctv\", \"alarm\", \"padlock\"],\n    \"services\": [\"delivery\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{URL}}/listings",
 							"host": [
@@ -259,7 +268,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{TOKEN}}",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
 									"type": "string"
 								}
 							]
@@ -282,6 +291,99 @@
 							],
 							"path": [
 								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"services\": [\"packing\"],\n    \"storageFloor\": \"ground level 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/listings/63318a5f062f772e99b088cc",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"63318a5f062f772e99b088cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/listings/63318a5f062f772e99b088cd",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"63318a5f062f772e99b088cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get listing with listing id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/listings/6332ec5cf280bb4fce7f0d6a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"6332ec5cf280bb4fce7f0d6a"
 							]
 						}
 					},

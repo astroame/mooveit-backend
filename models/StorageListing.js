@@ -37,6 +37,7 @@ const StorageListingSchema = Schema(
     // general
     completed: { type: Boolean, default: false },
     status: { type: String, default: "pending", enum: ["pending", "approved"] },
+    started: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

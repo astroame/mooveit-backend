@@ -14,6 +14,10 @@ export const register = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
   }
 
+  const isRegistered = await User.findOne({ email });
+
+  if (isRegistered) return next(new ErrorResponse("That email is already registered", 400));
+
   const user = await new User({
     email,
     firstName,
@@ -100,10 +104,8 @@ export const register = asyncHandler(async (req, res, next) => {
       subject: "Verification Email",
     });
 
-    res.status(200).json({
-      success: true,
-      message: "A verification mail has been sent to your email address!",
-    });
+    sendTokenResponse(user, 200, res, "A verification mail has been sent to your email address!");
+
   } catch (error) {
     user.verifyToken = undefined;
     user.verifyTokenExpire = undefined;
@@ -122,7 +124,7 @@ export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (!user) return next(new ErrorResponse("There is no user with that email.", 404));
-  
+
   if (user.isVerified) return next(new ErrorResponse("Email already verified.", 400));
 
   // Get reset token
@@ -204,10 +206,7 @@ export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
       subject: "Verification Email Resent",
     });
 
-    res.status(200).json({
-      success: true,
-      message: "A new verification link has been sent to your email address!",
-    });
+    sendTokenResponse(user, 200, res, "A new verification link has been sent to your email address!");
   } catch (error) {
     user.verifyToken = undefined;
     user.verifyTokenExpire = undefined;
@@ -227,9 +226,7 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
   });
   if (!user) return next(new ErrorResponse("Invalid URL", 400));
 
-  if (user.verifyTokenExpired()) {
-    return next(new ErrorResponse(`Token is expired`, 401));
-  }
+  if (user.verifyTokenExpired()) return next(new ErrorResponse(`Token is expired`, 401));
 
   user = await User.findByIdAndUpdate(
     {
