@@ -101,17 +101,17 @@ export const register = asyncHandler(async (req, res, next) => {
       receiverEmail: email,
       receiverName: `${firstName}`,
       message,
-      subject: "Verification Email",
+      subject: "Confirm your Account",
     });
 
-    sendTokenResponse(user, 200, res, "A verification mail has been sent to your email address!");
+    sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
 
   } catch (error) {
     user.verifyToken = undefined;
     user.verifyTokenExpire = undefined;
     await user.save({ validateBeforeSave: false });
-    console.log(error);
-    return next(new ErrorResponse(`Email verification link could not be sent!`, 500));
+    // console.log(error);
+    return next(new ErrorResponse(`Email could not be sent!`, 500));
   }
 });
 
@@ -203,7 +203,7 @@ export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
       receiverEmail: email,
       receiverName: `${user.firstName}`,
       message,
-      subject: "Verification Email Resent",
+      subject: "Confirm your account",
     });
 
     sendTokenResponse(user, 200, res, "A new verification link has been sent to your email address!");

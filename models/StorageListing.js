@@ -18,9 +18,7 @@ const StorageListingSchema = Schema(
     description: String,
 
     // AVAILABILITY
-    unavailabilityReason: String,
-    unavailabilityPeriodStart: Date,
-    unavailabilityPeriodEnd: Date,
+    unavailabilityPeriods:[{ unavailabilityReason: String, unavailabilityPeriodStart: Date, unavailabilityPeriodEnd: Date,}], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
     storageAccessPeriod: String,
     storageAccessType: String,
     parkingPermit: { type: Boolean, default: false },
@@ -29,7 +27,7 @@ const StorageListingSchema = Schema(
     bookingNotice: String,
 
     // PRICING
-    pricing: Number,
+    pricing: Number, // this should be a float ?
 
     // User
     user: { type: Schema.Types.ObjectId, ref: "User" },
