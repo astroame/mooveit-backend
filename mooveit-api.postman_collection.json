@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@gmmail.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,6 +38,29 @@
 				},
 				{
 					"name": "Login User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"TOKEN\", JSON.parse(pm.request.body));",
+									"",
+									"// console.log(pm.request)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(pm.response.body)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -53,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"test@gmmail.com\",\n    \"password\": \"123456\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,6 +91,299 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forgot-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Customer@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/reset-password/daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Reset Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/reset-password/daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password",
+								"daa47617071394cda0193f0b33530af6a8e6dbccb6c2818e5ba7d27e9c6448c1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/verify/7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify",
+								"7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Verification Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/verify",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partner",
+			"item": [
+				{
+					"name": "Create a listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Some default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\"cctv\", \"alarm\", \"padlock\"],\n    \"services\": [\"delivery\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/listings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Lisitings by a partner",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/listings",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"services\": [\"packing\"],\n    \"storageFloor\": \"ground level 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/listings/63318a5f062f772e99b088cc",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"63318a5f062f772e99b088cc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/listings/63318a5f062f772e99b088cd",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"63318a5f062f772e99b088cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get listing with listing id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/listings/6332ec5cf280bb4fce7f0d6a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"listings",
+								"6332ec5cf280bb4fce7f0d6a"
 							]
 						}
 					},

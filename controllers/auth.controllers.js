@@ -2,6 +2,7 @@ import asyncHandler from "../middlewares/async.js";
 import ErrorResponse from "../utils/errorResponse.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import User from "../models/UserModel.js";
+import sendInBlue from "../utils/sendInBlue.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
@@ -13,15 +14,229 @@ export const register = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
   }
 
-  const user = new User({
+  const isRegistered = await User.findOne({ email });
+
+  if (isRegistered) return next(new ErrorResponse("That email is already registered", 400));
+
+  const user = await new User({
     email,
     firstName,
     lastName,
     password,
     role,
-  });
+  }).save();
 
-  await user.save(), sendTokenResponse(user, 201, res);
+  // Get reset token
+  const verificationToken = await user.getVerificationToken(user);
+
+  // send the invite
+  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
+
+  const message = `
+    <html>
+    <head>
+    <style>
+      @media (max-width: 450px) {
+        img {
+          width: 95%;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .container {
+          width: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(214, 214, 214);
+    "
+  >
+    <div
+      class="container"
+      style="
+        border: 1px solid rgb(222, 222, 222);
+        border-radius: 10px;
+        background-color: white;
+        margin: 50px auto;
+        text-align: center;
+        padding: 30px 40px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      "
+    >
+
+      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
+       Hi ${firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
+        <br />
+        <br />
+        <br />
+      </p>
+      <a
+        href="${verificationURL}"
+        style="
+          background: #26348c;
+          padding: 10px 20px;
+          border-radius: 15px;
+          color: white;
+          display: inline-block;
+          margin-bottom: 10px;
+          text-decoration: none;
+        "
+      >
+      Verify Email Address
+      </a>
+    </div>
+  </body>
+    </html>
+   `;
+
+  // Send verification email
+  try {
+    await sendInBlue({
+      receiverEmail: email,
+      receiverName: `${firstName}`,
+      message,
+      subject: "Verification Email",
+    });
+
+    sendTokenResponse(user, 200, res, "A verification mail has been sent to your email address!");
+
+  } catch (error) {
+    user.verifyToken = undefined;
+    user.verifyTokenExpire = undefined;
+    await user.save({ validateBeforeSave: false });
+    console.log(error);
+    return next(new ErrorResponse(`Email verification link could not be sent!`, 500));
+  }
+});
+
+// @desc    Resend Verify Email Address
+// @route   POST /api/v1/auth/verify/:token
+// @access  Public
+export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) return next(new ErrorResponse("There is no user with that email.", 404));
+
+  if (user.isVerified) return next(new ErrorResponse("Email already verified.", 400));
+
+  // Get reset token
+  const verificationToken = await user.getVerificationToken(user);
+
+  // send the invite
+  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
+
+  const message = `
+    <html>
+    <head>
+    <style>
+      @media (max-width: 450px) {
+        img {
+          width: 95%;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .container {
+          width: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(214, 214, 214);
+    "
+  >
+    <div
+      class="container"
+      style="
+        border: 1px solid rgb(222, 222, 222);
+        border-radius: 10px;
+        background-color: white;
+        margin: 50px auto;
+        text-align: center;
+        padding: 30px 40px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      "
+    >
+
+      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
+       Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
+        <br />
+
+        <br />
+        <br />
+      </p>
+      <a
+        href="${verificationURL}"
+        style="
+          background: #26348c;
+          padding: 10px 20px;
+          border-radius: 15px;
+          color: white;
+          display: inline-block;
+          margin-bottom: 10px;
+          text-decoration: none;
+        "
+      >
+        Verify Email Address
+      </a>
+    </div>
+  </body>
+    </html>
+   `;
+
+  // Send verification email
+  try {
+    await sendInBlue({
+      receiverEmail: email,
+      receiverName: `${user.firstName}`,
+      message,
+      subject: "Verification Email Resent",
+    });
+
+    sendTokenResponse(user, 200, res, "A new verification link has been sent to your email address!");
+  } catch (error) {
+    user.verifyToken = undefined;
+    user.verifyTokenExpire = undefined;
+    await user.save({ validateBeforeSave: false });
+    console.log(error);
+    return next(new ErrorResponse(`Email verification link could not be sent!`, 500));
+  }
+});
+
+// @desc    Verify Email Address
+// @route   GET /api/v1/auth/verify/:id/:token
+// @access  Public
+export const verifyEmail = asyncHandler(async (req, res, next) => {
+  let user = await User.findOne({
+    verifyToken: req.params.token,
+    verifyTokenExpire: { $gt: Date.now() },
+  });
+  if (!user) return next(new ErrorResponse("Invalid URL", 400));
+
+  if (user.verifyTokenExpired()) return next(new ErrorResponse(`Token is expired`, 401));
+
+  user = await User.findByIdAndUpdate(
+    {
+      _id: user._id,
+    },
+    { isVerified: true, verifyToken: null, verifyTokenExpire: null },
+    { new: true }
+  );
+
+  sendTokenResponse(user, 200, res);
 });
 
 // @desc    Login User
@@ -103,7 +318,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       "
     >
-      <img src="https://radartrail.com/RDT-logo-primary.png" style="width: 70%; height: auto" alt="logo" /> <br />
 
       <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
        Hi ${user.firstName}, you are receiving this email because you (or someone else) has requested to reset your password. If this is you, kindly click on the link to continue or just ignore this email if it was not initiated by you
@@ -113,8 +327,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 
         <br />
         <br />
-        Best, <br />
-        ${user.organization.organizationName}
       </p>
       <a
         href="${resetUrl}"
@@ -141,12 +353,11 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
       receiverName: `${user.firstName} ${user.lastName}`,
       message,
       subject: "Password Reset",
-      organizationName: user.organization.organizationName,
     });
 
     res.status(200).json({
       success: true,
-      message: "Invitation sent!",
+      message: "Reset Token Sent!",
     });
   } catch (error) {
     user.resetPasswordToken = undefined;
@@ -179,7 +390,7 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
 
-  await user.save();
+  await user.save({ validateBeforeSave: true });
 
   sendTokenResponse(user, 200, res);
 });

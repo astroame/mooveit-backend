@@ -1,5 +1,13 @@
 import express from "express";
-import { register, login, forgotPassword, resetPassword, verifyResetToken } from "../controllers/auth.controllers.js";
+import {
+  register,
+  login,
+  forgotPassword,
+  resetPassword,
+  verifyResetToken,
+  verifyEmail,
+  resendVerificationEmail,
+} from "../controllers/auth.controllers.js";
 
 const router = express.Router();
 
@@ -7,10 +15,14 @@ const router = express.Router();
 
 router.route("/register").post(register);
 
-router.post("/login", login);
+router.route("/login").post(login);
 
-router.post("/forgot-password", forgotPassword);
+router.route("/forgot-password").post(forgotPassword);
 
 router.route("/reset-password/:resetToken").patch(resetPassword).get(verifyResetToken);
+
+router.route("/verify").post(resendVerificationEmail);
+
+router.route("/verify/:token").get(verifyEmail);
 
 export default router;
