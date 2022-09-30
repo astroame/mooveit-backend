@@ -22,6 +22,7 @@ connectDB();
 
 // Importing routes
 import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 // Set up CORS
 app.use(cors());
@@ -56,6 +57,7 @@ app.use(hpp());
 
 // Register routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", userRoutes)
 
 // Error Handling
 app.use(errorHandler);
