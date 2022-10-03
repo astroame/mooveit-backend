@@ -23,6 +23,7 @@ connectDB();
 // Importing routes
 import authRoutes from "./routes/auth.routes.js";
 import partnerRoutes from "./routes/partners.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 // Set up CORS
 app.use(cors());
@@ -58,6 +59,7 @@ app.use(hpp());
 // Register routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/listings", partnerRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 // Error Handling
 app.use(errorHandler);
@@ -66,9 +68,3 @@ app.use(errorHandler);
 app.listen(process.env.PORT, () =>
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`)
 );
-
-// GLOBAL CONFIG TO HANDLE ALL UNHANDLED PROMISE REJECTIONS
-// process.on("unhandledRejection", (err) => {
-//   console.log(`Error: ${err.message}`)
-//   server.close(() => process.exit(1))
-// })

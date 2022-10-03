@@ -7,13 +7,13 @@ import {
   verifyResetToken,
   verifyEmail,
   resendVerificationEmail,
-} from "../controllers/auth.controllers.js";
+  approveListing,
+} from "../controllers/admin.controllers";
 
 const router = express.Router();
+import { protect, authorize } from "../middlewares/auth.js";
 
-// import { protect, authorize } from "../middlewares/auth.js";
-
-router.route("/register").post(register).post();
+router.route("/register").post(register);
 
 router.route("/login").post(login);
 
@@ -24,5 +24,10 @@ router.route("/reset-password/:resetToken").patch(resetPassword).get(verifyReset
 router.route("/verify").post(resendVerificationEmail);
 
 router.route("/verify/:token").get(verifyEmail);
+
+// router.use(protect());
+// router.use(authorize("admin"));
+
+router.route("/listings/:storageId", protect, authorize("admin")).patch(approveListing);
 
 export default router;
