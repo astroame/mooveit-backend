@@ -388,7 +388,6 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordExpire = undefined;
 
   await user.save({ validateBeforeSave: true });
-
   sendTokenResponse(user, 200, res);
 });
 
