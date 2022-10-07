@@ -1,416 +1,129 @@
 import asyncHandler from "../middlewares/async.js";
-import ErrorResponse from "../utils/errorResponse.js";
 import sendTokenResponse from "../utils/sendToken.js";
-import User from "../models/UserModel.js";
-import sendInBlue from "../utils/sendInBlue.js";
+import { AuthService, EmailService } from "../services/index.js";
+import { UserModel } from "../models";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
 // @access  Public
 export const register = asyncHandler(async (req, res, next) => {
-  const { email, firstName, lastName, password, role } = req.body;
+  const query = { ...req.body, next, model: UserModel };
 
-  if (!firstName || !lastName || !password || !email) {
-    return next(new ErrorResponse(`Please fill in all fields`, 400));
-  }
+  const user = await AuthService.register(query);
 
-  const isRegistered = await User.findOne({ email });
+  const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
 
-  if (isRegistered) return next(new ErrorResponse("That email is already registered", 400));
+  const emailObj = {
+    req,
+    user,
+    body,
+    subject: "Confirm your email",
+    path: "verify",
+    buttonText: "Verify Email Address",
+    method: user.getVerificationToken(user),
+    errorResponse: "Email link could not be sent!",
+    userToken: user.verifyToken,
+    userTokenExpire: user.verifyTokenExpire,
+  };
 
-  const user = await new User({
-    email,
-    firstName,
-    lastName,
-    password,
-    role,
-  }).save();
+  await EmailService.sendEmail(emailObj);
 
-  // Get reset token
-  const verificationToken = await user.getVerificationToken(user);
-
-  // send the invite
-  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
-
-  const message = `
-    <html>
-    <head>
-    <style>
-      @media (max-width: 450px) {
-        img {
-          width: 95%;
-        }
-      }
-
-      @media (min-width: 769px) {
-        .container {
-          width: 40%;
-        }
-      }
-    </style>
-  </head>
-  <body
-    style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(214, 214, 214);
-    "
-  >
-    <div
-      class="container"
-      style="
-        border: 1px solid rgb(222, 222, 222);
-        border-radius: 10px;
-        background-color: white;
-        margin: 50px auto;
-        text-align: center;
-        padding: 30px 40px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      "
-    >
-
-      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
-       Hi ${firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
-        <br />
-        <br />
-        <br />
-      </p>
-      <a
-        href="${verificationURL}"
-        style="
-          background: #26348c;
-          padding: 10px 20px;
-          border-radius: 15px;
-          color: white;
-          display: inline-block;
-          margin-bottom: 10px;
-          text-decoration: none;
-        "
-      >
-      Verify Email Address
-      </a>
-    </div>
-  </body>
-    </html>
-   `;
-
-  // Send verification email
-  try {
-    await sendInBlue({
-      receiverEmail: email,
-      receiverName: `${firstName}`,
-      message,
-      subject: "Confirm your Account",
-    });
-
-    sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
-
-  } catch (error) {
-    user.verifyToken = undefined;
-    user.verifyTokenExpire = undefined;
-    await user.save({ validateBeforeSave: false });
-    // console.log(error);
-    return next(new ErrorResponse(`Email could not be sent!`, 500));
-  }
+  sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
 });
 
 // @desc    Resend Verify Email Address
 // @route   POST /api/v1/auth/verify/:token
 // @access  Public
 export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
-  const { email } = req.body;
+  const user = await AuthService.resendVerificationEmail({ ...req.body, next, model: UserModel });
 
-  const user = await User.findOne({ email });
+  const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
 
-  if (!user) return next(new ErrorResponse("There is no user with that email.", 404));
+  const emailObj = {
+    req,
+    user,
+    body,
+    subject: "Confirm your email",
+    path: "verify",
+    buttonText: "Verify Email Address",
+    method: user.getVerificationToken(user),
+    errorResponse: "Email link could not be sent!",
+    userToken: user.verifyToken,
+    userTokenExpire: user.verifyTokenExpire,
+  };
 
-  if (user.isVerified) return next(new ErrorResponse("Email already verified.", 400));
+  await EmailService.sendEmail(emailObj);
 
-  // Get reset token
-  const verificationToken = await user.getVerificationToken(user);
-
-  // send the invite
-  const verificationURL = `${req.protocol}://${process.env.WEB_URL}/verify/${verificationToken}`;
-
-  const message = `
-    <html>
-    <head>
-    <style>
-      @media (max-width: 450px) {
-        img {
-          width: 95%;
-        }
-      }
-
-      @media (min-width: 769px) {
-        .container {
-          width: 40%;
-        }
-      }
-    </style>
-  </head>
-  <body
-    style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(214, 214, 214);
-    "
-  >
-    <div
-      class="container"
-      style="
-        border: 1px solid rgb(222, 222, 222);
-        border-radius: 10px;
-        background-color: white;
-        margin: 50px auto;
-        text-align: center;
-        padding: 30px 40px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      "
-    >
-
-      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
-       Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours. 
-        <br />
-
-        <br />
-        <br />
-      </p>
-      <a
-        href="${verificationURL}"
-        style="
-          background: #26348c;
-          padding: 10px 20px;
-          border-radius: 15px;
-          color: white;
-          display: inline-block;
-          margin-bottom: 10px;
-          text-decoration: none;
-        "
-      >
-        Verify Email Address
-      </a>
-    </div>
-  </body>
-    </html>
-   `;
-
-  // Send verification email
-  try {
-    await sendInBlue({
-      receiverEmail: email,
-      receiverName: `${user.firstName}`,
-      message,
-      subject: "Confirm your account",
-    });
-
-    sendTokenResponse(user, 200, res, "A new verification link has been sent to your email address!");
-  } catch (error) {
-    user.verifyToken = undefined;
-    user.verifyTokenExpire = undefined;
-    await user.save({ validateBeforeSave: false });
-    console.log(error);
-    return next(new ErrorResponse(`Email verification link could not be sent!`, 500));
-  }
+  sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
 });
 
 // @desc    Verify Email Address
 // @route   GET /api/v1/auth/verify/:id/:token
 // @access  Public
 export const verifyEmail = asyncHandler(async (req, res, next) => {
-  let user = await User.findOne({
-    verifyToken: req.params.token,
-    verifyTokenExpire: { $gt: Date.now() },
-  });
-  if (!user) return next(new ErrorResponse("Invalid URL", 400));
+  const user = await AuthService.verifyEmail({ ...req.params, next, model: UserModel });
 
-  if (user.verifyTokenExpired()) return next(new ErrorResponse(`Token is expired`, 401));
-
-  user = await User.findByIdAndUpdate(
-    {
-      _id: user._id,
-    },
-    { isVerified: true, verifyToken: null, verifyTokenExpire: null },
-    { new: true }
-  );
-
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, res, "Your email has been verified successfully");
 });
 
 // @desc    Login User
 // @route   POST /api/v1/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
+  const query = { ...req.body, next, model: UserModel };
 
-  // Validate user credentials
-  if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
-  }
-  // Check for user
-  const user = await User.findOne({ email }).select("+password");
+  const user = await AuthService.login(query);
 
-  if (!user) {
-    return next(new ErrorResponse("Invalid Credentials", 401));
-  }
-  // Check if password matches
-  const isMatch = await user.matchPassword(password);
-  if (!isMatch) {
-    return next(new ErrorResponse("Invalid Credentials", 401));
-  }
-
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, res, "Login successful");
 });
 
 // @desc    Forgot Password
 // @route   POST /api/v1/auth/forgot-password
 // @access  Public
 export const forgotPassword = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+  const user = await AuthService.forgotPassword({ ...req.body, next, model: UserModel });
 
-  if (!user) {
-    return next(new ErrorResponse("There is no user with that email", 404));
-  }
+  const body = ` Hi ${user.firstName}, you are receiving this email because you (or someone else) has requested to reset your password. If this is you, kindly click on the link to continue or just ignore this email if it was not initiated by you`;
 
-  // Get reset token
-  const resetToken = await user.getResetPasswordToken(user._id);
+  const emailObj = {
+    req,
+    user,
+    body,
+    subject: "Please reset your password",
+    path: "reset-password",
+    buttonText: "Reset Password",
+    method: user.getResetPasswordToken(user._id),
+    errorResponse: "Reset password link could not be sent!",
+    userToken: user.resetPasswordToken,
+    userTokenExpire: user.resetPasswordExpire,
+  };
 
-  // send the invite
-  const resetUrl = `${req.protocol}://${process.env.WEB_URL}/reset-password/${resetToken}`;
-  // const resetUrl = `${req.protocol}://${req.get("host")}/api/v1/auth/reset-password/${resetToken}`;
+  await EmailService.sendEmail(emailObj);
 
-  const message = `
-    <html>
-    <head>
-    <style>
-      @media (max-width: 450px) {
-        img {
-          width: 95%;
-        }
-      }
-
-      @media (min-width: 769px) {
-        .container {
-          width: 40%;
-        }
-      }
-    </style>
-  </head>
-  <body
-    style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgb(214, 214, 214);
-    "
-  >
-    <div
-      class="container"
-      style="
-        border: 1px solid rgb(222, 222, 222);
-        border-radius: 10px;
-        background-color: white;
-        margin: 50px auto;
-        text-align: center;
-        padding: 30px 40px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      "
-    >
-
-      <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
-       Hi ${user.firstName}, you are receiving this email because you (or someone else) has requested to reset your password. If this is you, kindly click on the link to continue or just ignore this email if it was not initiated by you
-        <br />
-        <br />
-        Continue resetting your password by clicking on the link below.
-
-        <br />
-        <br />
-      </p>
-      <a
-        href="${resetUrl}"
-        style="
-          background: #26348c;
-          padding: 10px 20px;
-          border-radius: 15px;
-          color: white;
-          display: inline-block;
-          margin-bottom: 10px;
-          text-decoration: none;
-        "
-      >
-        Reset Password
-      </a>
-    </div>
-  </body>
-    </html>
-   `;
-
-  try {
-    await sendInBlue({
-      receiverEmail: user.email,
-      receiverName: `${user.firstName} ${user.lastName}`,
-      message,
-      subject: "Password Reset",
-    });
-
-    res.status(200).json({
-      success: true,
-      message: "Reset Token Sent!",
-    });
-  } catch (error) {
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-    await user.save({ validateBeforeSave: false });
-    return next(new ErrorResponse(`Password reset link could not be sent!`, 500));
-  }
+  res.status(200).json({
+    success: true,
+    message: "Reset Password Token Sent!",
+  });
 });
 
 // @desc    Reset Password
 // @route   PATCH /api/v1/auth/forgot-password
 // @access  Public
 export const resetPassword = asyncHandler(async (req, res, next) => {
-  const { password } = req.body;
+  const query = { ...req.body, ...req.params, next, model: UserModel };
 
-  // Get hashed token
-  // const resetPasswordToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
+  const user = await AuthService.resetPassword(query);
 
-  const user = await User.findOne({
-    resetPasswordToken: req.params.resetToken,
-    resetPasswordExpire: { $gt: Date.now() },
-  });
-
-  if (!user) {
-    return next(new ErrorResponse("Invalid token", 400));
-  }
-
-  // Set new password
-  user.password = password;
-  user.resetPasswordToken = undefined;
-  user.resetPasswordExpire = undefined;
-
-  await user.save({ validateBeforeSave: true });
-
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, res, "Your password has ben reset successfully");
 });
 
 // @desc    Verify reset token
 // @route   GET /api/v1/auth/reset-token/:resetToken
 // @access  Private
 export const verifyResetToken = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({
-    resetPasswordToken: req.params.resetToken,
-    resetPasswordExpire: { $gt: Date.now() },
-  });
+  const query = { ...req.params, next, model: UserModel };
 
-  if (!user) {
-    return next(new ErrorResponse(`Token is invalid`, 401));
-  }
-
-  if (user.isExpired()) {
-    return next(new ErrorResponse(`Token is expired`, 401));
-  }
+  const user = await AuthService.verifyResetToken(query);
 
   res.status(200).json({
     success: true,
