@@ -8,33 +8,33 @@ import StorageListing from "../models/StorageListing.js";
 // @route   PATCH /api/v1/listings
 // @access  Public
 export const createListing = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
-  console.log(req.files);
+  // console.log(req.body);
+  // console.log(req.files);
 
-  res.send("sent");
-  // const {
-  //   address,
-  //   storageType,
-  //   storageFloor,
-  //   storageFeatures,
-  //   services,
-  //   storageSize,
-  //   streetView,
-  //   image,
-  //   storageTitle,
-  //   description,
-  //   unavailabilityReason,
-  //   unavailabilityPeriodStart,
-  //   unavailabilityPeriodEnd,
-  //   storageAccessPeriod,
-  //   storageAccessType,
-  //   parkingPermit,
-  //   parkingInstruction,
-  //   bookingDuration,
-  //   bookingNotice,
-  // } = req.body;
+  // res.send("sent");
+  const {
+    address,
+    storageType,
+    storageFloor,
+    storageFeatures,
+    services,
+    storageSize,
+    streetView,
+    image,
+    storageTitle,
+    description,
+    unavailabilityReason,
+    unavailabilityPeriodStart,
+    unavailabilityPeriodEnd,
+    storageAccessPeriod,
+    storageAccessType,
+    parkingPermit,
+    parkingInstruction,
+    bookingDuration,
+    bookingNotice,
+  } = req.body;
 
-  // let completed;
+  let completed;
 
   // if (
   //   address &&
@@ -60,35 +60,35 @@ export const createListing = asyncHandler(async (req, res, next) => {
   //   completed = true;
   // }
 
-  // const storageListing = await StorageListing.create({
-  //   address,
-  //   storageType,
-  //   storageFloor,
-  //   storageFeatures,
-  //   services,
-  //   storageSize,
-  //   streetView,
-  //   image,
-  //   storageTitle,
-  //   description,
-  //   unavailabilityReason,
-  //   unavailabilityPeriodStart,
-  //   unavailabilityPeriodEnd,
-  //   storageAccessPeriod,
-  //   storageAccessType,
-  //   parkingPermit,
-  //   parkingInstruction,
-  //   bookingDuration,
-  //   bookingNotice,
-  //   user: req.user,
-  //   completed,
-  //   started: true,
-  // });
+  const storageListing = await StorageListing.create({
+    address,
+    storageType,
+    storageFloor,
+    storageFeatures,
+    services,
+    storageSize,
+    streetView,
+    image,
+    storageTitle,
+    description,
+    unavailabilityReason,
+    unavailabilityPeriodStart,
+    unavailabilityPeriodEnd,
+    storageAccessPeriod,
+    storageAccessType,
+    parkingPermit,
+    parkingInstruction,
+    bookingDuration,
+    bookingNotice,
+    user: req.user,
+    completed,
+    started: true,
+  });
 
-  // res.status(200).json({
-  //   success: true,
-  //   data: storageListing,
-  // });
+  res.status(200).json({
+    success: true,
+    data: storageListing,
+  });
 });
 
 // @desc    Update a listing

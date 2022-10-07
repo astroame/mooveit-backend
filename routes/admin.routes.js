@@ -8,7 +8,8 @@ import {
   verifyEmail,
   resendVerificationEmail,
   approveListing,
-} from "../controllers/admin.controllers";
+  viewAllListings,
+} from "../controllers/admin.controllers.js";
 
 const router = express.Router();
 import { protect, authorize } from "../middlewares/auth.js";
@@ -25,8 +26,10 @@ router.route("/verify").post(resendVerificationEmail);
 
 router.route("/verify/:token").get(verifyEmail);
 
-// router.use(protect());
+// router.use(protect);
 // router.use(authorize("admin"));
+
+router.route("/listings", protect, authorize("admin")).get(viewAllListings);
 
 router.route("/listings/:storageId", protect, authorize("admin")).patch(approveListing);
 
