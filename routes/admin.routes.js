@@ -1,4 +1,6 @@
 import express from "express";
+import { approveListing, viewAllListings } from "../controllers/admin.controllers.js";
+
 import {
   register,
   login,
@@ -7,9 +9,7 @@ import {
   verifyResetToken,
   verifyEmail,
   resendVerificationEmail,
-  approveListing,
-  viewAllListings,
-} from "../controllers/admin.controllers.js";
+} from "../controllers/auth.controllers.js";
 
 const router = express.Router();
 import { protect, authorize } from "../middlewares/auth.js";
