@@ -1,5 +1,5 @@
 import express from "express";
-import { approveListing, viewAllListings } from "../controllers/admin.controllers.js";
+import { approveListing, viewAllListings, getAllUsers } from "../controllers/admin.controllers.js";
 
 import {
   register,
@@ -30,6 +30,8 @@ router.route("/verify/:token").get(verifyEmail);
 // router.use(authorize("admin"));
 
 router.route("/listings", protect, authorize("admin")).get(viewAllListings);
+
+router.route("/users", protect, authorize("admin")).get(getAllUsers);
 
 router.route("/listings/:storageId", protect, authorize("admin")).patch(approveListing);
 

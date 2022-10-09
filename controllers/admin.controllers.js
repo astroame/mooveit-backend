@@ -1,25 +1,21 @@
 import asyncHandler from "../middlewares/async.js";
-import sendTokenResponse from "../utils/sendToken.js";
-import { AdminService, AuthService, EmailService } from "../services/index.js";
+import { AdminService, AuthService, EmailService, UserService } from "../services/index.js";
+import sendResponse from "../utils/sendResponse.js";
 
 // STORAGE LISTING ENDPOINT
 export const approveListing = asyncHandler(async (req, res, next) => {
   const query = { ...req.params, next };
-
   const storageListing = await AdminService.approveListing(query);
-
-  res.status(200).json({
-    success: true,
-    data: storageListing,
-  });
+  sendResponse(res, true, 200, storageListing);
 });
 
 export const viewAllListings = asyncHandler(async (req, res, next) => {
   const storageListing = await AdminService.viewAllListings();
+  sendResponse(res, true, 200, storageListing);
+});
 
-  res.status(200).json({
-    success: true,
-    count: storageListing.length,
-    data: storageListing,
-  });
+// Get all users
+export const getAllUsers = asyncHandler(async (req, res, next) => {
+  const users = await UserService.getAllUser();
+  sendResponse(res, true, 200, users);
 });

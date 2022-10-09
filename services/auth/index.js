@@ -1,5 +1,4 @@
 import asyncHandler from "../../middlewares/async";
-import { StorageListing } from "../../models";
 import ErrorResponse from "../../utils/errorResponse";
 
 export const register = asyncHandler(async (query) => {
