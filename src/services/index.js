@@ -1,4 +1,4 @@
-export * as AdminService from "./admin";
-export * as UserService from "./users";
-export * as EmailService from "./email";
-export * as AuthService from "./auth";
+export * as AdminService from "./admin.service.js";
+export * as UserService from "./users.service.js";
+export * as EmailService from "./email.service.js";
+export * as AuthService from "./auth.service.js";

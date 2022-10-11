@@ -1,6 +1,6 @@
-import asyncHandler from "../../middlewares/async";
-import ErrorResponse from "../../utils/errorResponse";
-import sendInBlue from "../../utils/sendInBlue";
+import asyncHandler from "../middlewares/async.js";
+import ErrorResponse from "../utils/errorResponse.js";
+import sendInBlue from "../utils/sendInBlue.js";
 
 export const sendEmail = asyncHandler(
   async ({ subject, req, user, path, buttonText, body, method, errorResponse, userToken, userTokenExpire }) => {

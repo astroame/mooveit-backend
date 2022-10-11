@@ -1,5 +1,5 @@
-import asyncHandler from "../../middlewares/async";
-import ErrorResponse from "../../utils/errorResponse";
+import asyncHandler from "../middlewares/async.js";
+import ErrorResponse from "../utils/errorResponse.js";
 
 export const register = asyncHandler(async (query) => {
   const { email, firstName, lastName, password, next, model } = query;

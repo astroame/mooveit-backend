@@ -1,6 +1,5 @@
-import asyncHandler from "../../middlewares/async";
-import { Admin, StorageListing, UserModel } from "../../models";
-import ErrorResponse from "../../utils/errorResponse";
+import asyncHandler from "../middlewares/async.js";
+import { AdminModel, StorageListing, UserModel } from "../models/index.js";
 
 // STORAGE LISTING
 
