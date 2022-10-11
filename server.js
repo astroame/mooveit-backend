@@ -9,8 +9,8 @@ import xss from "xss-clean";
 import hpp from "hpp";
 
 // Importing local modules
-import errorHandler from "./middlewares/errorHandler.js";
-import connectDB from "./config/db.config.js";
+import errorHandler from "./src/middlewares/errorHandler.js";
+import connectDB from "./src/config/db.config.js";
 
 dotenv.config();
 
@@ -21,10 +21,10 @@ const app = express();
 connectDB();
 
 // Importing routes
-import authRoutes from "./routes/auth.routes.js";
-import userRoutes from "./routes/user.routes.js";
-import partnerRoutes from "./routes/partners.routes.js";
-import adminRoutes from "./routes/admin.routes.js";
+import authRoutes from "./src/routes/admin.routes.js";
+import userRoutes from "./src/routes/user.routes.js";
+import partnerRoutes from "./src/routes/partners.routes.js";
+import adminRoutes from "./src/routes/admin.routes.js";
 
 // Set up CORS
 app.use(cors());
@@ -59,7 +59,7 @@ app.use(hpp());
 
 // Register routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/users", userRoutes)
+app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/listings", partnerRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
