@@ -33,7 +33,7 @@ app.use(cors());
 app.options("*", cors());
 
 // Set up public folder
-app.use(express.static("public"));
+app.use(express.static("src/public"));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
