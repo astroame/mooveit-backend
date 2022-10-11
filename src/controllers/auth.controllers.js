@@ -1,7 +1,7 @@
 import asyncHandler from "../middlewares/async.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import { AuthService, EmailService } from "../services/index.js";
-import { UserModel, Admin } from "../models";
+import { UserModel, Admin } from "../models/index.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
