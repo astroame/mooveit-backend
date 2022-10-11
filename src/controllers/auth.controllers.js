@@ -1,13 +1,13 @@
 import asyncHandler from "../middlewares/async.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import { AuthService, EmailService } from "../services/index.js";
-import { UserModel, Admin } from "../models/index.js";
+import { UserModel, AdminModel } from "../models/index.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
 // @access  Public
 export const register = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? Admin : UserModel };
+  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.register(query);
 
@@ -38,7 +38,7 @@ export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
   const user = await AuthService.resendVerificationEmail({
     ...req.body,
     next,
-    model: req.originalUrl.includes("admin") ? Admin : UserModel,
+    model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
   });
 
   const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
@@ -68,7 +68,7 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
   const user = await AuthService.verifyEmail({
     ...req.params,
     next,
-    model: req.originalUrl.includes("admin") ? Admin : UserModel,
+    model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
   });
 
   sendTokenResponse(user, 200, res, "Your email has been verified successfully");
@@ -78,7 +78,7 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? Admin : UserModel };
+  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.login(query);
 
@@ -92,7 +92,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   const user = await AuthService.forgotPassword({
     ...req.body,
     next,
-    model: req.originalUrl.includes("admin") ? Admin : UserModel,
+    model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
   });
 
   const body = ` Hi ${user.firstName}, you are receiving this email because you (or someone else) has requested to reset your password. If this is you, kindly click on the link to continue or just ignore this email if it was not initiated by you`;
@@ -122,7 +122,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 // @route   PATCH /api/v1/auth/forgot-password
 // @access  Public
 export const resetPassword = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, ...req.params, next, model: req.originalUrl.includes("admin") ? Admin : UserModel };
+  const query = { ...req.body, ...req.params, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.resetPassword(query);
 
@@ -133,7 +133,7 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/auth/reset-token/:resetToken
 // @access  Private
 export const verifyResetToken = asyncHandler(async (req, res, next) => {
-  const query = { ...req.params, next, model: req.originalUrl.includes("admin") ? Admin : UserModel };
+  const query = { ...req.params, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.verifyResetToken(query);
 

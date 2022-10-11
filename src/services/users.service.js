@@ -1,6 +1,6 @@
-import asyncHandler from "../../middlewares/async";
-import User from "../../models/UserModel";
-import ErrorResponse from "../../utils/errorResponse";
+import asyncHandler from "../middlewares/async.js";
+import User from "../models/UserModel.js";
+import ErrorResponse from "../utils/errorResponse.js";
 
 export const getAllUser = asyncHandler(async () => {
   const users = await User.find();

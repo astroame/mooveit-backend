@@ -19,3 +19,4 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await UserService.getAllUser();
   sendResponse(res, true, 200, users);
 });
+    

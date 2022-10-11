@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
+							"raw": "{\n    \"email\": \"ujaxqshuaru@emergentvillage.org\",\n    \"password\": \"Fejiro@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -176,14 +176,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/auth/verify/7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934",
+							"raw": "{{URL}}/auth/verify/7009e6797453895a74bddbc28b06fc0bc611a6723c2736f0870422b5600ba5f0",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"auth",
 								"verify",
-								"7f6bfb304936d0b252d918ffa00b1cbf12cc69a0da3fbbe3051c5b90edaf6934"
+								"7009e6797453895a74bddbc28b06fc0bc611a6723c2736f0870422b5600ba5f0"
 							]
 						}
 					},
@@ -219,6 +219,284 @@
 			]
 		},
 		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Register a user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"TOKEN\", JSON.parse(pm.request.body));",
+											"",
+											"// console.log(pm.request)",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(pm.response.body)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\",\n    \"password\": \"Admin@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Forgot Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/forgot-password",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Password",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Admin@123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/reset-password/4cc27117d6ca17f8cab1335c74d4f11d95e97b66bfe4e4f3eef7eb9378fdc45a",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"reset-password",
+										"4cc27117d6ca17f8cab1335c74d4f11d95e97b66bfe4e4f3eef7eb9378fdc45a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Reset Token",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/admin/reset-password/4cc27117d6ca17f8cab1335c74d4f11d95e97b66bfe4e4f3eef7eb9378fdc45a",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"reset-password",
+										"4cc27117d6ca17f8cab1335c74d4f11d95e97b66bfe4e4f3eef7eb9378fdc45a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Email",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/admin/verify/7f21e30daa580d905374e61f96d926d530d40205efd22a0265381ee297380000",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"verify",
+										"7f21e30daa580d905374e61f96d926d530d40205efd22a0265381ee297380000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resend Verification Email",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/verify",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Storage Listings",
+					"item": [
+						{
+							"name": "Approve Storage Listing",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzcwODM3ODQ4ZTg4NDNlOTY4ZTk3NSIsImlhdCI6MTY2NDU1MjU3MSwiZXhwIjoxNjY3MTQ0NTcxfQ.URId3kwB8DOWLjtPJfdt_ngosRPWua8fXpxOns_6Nc8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/admin/listings/6332ec5cf280bb4fce7f0d6a",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"listings",
+										"6332ec5cf280bb4fce7f0d6a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Listings",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDAyOTFjMzljMTM5NTYyOWI0MmQxNyIsImlhdCI6MTY2NTE4NTMyMywiZXhwIjoxNjY3Nzc3MzIzfQ.jn0hJIez2L1GGVs9GieOGFzYy_r4JPr8oHXoWj1y_gI",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/admin/listings",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"admin",
+										"listings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Partner",
 			"item": [
 				{
@@ -229,7 +507,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{TOKEN}}",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDUyODA0MCwiZXhwIjoxNjY3MTIwMDQwfQ.yyMeTzONYdypXShE5ufUnNzwF4CE63QiDiYicK4snt4",
 									"type": "string"
 								}
 							]
@@ -238,7 +516,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"address\": \"Some default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\"cctv\", \"alarm\", \"padlock\"],\n    \"services\": [\"delivery\"]\n}",
+							"raw": "{\n    \"address\": \"Some default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\n        \"cctv\",\n        \"alarm\",\n        \"padlock\"\n    ],\n    \"services\": [\n        \"delivery\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -268,7 +546,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzcwODM3ODQ4ZTg4NDNlOTY4ZTk3NSIsImlhdCI6MTY2NDk5MTM5NywiZXhwIjoxNjY3NTgzMzk3fQ.0BVBivRRCRYLj9gpvpDfjiRuH4XEqV6pbxUcilcVAoA",
 									"type": "string"
 								}
 							]
@@ -369,7 +647,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIxMTQ4NWI5OTljNWMzY2JkY2RiYSIsImlhdCI6MTY2NDU1NDI0OCwiZXhwIjoxNjY3MTQ2MjQ4fQ.nKhuTWwyxb2yRxYCfwiD9Q-sW99d-NszvxCkl5Zwbiw",
 									"type": "string"
 								}
 							]
@@ -384,6 +662,29 @@
 							"path": [
 								"listings",
 								"6332ec5cf280bb4fce7f0d6a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"users"
 							]
 						}
 					},
