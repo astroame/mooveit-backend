@@ -5,9 +5,13 @@ import User from "../models/UserModel.js";
 import StorageListing from "../models/StorageListing.js";
 
 // @desc    Create a listing
-// @route   PATCH /api/v1/auth/register
+// @route   PATCH /api/v1/listings
 // @access  Public
 export const createListing = asyncHandler(async (req, res, next) => {
+  // console.log(req.body);
+  // console.log(req.files);
+
+  // res.send("sent");
   const {
     address,
     storageType,
@@ -32,29 +36,29 @@ export const createListing = asyncHandler(async (req, res, next) => {
 
   let completed;
 
-  if (
-    address &&
-    storageType &&
-    storageFloor &&
-    storageFeatures &&
-    services &&
-    storageSize &&
-    streetView &&
-    image &&
-    storageTitle &&
-    description &&
-    unavailabilityReason &&
-    unavailabilityPeriodStart &&
-    unavailabilityPeriodEnd &&
-    storageAccessPeriod &&
-    storageAccessType &&
-    parkingPermit &&
-    parkingInstruction &&
-    bookingDuration &&
-    bookingNotice
-  ) {
-    completed = true;
-  }
+  // if (
+  //   address &&
+  //   storageType &&
+  //   storageFloor &&
+  //   storageFeatures &&
+  //   services &&
+  //   storageSize &&
+  //   streetView &&
+  //   image &&
+  //   storageTitle &&
+  //   description &&
+  //   unavailabilityReason &&
+  //   unavailabilityPeriodStart &&
+  //   unavailabilityPeriodEnd &&
+  //   storageAccessPeriod &&
+  //   storageAccessType &&
+  //   parkingPermit &&
+  //   parkingInstruction &&
+  //   bookingDuration &&
+  //   bookingNotice
+  // ) {
+  //   completed = true;
+  // }
 
   const storageListing = await StorageListing.create({
     address,
@@ -106,8 +110,9 @@ export const updateListing = asyncHandler(async (req, res, next) => {
 // @desc    Get All Listing
 // @route   GET /api/v1/listing
 // @access  Private
-export const getAllListing = asyncHandler(async (req, res, next) => {
-  const storageListings = await StorageListing.find()
+export const getListingByPartners = asyncHandler(async (req, res, next) => {
+  // console.log(req.user);
+  const storageListings = await StorageListing.find({ user: req.user._id })
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
 
@@ -122,15 +127,15 @@ export const getAllListing = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/listing
 // @access  Private
 export const getSingleListing = asyncHandler(async (req, res, next) => {
-  const storageListings = await StorageListing.findById(req.params.storageId)
+  const storageListing = await StorageListing.findOne({ user: req.user._id, _id: req.params.storageId })
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
 
-  if (!storageListings) return next(new ErrorResponse("No listing with that id", 404));
+  if (!storageListing) return next(new ErrorResponse("No listing with that id", 404));
 
   res.status(200).json({
     success: true,
-    data: storageListings,
+    data: storageListing,
   });
 });
 
