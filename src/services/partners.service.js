@@ -3,7 +3,7 @@ import ErrorResponse from "../utils/errorResponse.js";
 import { StorageListing } from "../models/index.js";
 
 export const createListing = asyncHandler(async ({ req }) => {
-  // console.log("heyyyy");
+  console.log(req.files);
   const {
     address,
     storageType,
@@ -114,3 +114,7 @@ export const deleteListing = asyncHandler(async ({ req }) => {
   await StorageListing.findByIdAndDelete(req.params.storageId);
   return;
 });
+
+// export const uploadImages = asyncHandler(async ({ images }) => {
+  
+// })

@@ -18,7 +18,7 @@ const StorageListingSchema = Schema(
     description: String,
 
     // AVAILABILITY
-    unavailabilityPeriods:[{ unavailabilityReason: String, unavailabilityPeriodStart: Date, unavailabilityPeriodEnd: Date,}], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
+    unavailabilityPeriods:[{ unavailabilityReason: String, unavailabilityPeriodStart: Date, unavailabilityPeriodEnd: Date }], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
     storageAccessPeriod: String,
     storageAccessType: String,
     parkingPermit: { type: Boolean, default: false },
