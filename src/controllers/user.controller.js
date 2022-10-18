@@ -26,3 +26,11 @@ export const deleteUser = asyncHandler(async (req, res, next) => {
   await UserService.deleteUser({ ...req.params });
   sendResponse(res, true, 200, null);
 });
+
+// @desc    Get All Listing
+// @route   GET /api/v1/listing
+// @access  Private
+export const getAllListing = asyncHandler(async (req, res, next) => {
+  const storageListings = await UserService.getAllListing();
+  sendResponse(res, true, 200, storageListings);
+});
