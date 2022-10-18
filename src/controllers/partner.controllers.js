@@ -1,6 +1,6 @@
 import asyncHandler from "../middlewares/async.js";
 import { PartnerService } from "../services/index.js";
-import sendResponse from "../utils/sendResponse";
+import sendResponse from "../utils/sendResponse.js";
 
 // @desc    Create a listing
 // @route   PATCH /api/v1/listings
