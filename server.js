@@ -41,6 +41,7 @@ if (process.env.NODE_ENV === "development") {
 
 // Express json middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Cookie parser
 app.use(cookieParser());

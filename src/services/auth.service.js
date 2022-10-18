@@ -52,7 +52,7 @@ export const resendVerificationEmail = asyncHandler(async ({ email, next, model 
   return user;
 });
 
-export const verifyEmail = asyncHandler(async ({ token, next }) => {
+export const verifyEmail = asyncHandler(async ({ token, next, model }) => {
   let user = await model.findOne({
     verifyToken: token,
     verifyTokenExpire: { $gt: Date.now() },
