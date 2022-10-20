@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\",\n    \"password\": \"Customer@123\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotlinev.com\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Herdernson\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +278,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotlinev.com\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -573,7 +573,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGU3MmY2NWU1MjM1ZWI0MmY0YzE3OSIsImlhdCI6MTY2NjEwOTI0NCwiZXhwIjoxNjY4NzAxMjQ0fQ.SiX2WzdgPfhmIQM2qVUMmGbRwaPxQERlPpmmc8LfddI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjI3NDg2NSwiZXhwIjoxNjY4ODY2ODY1fQ.gpj_XEX_lzv7j5-nwWz8D58dNI9S2zoLoECPK7pGk9o",
 									"type": "string"
 								}
 							]
@@ -713,7 +713,7 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "images",
+									"key": "media",
 									"type": "file",
 									"src": [
 										"/Users/mac/Downloads/1666016644157photo.jpeg",
@@ -723,13 +723,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/listings/634ecf78b24f69f1e7e71138/upload",
+							"raw": "{{URL}}/listings/634de143412736c52fcaf05d/upload",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"listings",
-								"634ecf78b24f69f1e7e71138",
+								"634de143412736c52fcaf05d",
 								"upload"
 							]
 						}

@@ -16,8 +16,8 @@
 <strong class="request-method border-success">POST</strong>
 &nbsp;
 {{URL}}/auth/login</h4></a></div><div id=collapse-Authentication-LoginUser class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;email&#34;: &#34;ptsfvmcgtnzrw@spacehotline.com&#34;,
-&#34;password&#34;: &#34;Customer@123&#34;
+&#34;email&#34;: &#34;partner@gmail.com&#34;,
+&#34;password&#34;: &#34;Partner@123&#34;
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-success" id=jump-Authentication-ForgotPassword><div class=panel-heading><small class="pull-right text-muted">raw</small>
 <a class=text-success data-toggle=collapse data-parent=#accordion-Authentication href=#collapse-Authentication-ForgotPassword><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Forgot Password</strong> &nbsp;|&nbsp;
 <strong class="request-method border-success">POST</strong>
@@ -48,16 +48,16 @@
 <strong class="request-method border-success">POST</strong>
 &nbsp;
 {{URL}}/admin/register</h4></a></div><div id=collapse-Admin-Registerauser class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;email&#34;: &#34;ptsfvmcgtnzrw@spacehotlinev.com&#34;,
-&#34;firstName&#34;: &#34;Joshua&#34;,
-&#34;lastName&#34;: &#34;Herdernson&#34;,
+&#34;email&#34;: &#34;ukdihftg@arxxwalls.com&#34;,
+&#34;firstName&#34;: &#34;Customer&#34;,
+&#34;lastName&#34;: &#34;Account&#34;,
 &#34;password&#34;: &#34;Admin@123&#34;
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-success" id=jump-Admin-LoginUser><div class=panel-heading><small class="pull-right text-muted">raw</small>
 <a class=text-success data-toggle=collapse data-parent=#accordion-Admin href=#collapse-Admin-LoginUser><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Login User</strong> &nbsp;|&nbsp;
 <strong class="request-method border-success">POST</strong>
 &nbsp;
 {{URL}}/admin/login</h4></a></div><div id=collapse-Admin-LoginUser class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;email&#34;: &#34;ptsfvmcgtnzrw@spacehotlinev.com&#34;,
+&#34;email&#34;: &#34;partner@gmail.com&#34;,
 &#34;password&#34;: &#34;Admin@123&#34;
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-success" id=jump-Admin-ForgotPassword><div class=panel-heading><small class="pull-right text-muted">raw</small>
 <a class=text-success data-toggle=collapse data-parent=#accordion-Admin href=#collapse-Admin-ForgotPassword><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Forgot Password</strong> &nbsp;|&nbsp;
@@ -134,7 +134,7 @@
 <a class=text-warning data-toggle=collapse data-parent=#accordion-Partner href=#collapse-Partner-Uploadimages><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Upload images</strong> &nbsp;|&nbsp;
 <strong class="request-method border-warning">PATCH</strong>
 &nbsp;
-{{URL}}/listings/634ecf78b24f69f1e7e71138/upload</h4></a></div><div id=collapse-Partner-Uploadimages class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><table class="table table-hover"><thead><tr><th>Key<th>Value<th>Description<tbody><tr><td>images<td><td></table></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=Users>Users
+{{URL}}/listings/634de143412736c52fcaf05d/upload</h4></a></div><div id=collapse-Partner-Uploadimages class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><table class="table table-hover"><thead><tr><th>Key<th>Value<th>Description<tbody><tr><td>media<td><td></table></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=Users>Users
 <span class=badge>3</span></h3></div><div class=panel-body><p><div class=request-item><div class=panel-group id=accordion-Users><div class="panel panel-info" id=jump-Users-GetAllUsers><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllUsers><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Users</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
@@ -151,4 +151,4 @@ if(IsJsonString(html)){var obj=JSON.parse(html);var formattedJson=JSON.stringify
 function IsJsonString(str){try{JSON.parse(str);}catch(e){return false;}
 return true;}
 String.prototype.replaceAll=function(replaceThis,withThis){var re=new RegExp(RegExp.quote(replaceThis),"g");return this.replace(re,withThis);};RegExp.quote=function(str){return str.replace(/([.?*+^$[\]\\(){}-])/g,"\\$1");};function syntaxHighlight(json){json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(match){var cls='number';if(/^"/.test(match)){if(/:$/.test(match)){cls='key';}else{cls='string';}}else if(/true|false/.test(match)){cls='boolean';}else if(/null/.test(match)){cls='null';}
-return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-10-20 13:25:55 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
+return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-10-20 15:09:51 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
