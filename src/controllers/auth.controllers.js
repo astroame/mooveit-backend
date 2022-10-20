@@ -8,7 +8,7 @@ import sendResponse from "../utils/sendResponse.js";
 // @route   POST /api/v1/auth/register
 // @access  Public
 export const register = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: !req.originalUrl.includes("admin") && UserModel };
+  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.register(query);
 
@@ -36,7 +36,7 @@ export const register = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/register
 // @access  Public
 export const adminRegister = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: req.originalUrl.includes("admin") && AdminModel };
+  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.register(query);
 

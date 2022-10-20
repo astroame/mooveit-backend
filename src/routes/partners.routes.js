@@ -17,7 +17,7 @@ router.use(protect);
 router.use(authorize("partner"));
 
 router.route("/").post(createListing).get(getListingByPartners);
-router.route("/:storageId/upload").patch(upload.array("images", 6), uploadImages);
+router.route("/:storageId/upload").patch(upload.array("media", 6), uploadImages);
 
 router.route("/:storageId").patch(updateListing).delete(deleteListing).get(getSingleListing);
 
