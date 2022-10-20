@@ -1,20 +1,20 @@
 import express from "express";
-import { approveListing, viewAllListings, getAllUsers } from "../controllers/admin.controllers.js";
+const router = express.Router();
+import { protectAdmin, authorize } from "../middlewares/auth.js";
 
+import { approveListing, viewAllListings, getAllUsers } from "../controllers/admin.controllers.js";
 import {
-  register,
   login,
   forgotPassword,
   resetPassword,
   verifyResetToken,
   verifyEmail,
   resendVerificationEmail,
+  adminRegister,
+  updatePassword,
 } from "../controllers/auth.controllers.js";
 
-const router = express.Router();
-import { protect, authorize } from "../middlewares/auth.js";
-
-router.route("/register").post(register);
+router.route("/register").post(adminRegister);
 
 router.route("/login").post(login);
 
@@ -26,13 +26,15 @@ router.route("/verify").post(resendVerificationEmail);
 
 router.route("/verify/:token").get(verifyEmail);
 
-// router.use(protect);
-// router.use(authorize("admin"));
+router.use(protectAdmin);
+router.use(authorize("admin"));
 
-router.route("/listings", protect, authorize("admin")).get(viewAllListings);
+router.route("/update-password").post(updatePassword);
 
-router.route("/users", protect, authorize("admin")).get(getAllUsers);
+router.route("/listings").get(viewAllListings);
 
-router.route("/listings/:storageId", protect, authorize("admin")).patch(approveListing);
+router.route("/users").get(getAllUsers);
+
+router.route("/listings/:storageId").patch(approveListing);
 
 export default router;

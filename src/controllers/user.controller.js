@@ -34,3 +34,11 @@ export const getAllListing = asyncHandler(async (req, res, next) => {
   const storageListings = await UserService.getAllListing();
   sendResponse(res, true, 200, storageListings);
 });
+
+// @desc    Get single Listing
+// @route   GET /api/v1/listing
+// @access  Private
+export const getSingleListing = asyncHandler(async (req, res, next) => {
+  const storageListing = await UserService.getSingleListing({ req, next });
+  sendResponse(res, true, 200, storageListing);
+});

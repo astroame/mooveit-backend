@@ -48,6 +48,8 @@ export const sendEmail = asyncHandler(
       "
     >
 
+    
+
       <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
        ${body}
         <br />
@@ -66,7 +68,8 @@ export const sendEmail = asyncHandler(
           text-decoration: none;
         "
       >
-      ${buttonText}
+      ${buttonText && buttonText.length > 1 ? buttonText : " "}
+      
       </a>
     </div>
   </body>

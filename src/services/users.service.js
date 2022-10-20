@@ -38,3 +38,13 @@ export const getAllListing = asyncHandler(async () => {
 
   return storageListings;
 });
+
+export const getSingleListing = asyncHandler(async ({ req, next }) => {
+  const storageListing = await StorageListing.findOne({ _id: req.params.storageId })
+    .lean()
+    .populate({ path: "user", select: ["firstName", "lastName"] });
+
+  if (!storageListing) return next(new ErrorResponse("No listing with that id", 404));
+
+  return storageListing;
+});

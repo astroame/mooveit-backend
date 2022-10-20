@@ -8,17 +8,20 @@ const StorageListingSchema = Schema(
     storageType: String,
     storageFloor: String,
     storageFeatures: [String],
-    services: [String],
+    parking: { type: Boolean, default: false },
+    delivery: { type: Boolean, default: false },
 
     // SPACE DETAILS
     storageSize: String,
     streetView: { type: Boolean, default: false },
-    image: [String],
+    images: [String],
     storageTitle: String,
     description: String,
 
     // AVAILABILITY
-    unavailabilityPeriods:[{ unavailabilityReason: String, unavailabilityPeriodStart: Date, unavailabilityPeriodEnd: Date }], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
+    unavailabilityPeriods: [
+      { unavailabilityReason: String, unavailabilityPeriodStart: Date, unavailabilityPeriodEnd: Date },
+    ], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
     storageAccessPeriod: String,
     storageAccessType: String,
     parkingPermit: { type: Boolean, default: false },
