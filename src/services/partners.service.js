@@ -3,13 +3,13 @@ import ErrorResponse from "../utils/errorResponse.js";
 import { StorageListing } from "../models/index.js";
 
 export const createListing = asyncHandler(async ({ req }) => {
-  console.log(req.files);
   const {
     address,
     storageType,
     storageFloor,
     storageFeatures,
-    services,
+    delivery,
+    parking,
     storageSize,
     streetView,
     image,
@@ -33,7 +33,8 @@ export const createListing = asyncHandler(async ({ req }) => {
   //   storageType &&
   //   storageFloor &&
   //   storageFeatures &&
-  //   services &&
+  //   delivery &&
+  // parking &&
   //   storageSize &&
   //   streetView &&
   //   image &&
@@ -57,7 +58,8 @@ export const createListing = asyncHandler(async ({ req }) => {
     storageType,
     storageFloor,
     storageFeatures,
-    services,
+    delivery,
+    parking,
     storageSize,
     streetView,
     image,
@@ -115,6 +117,21 @@ export const deleteListing = asyncHandler(async ({ req }) => {
   return;
 });
 
-// export const uploadImages = asyncHandler(async ({ images }) => {
-  
-// })
+export const uploadImages = asyncHandler(async ({ req, next }) => {
+  let images = [];
+
+  req.files.forEach((image) => {
+    images = [...images, image.location];
+  });
+
+  const upload = await StorageListing.findOneAndUpdate(
+    { _id: req.params.storageId, user: req.user },
+    {
+      $push: { images },
+    }
+  );
+
+  if (!upload) return next(new ErrorResponse("No listing with that id", 404));
+
+  return true;
+});

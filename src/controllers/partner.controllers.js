@@ -6,7 +6,6 @@ import sendResponse from "../utils/sendResponse.js";
 // @route   PATCH /api/v1/listings
 // @access  Public
 export const createListing = asyncHandler(async (req, res, next) => {
-  // const images = await PartnerService.uploadImages({ ...req.files });
   const storageListing = await PartnerService.createListing({ req });
   sendResponse(res, true, 200, storageListing);
 });
@@ -40,5 +39,10 @@ export const getSingleListing = asyncHandler(async (req, res, next) => {
 // @access  Private
 export const deleteListing = asyncHandler(async (req, res, next) => {
   await PartnerService.deleteListing({ req });
+  sendResponse(res, true, 200);
+});
+
+export const uploadImages = asyncHandler(async (req, res, next) => {
+  await PartnerService.uploadImages({ req, next });
   sendResponse(res, true, 200);
 });

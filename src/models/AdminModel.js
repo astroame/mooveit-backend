@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import ErrorResponse from "../utils/errorResponse";
 
 const AdminSchema = Schema(
   {
@@ -20,6 +21,7 @@ const AdminSchema = Schema(
     role: {
       type: String,
       default: "admin",
+      enum: ["super admin", "admin"],
     },
 
     password: {
@@ -60,6 +62,43 @@ AdminSchema.methods.getSignedJwtToken = function () {
 // Compare and match the password
 AdminSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Update Password
+AdminSchema.methods.updatePassword = async function (query) {
+  let { oldPassword, newPassword, confirmPassword, next, user } = query;
+
+  // Check if password matches
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+  if (!isMatch)
+    return next(new ErrorResponse("The old password you provided does not match the password in our database", 400));
+
+  if (newPassword !== confirmPassword)
+    return next(new ErrorResponse("Your new password and confirm password does not match", 400));
+
+  // Validate Password
+  const regex = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i);
+  if (!newPassword.match(regex))
+    return next(
+      new ErrorResponse(
+        "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
+        400
+      )
+    );
+
+  // Hash and salt the password
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(newPassword, salt);
+
+  await Admin.findOneAndUpdate(
+    { _id: user._id },
+    {
+      password,
+    },
+    { runValidators: true }
+  );
+
+  return user;
 };
 
 // Generate and hash token

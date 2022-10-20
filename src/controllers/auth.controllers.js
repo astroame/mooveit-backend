@@ -2,12 +2,13 @@ import asyncHandler from "../middlewares/async.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import { AuthService, EmailService } from "../services/index.js";
 import { UserModel, AdminModel } from "../models/index.js";
+import sendResponse from "../utils/sendResponse.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
 // @access  Public
 export const register = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
+  const query = { ...req.body, next, model: !req.originalUrl.includes("admin") && UserModel };
 
   const user = await AuthService.register(query);
 
@@ -29,6 +30,29 @@ export const register = asyncHandler(async (req, res, next) => {
   await EmailService.sendEmail(emailObj);
 
   sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
+});
+
+// @desc    Register User
+// @route   POST /api/v1/auth/register
+// @access  Public
+export const adminRegister = asyncHandler(async (req, res, next) => {
+  const query = { ...req.body, next, model: req.originalUrl.includes("admin") && AdminModel };
+
+  const user = await AuthService.register(query);
+
+  const body = `Hi ${user.firstName}, your account has been created. <br /> Your email is ${user.email} <br /> Your password is ${req.body.password}. <br /> Please remember to change your password from the settings page immediately you login in.`;
+
+  const emailObj = {
+    req,
+    user,
+    body,
+    subject: "Account Created",
+    errorResponse: "Email link could not be sent!",
+  };
+
+  await EmailService.sendEmail(emailObj);
+
+  sendTokenResponse(user, 200, res, "Account Created Successfully!");
 });
 
 // @desc    Resend Verify Email Address
@@ -127,6 +151,16 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   const user = await AuthService.resetPassword(query);
 
   sendTokenResponse(user, 200, res, "Your password has ben reset successfully");
+});
+
+export const updatePassword = asyncHandler(async (req, res, next) => {
+  let query = { ...req.body, req, next, model: req.originalUrl.includes("admin") && AdminModel };
+  await AuthService.updatePassword(query);
+
+  res.status(200).json({
+    status: true,
+    message: "Password updated successfully",
+  });
 });
 
 // @desc    Verify reset token
