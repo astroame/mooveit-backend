@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import ErrorResponse from "../utils/errorResponse";
+import ErrorResponse from "../utils/errorResponse.js";
 
 const AdminSchema = Schema(
   {
