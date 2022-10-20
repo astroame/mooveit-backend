@@ -1,4 +1,4 @@
-import S3 from "aws-sdk/clients/s3";
+import S3 from "aws-sdk/clients/s3.js";
 import multer from "multer";
 import multerS3 from "multer-s3";
 
