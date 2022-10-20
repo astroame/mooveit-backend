@@ -70,6 +70,7 @@ AdminSchema.methods.updatePassword = async function (query) {
 
   // Check if password matches
   const isMatch = await bcrypt.compare(oldPassword, user.password);
+  
   if (!isMatch)
     return next(new ErrorResponse("The old password you provided does not match the password in our database", 400));
 

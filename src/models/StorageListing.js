@@ -14,7 +14,7 @@ const StorageListingSchema = Schema(
     // SPACE DETAILS
     storageSize: String,
     streetView: { type: Boolean, default: false },
-    images: [String],
+    media: [String],
     storageTitle: String,
     description: String,
 

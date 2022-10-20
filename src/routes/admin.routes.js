@@ -3,6 +3,7 @@ const router = express.Router();
 import { protectAdmin, authorize } from "../middlewares/auth.js";
 
 import { approveListing, viewAllListings, getAllUsers } from "../controllers/admin.controllers.js";
+
 import {
   login,
   forgotPassword,

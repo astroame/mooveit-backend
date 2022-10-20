@@ -118,16 +118,16 @@ export const deleteListing = asyncHandler(async ({ req }) => {
 });
 
 export const uploadImages = asyncHandler(async ({ req, next }) => {
-  let images = [];
+  let media = [];
 
-  req.files.forEach((image) => {
-    images = [...images, image.location];
+  req.files.forEach((med) => {
+    media = [...media, med.location];
   });
 
   const upload = await StorageListing.findOneAndUpdate(
     { _id: req.params.storageId, user: req.user },
     {
-      $push: { images },
+      $push: { media },
     }
   );
 
