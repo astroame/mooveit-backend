@@ -7,7 +7,6 @@ import {
   verifyResetToken,
   verifyEmail,
   resendVerificationEmail,
-  updatePassword,
 } from "../controllers/auth.controllers.js";
 
 const router = express.Router();

@@ -16,7 +16,7 @@ router.route("/listings").get(getAllListing);
 router.route("/listings/:storageId").get(getSingleListing);
 
 router.use(protect);
-router.use(authorize("admin"));
+router.use(authorize("customer", "partner"));
 
 // router.route("/").get(getAllUsers);
 

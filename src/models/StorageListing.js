@@ -8,7 +8,7 @@ const StorageListingSchema = Schema(
     storageType: String,
     storageFloor: String,
     storageFeatures: [String],
-    parking: { type: Boolean, default: false },
+    packing: { type: Boolean, default: false },
     delivery: { type: Boolean, default: false },
 
     // SPACE DETAILS
@@ -24,13 +24,14 @@ const StorageListingSchema = Schema(
     ], // Based on the review on Sept 28, the unavailability period should be a array of several unavailability periods.
     storageAccessPeriod: String,
     storageAccessType: String,
-    parkingPermit: { type: Boolean, default: false },
-    parkingInstruction: String,
+    packingPermit: { type: Boolean, default: false },
+    packingInstruction: String,
     bookingDuration: String,
     bookingNotice: String,
 
     // PRICING
-    pricing: Number, // this should be a float ?
+    monthlyRate: Number,
+    hourlyRate: Number,
 
     // User
     user: { type: Schema.Types.ObjectId, ref: "User" },

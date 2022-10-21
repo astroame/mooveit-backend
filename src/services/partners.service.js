@@ -9,10 +9,9 @@ export const createListing = asyncHandler(async ({ req }) => {
     storageFloor,
     storageFeatures,
     delivery,
-    parking,
+    packing,
     storageSize,
     streetView,
-    image,
     storageTitle,
     description,
     unavailabilityReason,
@@ -20,10 +19,12 @@ export const createListing = asyncHandler(async ({ req }) => {
     unavailabilityPeriodEnd,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
+    monthlyRate,
+    hourlyRate,
   } = req.body;
 
   let completed;
@@ -59,10 +60,9 @@ export const createListing = asyncHandler(async ({ req }) => {
     storageFloor,
     storageFeatures,
     delivery,
-    parking,
+    packing,
     storageSize,
     streetView,
-    image,
     storageTitle,
     description,
     unavailabilityReason,
@@ -70,13 +70,15 @@ export const createListing = asyncHandler(async ({ req }) => {
     unavailabilityPeriodEnd,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
     user: req.user,
     completed,
     started: true,
+    monthlyRate,
+    hourlyRate,
   });
 
   return storageListing;
@@ -120,9 +122,13 @@ export const deleteListing = asyncHandler(async ({ req }) => {
 export const uploadImages = asyncHandler(async ({ req, next }) => {
   let media = [];
 
-  req.files.forEach((med) => {
+  console.log(req.files);
+
+  req.files?.forEach((med) => {
     media = [...media, med.location];
   });
+
+  console.log(media);
 
   const upload = await StorageListing.findOneAndUpdate(
     { _id: req.params.storageId, user: req.user },
