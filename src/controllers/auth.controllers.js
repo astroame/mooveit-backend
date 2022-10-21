@@ -2,7 +2,6 @@ import asyncHandler from "../middlewares/async.js";
 import sendTokenResponse from "../utils/sendToken.js";
 import { AuthService, EmailService } from "../services/index.js";
 import { UserModel, AdminModel } from "../models/index.js";
-import sendResponse from "../utils/sendResponse.js";
 
 // @desc    Register User
 // @route   POST /api/v1/auth/register
@@ -12,47 +11,42 @@ export const register = asyncHandler(async (req, res, next) => {
 
   const user = await AuthService.register(query);
 
-  const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
+  const body = req.originalUrl.includes("admin")
+    ? `Hi ${user.firstName}, your account has been created. <br /> Your email is ${user.email} <br /> Your password is ${req.body.password}. <br /> Please remember to change your password from the settings page immediately you login in.`
+    : `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
 
-  const emailObj = {
-    req,
-    user,
-    body,
-    subject: "Confirm your email",
-    path: "verify",
-    buttonText: "Verify Email Address",
-    method: user.getVerificationToken(user),
-    errorResponse: "Email link could not be sent!",
-    userToken: user.verifyToken,
-    userTokenExpire: user.verifyTokenExpire,
-  };
-
-  await EmailService.sendEmail(emailObj);
-
-  sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
-});
-
-// @desc    Register User
-// @route   POST /api/v1/auth/register
-// @access  Public
-export const adminRegister = asyncHandler(async (req, res, next) => {
-  const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
-
-  const user = await AuthService.register(query);
-
-  const body = `Hi ${user.firstName}, your account has been created. <br /> Your email is ${user.email} <br /> Your password is ${req.body.password}. <br /> Please remember to change your password from the settings page immediately you login in.`;
-
-  const emailObj = {
-    req,
-    user,
-    body,
-    subject: "Account Created",
-    errorResponse: "Email link could not be sent!",
-  };
+  // Check if user was an admin or not
+  const emailObj = req.originalUrl.includes("admin")
+    ? {
+        req,
+        user,
+        body,
+        subject: "Account Created",
+        errorResponse: "Email link could not be sent!",
+      }
+    : {
+        req,
+        user,
+        body,
+        subject: "Confirm your email",
+        path: "verify",
+        buttonText: "Verify Email Address",
+        method: user.getVerificationToken(user),
+        errorResponse: "Email link could not be sent!",
+        userToken: user.verifyToken,
+        userTokenExpire: user.verifyTokenExpire,
+      };
 
   await EmailService.sendEmail(emailObj);
 
-  sendTokenResponse(user, 200, res, "Account Created Successfully!");
+  sendTokenResponse(
+    user,
+    200,
+    res,
+    req.originalUrl.includes("admin")
+      ? "Account Created Successfully!"
+      : "A confirmation mail has been sent to your email address!"
+  );
 });
 
 // @desc    Resend Verify Email Address

@@ -4,7 +4,7 @@ import ErrorResponse from "../utils/errorResponse.js";
 export const register = asyncHandler(async (query) => {
   const { email, firstName, lastName, password, next, model } = query;
 
-  console.log(model);
+  console.log(model, "hello");
 
   if (!firstName || !lastName || !password || !email) {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
@@ -26,6 +26,8 @@ export const register = asyncHandler(async (query) => {
 
 export const login = asyncHandler(async (query) => {
   const { email, password, next, model } = query;
+
+  console.log(model, "hello");
 
   // Validate user credentials
   if (!email || !password) {
