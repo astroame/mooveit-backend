@@ -13,7 +13,7 @@ const router = express.Router();
 
 // import { protect, authorize } from "../middlewares/auth.js";
 
-router.route("/register").post(register).post();
+router.route("/register").post(register);
 
 router.route("/login").post(login);
 

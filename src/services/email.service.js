@@ -8,7 +8,7 @@ export const sendEmail = asyncHandler(
     const token = await method;
 
     // send the invite
-    const url = `${req.protocol}://${process.env.WEB_URL}/${path}/${token}`;
+    const url = "https://movveit.vercel.app/" + path + "/" + token;
 
     const message = `
     <html>
@@ -48,6 +48,8 @@ export const sendEmail = asyncHandler(
       "
     >
 
+    
+
       <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
        ${body}
         <br />
@@ -66,7 +68,8 @@ export const sendEmail = asyncHandler(
           text-decoration: none;
         "
       >
-      ${buttonText}
+      ${buttonText && buttonText.length > 1 ? buttonText : " "}
+      
       </a>
     </div>
   </body>

@@ -1,16 +1,12 @@
 import asyncHandler from "../middlewares/async.js";
-import ErrorResponse from "../utils/errorResponse.js";
-import StorageListing from "../models/StorageListing.js";
 import { PartnerService } from "../services/index.js";
-import sendResponse from "../utils/sendResponse";
+import sendResponse from "../utils/sendResponse.js";
 
 // @desc    Create a listing
 // @route   PATCH /api/v1/listings
 // @access  Public
 export const createListing = asyncHandler(async (req, res, next) => {
   const storageListing = await PartnerService.createListing({ req });
-  // console.log(req.files);
-  // res.send("Done");
   sendResponse(res, true, 200, storageListing);
 });
 
@@ -43,5 +39,10 @@ export const getSingleListing = asyncHandler(async (req, res, next) => {
 // @access  Private
 export const deleteListing = asyncHandler(async (req, res, next) => {
   await PartnerService.deleteListing({ req });
+  sendResponse(res, true, 200);
+});
+
+export const uploadImages = asyncHandler(async (req, res, next) => {
+  await PartnerService.uploadImages({ req, next });
   sendResponse(res, true, 200);
 });

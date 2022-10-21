@@ -3,16 +3,15 @@ import ErrorResponse from "../utils/errorResponse.js";
 import { StorageListing } from "../models/index.js";
 
 export const createListing = asyncHandler(async ({ req }) => {
-  // console.log("heyyyy");
   const {
     address,
     storageType,
     storageFloor,
     storageFeatures,
-    services,
+    delivery,
+    packing,
     storageSize,
     streetView,
-    image,
     storageTitle,
     description,
     unavailabilityReason,
@@ -20,10 +19,12 @@ export const createListing = asyncHandler(async ({ req }) => {
     unavailabilityPeriodEnd,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
+    monthlyRate,
+    hourlyRate,
   } = req.body;
 
   let completed;
@@ -33,7 +34,8 @@ export const createListing = asyncHandler(async ({ req }) => {
   //   storageType &&
   //   storageFloor &&
   //   storageFeatures &&
-  //   services &&
+  //   delivery &&
+  // parking &&
   //   storageSize &&
   //   streetView &&
   //   image &&
@@ -57,10 +59,10 @@ export const createListing = asyncHandler(async ({ req }) => {
     storageType,
     storageFloor,
     storageFeatures,
-    services,
+    delivery,
+    packing,
     storageSize,
     streetView,
-    image,
     storageTitle,
     description,
     unavailabilityReason,
@@ -68,13 +70,15 @@ export const createListing = asyncHandler(async ({ req }) => {
     unavailabilityPeriodEnd,
     storageAccessPeriod,
     storageAccessType,
-    parkingPermit,
-    parkingInstruction,
+    packingPermit,
+    packingInstruction,
     bookingDuration,
     bookingNotice,
     user: req.user,
     completed,
     started: true,
+    monthlyRate,
+    hourlyRate,
   });
 
   return storageListing;
@@ -113,4 +117,27 @@ export const getSingleListing = asyncHandler(async ({ req, next }) => {
 export const deleteListing = asyncHandler(async ({ req }) => {
   await StorageListing.findByIdAndDelete(req.params.storageId);
   return;
+});
+
+export const uploadImages = asyncHandler(async ({ req, next }) => {
+  let media = [];
+
+  console.log(req.files);
+
+  req.files?.forEach((med) => {
+    media = [...media, med.location];
+  });
+
+  console.log(media);
+
+  const upload = await StorageListing.findOneAndUpdate(
+    { _id: req.params.storageId, user: req.user },
+    {
+      $push: { media },
+    }
+  );
+
+  if (!upload) return next(new ErrorResponse("No listing with that id", 404));
+
+  return true;
 });

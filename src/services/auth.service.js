@@ -4,6 +4,8 @@ import ErrorResponse from "../utils/errorResponse.js";
 export const register = asyncHandler(async (query) => {
   const { email, firstName, lastName, password, next, model } = query;
 
+  console.log(model, "hello");
+
   if (!firstName || !lastName || !password || !email) {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
   }
@@ -24,6 +26,8 @@ export const register = asyncHandler(async (query) => {
 
 export const login = asyncHandler(async (query) => {
   const { email, password, next, model } = query;
+
+  console.log(model, "hello");
 
   // Validate user credentials
   if (!email || !password) {
@@ -89,6 +93,14 @@ export const resetPassword = asyncHandler(async (query) => {
 
   await user.save({ validateBeforeSave: true });
 
+  return user;
+});
+
+export const updatePassword = asyncHandler(async (query) => {
+  const { model, req } = query;
+  const user = await model.findOne({ _id: req.user }).select("+password");
+  query = { ...query, user };
+  await user.updatePassword(query);
   return user;
 });
 

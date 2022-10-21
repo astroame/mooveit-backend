@@ -11,24 +11,42 @@ export const register = asyncHandler(async (req, res, next) => {
 
   const user = await AuthService.register(query);
 
-  const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
+  const body = req.originalUrl.includes("admin")
+    ? `Hi ${user.firstName}, your account has been created. <br /> Your email is ${user.email} <br /> Your password is ${req.body.password}. <br /> Please remember to change your password from the settings page immediately you login in.`
+    : `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
 
-  const emailObj = {
-    req,
-    user,
-    body,
-    subject: "Confirm your email",
-    path: "verify",
-    buttonText: "Verify Email Address",
-    method: user.getVerificationToken(user),
-    errorResponse: "Email link could not be sent!",
-    userToken: user.verifyToken,
-    userTokenExpire: user.verifyTokenExpire,
-  };
+  // Check if user was an admin or not
+  const emailObj = req.originalUrl.includes("admin")
+    ? {
+        req,
+        user,
+        body,
+        subject: "Account Created",
+        errorResponse: "Email link could not be sent!",
+      }
+    : {
+        req,
+        user,
+        body,
+        subject: "Confirm your email",
+        path: "verify",
+        buttonText: "Verify Email Address",
+        method: user.getVerificationToken(user),
+        errorResponse: "Email link could not be sent!",
+        userToken: user.verifyToken,
+        userTokenExpire: user.verifyTokenExpire,
+      };
 
   await EmailService.sendEmail(emailObj);
 
-  sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
+  sendTokenResponse(
+    user,
+    200,
+    res,
+    req.originalUrl.includes("admin")
+      ? "Account Created Successfully!"
+      : "A confirmation mail has been sent to your email address!"
+  );
 });
 
 // @desc    Resend Verify Email Address
@@ -127,6 +145,16 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   const user = await AuthService.resetPassword(query);
 
   sendTokenResponse(user, 200, res, "Your password has ben reset successfully");
+});
+
+export const updatePassword = asyncHandler(async (req, res, next) => {
+  let query = { ...req.body, req, next, model: req.originalUrl.includes("admin") && AdminModel };
+  await AuthService.updatePassword(query);
+
+  res.status(200).json({
+    status: true,
+    message: "Password updated successfully",
+  });
 });
 
 // @desc    Verify reset token
