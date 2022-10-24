@@ -7,8 +7,10 @@ export const sendEmail = asyncHandler(
     // Get reset token
     const token = await method;
 
+    const hostName = await req.get("host");
+
     // send the invite
-    const url = "https://movveit.vercel.app/" + path + "/" + token;
+    const url = hostName + "/" + path + "/" + token;
 
     const message = `
     <html>

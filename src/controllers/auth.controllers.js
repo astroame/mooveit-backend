@@ -96,6 +96,7 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
+  
   const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.login(query);
