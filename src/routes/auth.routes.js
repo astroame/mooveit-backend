@@ -5,8 +5,8 @@ import {
   forgotPassword,
   resetPassword,
   verifyResetToken,
-  verifyEmail,
-  resendVerificationEmail,
+  verifyUserEmail,
+  resendVerificationToken,
 } from "../controllers/auth.controllers.js";
 
 const router = express.Router();
@@ -19,10 +19,10 @@ router.route("/login").post(login);
 
 router.route("/forgot-password").post(forgotPassword);
 
+router.route("/resend-verification-token").post(resendVerificationToken);
+
 router.route("/reset-password/:resetToken").patch(resetPassword).get(verifyResetToken);
 
-router.route("/verify").post(resendVerificationEmail);
-
-router.route("/verify/:token").get(verifyEmail);
+router.route("/verify").post(verifyUserEmail);
 
 export default router;

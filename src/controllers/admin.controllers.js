@@ -4,7 +4,7 @@ import sendResponse from "../utils/sendResponse.js";
 
 // STORAGE LISTING ENDPOINT
 export const approveListing = asyncHandler(async (req, res, next) => {
-  const query = { ...req.params, next };
+  const query = { req, next };
   const storageListing = await AdminService.approveListing(query);
   sendResponse(res, true, 200, storageListing);
 });
@@ -19,4 +19,3 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await UserService.getAllUser();
   sendResponse(res, true, 200, users);
 });
-    

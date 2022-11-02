@@ -10,9 +10,13 @@ const StorageListingSchema = Schema(
     storageFeatures: [String],
     packing: { type: Boolean, default: false },
     delivery: { type: Boolean, default: false },
+    coordinates: { lat: String, lng: String },
 
     // SPACE DETAILS
-    storageSize: String,
+    storageSize: {
+      name: String,
+      visualization: String,
+    },
     streetView: { type: Boolean, default: false },
     media: [String],
     storageTitle: String,
@@ -38,6 +42,7 @@ const StorageListingSchema = Schema(
 
     // general
     completed: { type: Boolean, default: false },
+    featured: { type: Boolean, default: false },
     status: { type: String, default: "pending", enum: ["pending", "approved"] },
     started: { type: Boolean, default: false },
   },

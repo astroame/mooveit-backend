@@ -13,7 +13,7 @@ export const register = asyncHandler(async (req, res, next) => {
 
   const body = req.originalUrl.includes("admin")
     ? `Hi ${user.firstName}, your account has been created. <br /> Your email is ${user.email} <br /> Your password is ${req.body.password}. <br /> Please remember to change your password from the settings page immediately you login in.`
-    : `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
+    : `Hi ${user.firstName}, use this OTP ${user.otp} to verify your email address. Note that the OTP would expire after 10 minutes.`;
 
   // Check if user was an admin or not
   const emailObj = req.originalUrl.includes("admin")
@@ -29,12 +29,12 @@ export const register = asyncHandler(async (req, res, next) => {
         user,
         body,
         subject: "Confirm your email",
-        path: "verify",
-        buttonText: "Verify Email Address",
-        method: user.getVerificationToken(user),
+        // path: "verify",
+        // buttonText: "Verify Email Address",
+        // method: user.getOtp(user),
         errorResponse: "Email link could not be sent!",
-        userToken: user.verifyToken,
-        userTokenExpire: user.verifyTokenExpire,
+        // userToken: user.verifyToken,
+        // userTokenExpire: user.verifyTokenExpire,
       };
 
   await EmailService.sendEmail(emailObj);
@@ -52,39 +52,38 @@ export const register = asyncHandler(async (req, res, next) => {
 // @desc    Resend Verify Email Address
 // @route   POST /api/v1/auth/verify/:token
 // @access  Public
-export const resendVerificationEmail = asyncHandler(async (req, res, next) => {
-  const user = await AuthService.resendVerificationEmail({
+export const resendVerificationToken = asyncHandler(async (req, res, next) => {
+  const user = await AuthService.resendVerificationToken({
     ...req.body,
     next,
-    model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
+    model: UserModel,
   });
 
-  const body = `Hi ${user.firstName}, please kindly click on the link to verify your email address. Note that the link would expire after 24 hours.`;
+  const body = `Hi ${user.firstName}, use this OTP ${user.otp} to verify your email address. Note that the OTP would expire after 10 minutes.`;
 
   const emailObj = {
     req,
     user,
     body,
     subject: "Confirm your email",
-    path: "verify",
-    buttonText: "Verify Email Address",
-    method: user.getVerificationToken(user),
+    // path: "verify",
+    // buttonText: "Verify Email Address",
+    // method: user.getOtp(user),
     errorResponse: "Email link could not be sent!",
-    userToken: user.verifyToken,
-    userTokenExpire: user.verifyTokenExpire,
+    // userToken: user.verifyToken,
+    // userTokenExpire: user.verifyTokenExpire,
   };
-
   await EmailService.sendEmail(emailObj);
 
   sendTokenResponse(user, 200, res, "A confirmation mail has been sent to your email address!");
 });
 
 // @desc    Verify Email Address
-// @route   GET /api/v1/auth/verify/:id/:token
+// @route   GET /api/v1/auth/verify
 // @access  Public
-export const verifyEmail = asyncHandler(async (req, res, next) => {
-  const user = await AuthService.verifyEmail({
-    ...req.params,
+export const verifyUserEmail = asyncHandler(async (req, res, next) => {
+  const user = await AuthService.verifyUserEmail({
+    ...req.body,
     next,
     model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
   });
@@ -96,7 +95,6 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
-  
   const query = { ...req.body, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
 
   const user = await AuthService.login(query);

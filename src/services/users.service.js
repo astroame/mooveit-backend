@@ -48,3 +48,11 @@ export const getSingleListing = asyncHandler(async ({ req, next }) => {
 
   return storageListing;
 });
+
+export const getFeaturedListing = asyncHandler(async () => {
+  const storageListing = await StorageListing.find({ featured: true })
+    .lean()
+    .populate({ path: "user", select: ["firstName", "lastName"] });
+
+  return storageListing;
+});

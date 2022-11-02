@@ -42,3 +42,8 @@ export const getSingleListing = asyncHandler(async (req, res, next) => {
   const storageListing = await UserService.getSingleListing({ req, next });
   sendResponse(res, true, 200, storageListing);
 });
+
+export const getFeaturedListing = asyncHandler(async (req, res, next) => {
+  const storageListing = await UserService.getFeaturedListing();
+  sendResponse(res, true, 200, storageListing);
+});

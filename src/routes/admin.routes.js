@@ -9,8 +9,7 @@ import {
   forgotPassword,
   resetPassword,
   verifyResetToken,
-  verifyEmail,
-  resendVerificationEmail,
+  verifyUserEmail,
   updatePassword,
   register,
 } from "../controllers/auth.controllers.js";
@@ -23,9 +22,7 @@ router.route("/forgot-password").post(forgotPassword);
 
 router.route("/reset-password/:resetToken").patch(resetPassword).get(verifyResetToken);
 
-router.route("/verify").post(resendVerificationEmail);
-
-router.route("/verify/:token").get(verifyEmail);
+router.route("/verify").post(verifyUserEmail);
 
 router.use(protectAdmin);
 router.use(authorize("admin"));
