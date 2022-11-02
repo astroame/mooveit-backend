@@ -1,6 +1,6 @@
 import asyncHandler from "../middlewares/async.js";
 import { AdminModel, StorageListing, UserModel } from "../models/index.js";
-import ErrorResponse from "../utils/errorResponse";
+import ErrorResponse from "../utils/errorResponse.js";
 
 // STORAGE LISTING
 
@@ -14,7 +14,7 @@ export const viewAllListings = asyncHandler(async () => {
   const storageListing = await StorageListing.find({ completed: true })
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
-    
+
   return storageListing;
 });
 
