@@ -7,7 +7,7 @@ export const sendEmail = asyncHandler(
     // Get reset token
     const token = await method;
 
-    const hostName = await req.get("host")
+    const hostName = await req.get("host");
 
     // send the invite
     const url = hostName + "/" + path + "/" + token;
@@ -49,9 +49,6 @@ export const sendEmail = asyncHandler(
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       "
     >
-
-    
-
       <p style="text-align: left; margin-top: 15px; color: rgb(83, 83, 83)">
        ${body}
         <br />
@@ -59,7 +56,7 @@ export const sendEmail = asyncHandler(
         <br />
       </p>
       <a
-        href="${url}"
+        href="${buttonText && buttonText.length > 1 ? url : "#"}"
         style="
           background: #26348c;
           padding: 10px 20px;

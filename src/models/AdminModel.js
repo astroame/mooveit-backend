@@ -34,7 +34,7 @@ const AdminSchema = Schema(
         "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
       ],
     },
-    isVerified: { type: Boolean, default: false },
+    // isVerified: { type: Boolean, default: false },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     verifyToken: String,

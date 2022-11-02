@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
+							"raw": "{\n    \"email\": \"alexander.joshua2018@gmail.com\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Testing\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,32 +171,40 @@
 					"response": []
 				},
 				{
-					"name": "Verify Email",
+					"name": "Resend Verification Token",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rpobwu@spacehotline.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{URL}}/auth/verify/3331365af789e45ab22e0f24c007abfd2b7274fe346457e4315d31a314743949",
+							"raw": "{{URL}}/auth/resend-verification-token",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"auth",
-								"verify",
-								"3331365af789e45ab22e0f24c007abfd2b7274fe346457e4315d31a314743949"
+								"resend-verification-token"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Resend Verification Email",
+					"name": "Verify Email",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\"\n}",
+							"raw": "{\n    \"email\": \"alexander.joshua2018@gmail.com\",\n    \"otp\": \"822130\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ukdihftg@arxxwalls.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"yaweko1691@abudat.com\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"Admin\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -278,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotlinev.com\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -392,7 +400,7 @@
 					"response": []
 				},
 				{
-					"name": "Resend Verification Email",
+					"name": "Resend Verification Token",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -419,14 +427,14 @@
 					"response": []
 				},
 				{
-					"name": "Approve Storage Listing",
+					"name": "Update Storage Listing",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzcwODM3ODQ4ZTg4NDNlOTY4ZTk3NSIsImlhdCI6MTY2NDU1MjU3MSwiZXhwIjoxNjY3MTQ0NTcxfQ.URId3kwB8DOWLjtPJfdt_ngosRPWua8fXpxOns_6Nc8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NzQwNzgzNywiZXhwIjoxNjY5OTk5ODM3fQ.PRT-tR4mnYQAsMLWEgPYj4n6il8LfIdqIWbHlAynUDg",
 									"type": "string"
 								}
 							]
@@ -435,7 +443,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"status\": \"approved\",\n    \"featured\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -443,14 +451,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/admin/listings/6332ec5cf280bb4fce7f0d6a",
+							"raw": "{{URL}}/admin/listings/63513d7140141a4e890f1f47",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
 								"listings",
-								"6332ec5cf280bb4fce7f0d6a"
+								"63513d7140141a4e890f1f47"
 							]
 						}
 					},
@@ -464,7 +472,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGZmNGY0ZTcxYjg0ZmFjNGI5YjlkMiIsImlhdCI6MTY2NjI1ODkwOSwiZXhwIjoxNjY4ODUwOTA5fQ.DkJWHgM0GBHadbSrazGcOOlj71lpyfPqULOqRZEcu6c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NjM2NDgyOCwiZXhwIjoxNjY4OTU2ODI4fQ.r6pC_-tIOknzJYNUFZl5W-LKYR60IYr-1QfZIBcYse8",
 									"type": "string"
 								}
 							]
@@ -534,7 +542,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGU3MmY2NWU1MjM1ZWI0MmY0YzE3OSIsImlhdCI6MTY2NjEwOTI0NCwiZXhwIjoxNjY4NzAxMjQ0fQ.SiX2WzdgPfhmIQM2qVUMmGbRwaPxQERlPpmmc8LfddI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjM2NDA1NiwiZXhwIjoxNjY4OTU2MDU2fQ.yAyWDgVCA1v9g7jJ_PIcc9MwQ0WYYzhUKwfsWvuuSms",
 									"type": "string"
 								}
 							]
@@ -543,7 +551,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"address\": \"Some new default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\n        \"cctv\",\n        \"alarm\",\n        \"padlock\"\n    ],\n    \"delivery\": true\n}",
+							"raw": "{\n    \"address\": \"Some new default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\n        \"cctv\",\n        \"alarm\",\n        \"padlock\"\n    ],\n    \"delivery\": true,\n    \"monthlyRate\": 120,\n    \"hourlyRate\": 12\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -573,7 +581,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjI3NDg2NSwiZXhwIjoxNjY4ODY2ODY1fQ.gpj_XEX_lzv7j5-nwWz8D58dNI9S2zoLoECPK7pGk9o",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NzIxNzUyNCwiZXhwIjoxNjY5ODA5NTI0fQ.yNth816xAcI2tOunZubS5BxZnHg--AGCVdl1DjUsnac",
 									"type": "string"
 								}
 							]
@@ -609,7 +617,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjM2NDA1NiwiZXhwIjoxNjY4OTU2MDU2fQ.yAyWDgVCA1v9g7jJ_PIcc9MwQ0WYYzhUKwfsWvuuSms",
 									"type": "string"
 								}
 							]
@@ -702,7 +710,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGU3MmY2NWU1MjM1ZWI0MmY0YzE3OSIsImlhdCI6MTY2NjEwOTI0NCwiZXhwIjoxNjY4NzAxMjQ0fQ.SiX2WzdgPfhmIQM2qVUMmGbRwaPxQERlPpmmc8LfddI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjM2NDA1NiwiZXhwIjoxNjY4OTU2MDU2fQ.yAyWDgVCA1v9g7jJ_PIcc9MwQ0WYYzhUKwfsWvuuSms",
 									"type": "string"
 								}
 							]
@@ -716,8 +724,8 @@
 									"key": "media",
 									"type": "file",
 									"src": [
-										"/Users/mac/Downloads/1666016644157photo.jpeg",
-										"/Users/mac/Downloads/auth-image.png"
+										"/Users/mac/Downloads/Birthday cake.png",
+										"/Users/mac/Downloads/carbon (1).png"
 									]
 								}
 							]
@@ -749,7 +757,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNGZmNGY0ZTcxYjg0ZmFjNGI5YjlkMiIsImlhdCI6MTY2NjI1ODkwOSwiZXhwIjoxNjY4ODUwOTA5fQ.DkJWHgM0GBHadbSrazGcOOlj71lpyfPqULOqRZEcu6c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NjM2MzU2MCwiZXhwIjoxNjY4OTU1NTYwfQ.fHLsN25_KmhxkKyKqT8oZZzzuoxpdm0L3dumWwqsKDs",
 									"type": "string"
 								}
 							]
@@ -806,6 +814,14 @@
 								"634de143412736c52fcaf05d"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Listing",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

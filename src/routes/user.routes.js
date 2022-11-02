@@ -6,12 +6,15 @@ import {
   updateUserProfile,
   getAllListing,
   getSingleListing,
+  getFeaturedListing,
 } from "../controllers/user.controller.js";
 import { authorize, protect } from "../middlewares/auth.js";
 
 const router = express.Router();
 
 router.route("/listings").get(getAllListing);
+
+router.route("/featured-listing").get(getFeaturedListing);
 
 router.route("/listings/:storageId").get(getSingleListing);
 

@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
+import otpGenerator from "otp-generator";
 
 const UserSchema = Schema(
   {
@@ -38,6 +39,8 @@ const UserSchema = Schema(
     resetPasswordExpire: Date,
     verifyToken: String,
     verifyTokenExpire: Date,
+    otp: String,
+    verifyOtpExpire: Date,
   },
   { timestamps: true }
 );
@@ -109,12 +112,36 @@ UserSchema.methods.getVerificationToken = async function (user) {
   return verificationToken;
 };
 
+// Generate otp for email verification
+UserSchema.methods.getOtp = async function (user) {
+  // Generate token
+  const otp = otpGenerator.generate(6, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
+
+  // Set expire
+  const otpExpiry = Date.now() + 10 * 60 * 1000;
+
+  await User.findOneAndUpdate(
+    { _id: user },
+    {
+      otp,
+      verifyOtpExpire: otpExpiry,
+    },
+    { new: true }
+  );
+
+  return otp;
+};
+
 UserSchema.methods.isExpired = function () {
   return Date.now() > this.resetPasswordExpire;
 };
 
 UserSchema.methods.verifyTokenExpired = function () {
   return Date.now() > this.verifyTokenExpire;
+};
+
+UserSchema.methods.verifyOtpExpired = function () {
+  return Date.now() > this.verifyOtpExpire;
 };
 
 const User = model("User", UserSchema);
