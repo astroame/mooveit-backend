@@ -11,6 +11,10 @@ const StorageListingSchema = Schema(
     packing: { type: Boolean, default: false },
     delivery: { type: Boolean, default: false },
     coordinates: { lat: String, lng: String },
+    formattedAddress: {
+      street: String,
+      area: String,
+    },
 
     // SPACE DETAILS
     storageSize: {

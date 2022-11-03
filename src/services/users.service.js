@@ -31,8 +31,15 @@ export const deleteUser = asyncHandler(async ({ id }) => {
   return;
 });
 
-export const getAllListing = asyncHandler(async () => {
-  const storageListings = await StorageListing.find()
+export const getAllListing = asyncHandler(async (req) => {
+  let query = {};
+
+  // Building query programmatically
+  if (req.body.area) {
+    query = { ...query, "formattedAddress.area": { $regex: req.body.area, $options: "i" } };
+  }
+
+  const storageListings = await StorageListing.find(query)
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
 

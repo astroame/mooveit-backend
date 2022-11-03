@@ -551,7 +551,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"address\": \"Some new default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"storageFeatures\": [\n        \"cctv\",\n        \"alarm\",\n        \"padlock\"\n    ],\n    \"delivery\": true,\n    \"monthlyRate\": 120,\n    \"hourlyRate\": 12\n}",
+							"raw": "{\n    \"address\": \"Some new default address, Ikeja, Lagos\",\n    \"storageType\": \"warehouse\",\n    \"storageFloor\": \"ground level\",\n    \"delivery\": true,\n    \"monthlyRate\": 120,\n    \"hourlyRate\": 12,\n    \"formattedAddress\": {\n      \"street\": \"Some new address\",\n      \"area\": \"ikeja, lagos\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -581,7 +581,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NzIxNzUyNCwiZXhwIjoxNjY5ODA5NTI0fQ.yNth816xAcI2tOunZubS5BxZnHg--AGCVdl1DjUsnac",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NzQ3OTY4OCwiZXhwIjoxNjcwMDcxNjg4fQ.vx_p_OfAUAP77X1m9z_ErwoyWwMcGBp5VrM3Q2M6y-A",
 									"type": "string"
 								}
 							]
@@ -626,7 +626,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"services\": [\"packing\"],\n    \"storageFloor\": \"ground level\"\n}",
+							"raw": "{\n    \"formattedAddress\": {\n      \"street\": \"Some default address\",\n      \"area\": \"Ikeja, Lagos\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -634,13 +634,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/listings/63318a5f062f772e99b088cd",
+							"raw": "{{URL}}/listings/636420131fc112cc0e6167d3",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"listings",
-								"63318a5f062f772e99b088cd"
+								"636420131fc112cc0e6167d3"
 							]
 						}
 					},
@@ -710,7 +710,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjM2NDA1NiwiZXhwIjoxNjY4OTU2MDU2fQ.yAyWDgVCA1v9g7jJ_PIcc9MwQ0WYYzhUKwfsWvuuSms",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NzQ3OTY4OCwiZXhwIjoxNjcwMDcxNjg4fQ.vx_p_OfAUAP77X1m9z_ErwoyWwMcGBp5VrM3Q2M6y-A",
 									"type": "string"
 								}
 							]
@@ -731,13 +731,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/listings/634de143412736c52fcaf05d/upload",
+							"raw": "{{URL}}/listings/636271cf3b4a7dffa73858c9/upload",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"listings",
-								"634de143412736c52fcaf05d",
+								"636271cf3b4a7dffa73858c9",
 								"upload"
 							]
 						}
@@ -780,11 +780,21 @@
 				{
 					"name": "Get All Lisitngs",
 					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
 					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"area\": \"ikeja, la\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{URL}}/users/listings",
 							"host": [
