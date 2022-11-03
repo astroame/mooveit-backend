@@ -122,22 +122,19 @@ export const deleteListing = asyncHandler(async ({ req }) => {
 export const uploadImages = asyncHandler(async ({ req, next }) => {
   let media = [];
 
-  console.log(req.files);
-
   req.files?.forEach((med) => {
     media = [...media, med.location];
   });
-
-  console.log(media);
 
   const upload = await StorageListing.findOneAndUpdate(
     { _id: req.params.storageId, user: req.user },
     {
       $push: { media },
-    }
+    },
+    { new: true }
   );
 
   if (!upload) return next(new ErrorResponse("No listing with that id", 404));
 
-  return true;
+  return upload;
 });

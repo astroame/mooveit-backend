@@ -49,14 +49,15 @@ export const register = asyncHandler(async (req, res, next) => {
   );
 });
 
-// @desc    Resend Verify Email Address
-// @route   POST /api/v1/auth/verify/:token
+// @desc    Resend Verify OTP
+// @route   POST /api/v1/auth/resend-verification-token
 // @access  Public
 export const resendVerificationToken = asyncHandler(async (req, res, next) => {
+  console.log(res.body);
   const user = await AuthService.resendVerificationToken({
     ...req.body,
     next,
-    model: UserModel,
+    model: req.originalUrl.includes("admin") ? AdminModel : UserModel,
   });
 
   const body = `Hi ${user.firstName}, use this OTP ${user.otp} to verify your email address. Note that the OTP would expire after 10 minutes.`;
