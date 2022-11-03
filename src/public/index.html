@@ -114,14 +114,13 @@
 &#34;address&#34;: &#34;Some new default address, Ikeja, Lagos&#34;,
 &#34;storageType&#34;: &#34;warehouse&#34;,
 &#34;storageFloor&#34;: &#34;ground level&#34;,
-&#34;storageFeatures&#34;: [
-&#34;cctv&#34;,
-&#34;alarm&#34;,
-&#34;padlock&#34;
-],
 &#34;delivery&#34;: true,
 &#34;monthlyRate&#34;: 120,
-&#34;hourlyRate&#34;: 12
+&#34;hourlyRate&#34;: 12,
+&#34;formattedAddress&#34;: {
+&#34;street&#34;: &#34;Some new address&#34;,
+&#34;area&#34;: &#34;ikeja, lagos&#34;
+}
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-info" id=jump-Partner-GetAllLisitingsbyapartner><div class=panel-heading><small class="pull-right text-muted">raw</small>
 <a class=text-info data-toggle=collapse data-parent=#accordion-Partner href=#collapse-Partner-GetAllLisitingsbyapartner><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Lisitings by a partner</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
@@ -130,9 +129,11 @@
 <a class=text-warning data-toggle=collapse data-parent=#accordion-Partner href=#collapse-Partner-UpdateaListing><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Update a Listing</strong> &nbsp;|&nbsp;
 <strong class="request-method border-warning">PATCH</strong>
 &nbsp;
-{{URL}}/listings/63318a5f062f772e99b088cd</h4></a></div><div id=collapse-Partner-UpdateaListing class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;services&#34;: [&#34;packing&#34;],
-&#34;storageFloor&#34;: &#34;ground level&#34;
+{{URL}}/listings/636420131fc112cc0e6167d3</h4></a></div><div id=collapse-Partner-UpdateaListing class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+&#34;formattedAddress&#34;: {
+&#34;street&#34;: &#34;Some default address&#34;,
+&#34;area&#34;: &#34;Ikeja, Lagos&#34;
+}
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-danger" id=jump-Partner-DeleteaListing><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-danger data-toggle=collapse data-parent=#accordion-Partner href=#collapse-Partner-DeleteaListing><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Delete a Listing</strong> &nbsp;|&nbsp;
 <strong class="request-method border-danger">DELETE</strong>
 &nbsp;
@@ -143,14 +144,17 @@
 <a class=text-warning data-toggle=collapse data-parent=#accordion-Partner href=#collapse-Partner-Uploadimages><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Upload images</strong> &nbsp;|&nbsp;
 <strong class="request-method border-warning">PATCH</strong>
 &nbsp;
-{{URL}}/listings/634de143412736c52fcaf05d/upload</h4></a></div><div id=collapse-Partner-Uploadimages class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><table class="table table-hover"><thead><tr><th>Key<th>Value<th>Description<tbody><tr><td>media<td><td></table></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=Users>Users
+{{URL}}/listings/636271cf3b4a7dffa73858c9/upload</h4></a></div><div id=collapse-Partner-Uploadimages class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><table class="table table-hover"><thead><tr><th>Key<th>Value<th>Description<tbody><tr><td>media<td><td></table></div></div></div></div></div></div></div><div class="panel panel-default"><div class=panel-heading><h3 class=panel-title id=Users>Users
 <span class=badge>4</span></h3></div><div class=panel-body><p><div class=request-item><div class=panel-group id=accordion-Users><div class="panel panel-info" id=jump-Users-GetAllUsers><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllUsers><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Users</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
-{{URL}}/admin/users</h4></a></div><div id=collapse-Users-GetAllUsers class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-Users-GetAllLisitngs><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllLisitngs><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Lisitngs</strong> &nbsp;|&nbsp;
+{{URL}}/admin/users</h4></a></div><div id=collapse-Users-GetAllUsers class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-Users-GetAllLisitngs><div class=panel-heading><small class="pull-right text-muted">raw</small>
+<a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllLisitngs><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Lisitngs</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
-{{URL}}/users/listings</h4></a></div><div id=collapse-Users-GetAllLisitngs class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-Users-Getonelistingwithid><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-Getonelistingwithid><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get one listing with id</strong> &nbsp;|&nbsp;
+{{URL}}/users/listings</h4></a></div><div id=collapse-Users-GetAllLisitngs class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
+&#34;area&#34;: &#34;ikeja, la&#34;
+}</span><div class=clearfix></div></div></div></div><div class="panel panel-info" id=jump-Users-Getonelistingwithid><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-Getonelistingwithid><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get one listing with id</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
 {{URL}}/users/listings/634de143412736c52fcaf05d</h4></a></div><div id=collapse-Users-Getonelistingwithid class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-Users-GetFeaturedListing><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetFeaturedListing><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get Featured Listing</strong> &nbsp;|&nbsp;
@@ -162,4 +166,4 @@ if(IsJsonString(html)){var obj=JSON.parse(html);var formattedJson=JSON.stringify
 function IsJsonString(str){try{JSON.parse(str);}catch(e){return false;}
 return true;}
 String.prototype.replaceAll=function(replaceThis,withThis){var re=new RegExp(RegExp.quote(replaceThis),"g");return this.replace(re,withThis);};RegExp.quote=function(str){return str.replace(/([.?*+^$[\]\\(){}-])/g,"\\$1");};function syntaxHighlight(json){json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(match){var cls='number';if(/^"/.test(match)){if(/:$/.test(match)){cls='key';}else{cls='string';}}else if(/true|false/.test(match)){cls='boolean';}else if(/null/.test(match)){cls='null';}
-return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-11-02 23:06:54 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
+return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-11-03 23:47:53 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
