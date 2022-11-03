@@ -43,6 +43,6 @@ export const deleteListing = asyncHandler(async (req, res, next) => {
 });
 
 export const uploadImages = asyncHandler(async (req, res, next) => {
-  await PartnerService.uploadImages({ req, next });
-  sendResponse(res, true, 200);
+  const upload = await PartnerService.uploadImages({ req, next });
+  sendResponse(res, true, 200, upload.media);
 });
