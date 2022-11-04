@@ -3,9 +3,9 @@ import ErrorResponse from "../utils/errorResponse.js";
 import otpGenerator from "otp-generator";
 
 export const register = asyncHandler(async (query) => {
-  const { email, firstName, lastName, password, next, model } = query;
+  const { email, firstName, lastName, password, role, next, model } = query;
 
-  if (!firstName || !lastName || !password || !email) {
+  if (!firstName || !lastName || !password || !email || !role) {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
   }
 
@@ -22,6 +22,7 @@ export const register = asyncHandler(async (query) => {
     firstName,
     lastName,
     password,
+    role,
     otp,
     verifyOtpExpire: otpExpiry,
   }).save();
