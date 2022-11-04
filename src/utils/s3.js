@@ -18,7 +18,6 @@ const upload = multer({
       cb(null, { fieldName: file.fieldname });
     },
     key: function (req, file, cb) {
-      // console.log(file);
       cb(null, `${Date.now().toString()} - ${file.originalname}`);
     },
   }),

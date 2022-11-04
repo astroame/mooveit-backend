@@ -53,7 +53,6 @@ export const register = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/auth/resend-verification-token
 // @access  Public
 export const resendVerificationToken = asyncHandler(async (req, res, next) => {
-  console.log(res.body);
   const user = await AuthService.resendVerificationToken({
     ...req.body,
     next,

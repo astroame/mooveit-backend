@@ -26,6 +26,7 @@ export const createListing = asyncHandler(async ({ req }) => {
     monthlyRate,
     hourlyRate,
     formattedAddress,
+    priceType,
   } = req.body;
 
   let completed;
@@ -81,6 +82,7 @@ export const createListing = asyncHandler(async ({ req }) => {
     monthlyRate,
     hourlyRate,
     formattedAddress,
+    priceType,
   });
 
   return storageListing;
