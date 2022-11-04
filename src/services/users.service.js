@@ -35,8 +35,8 @@ export const getAllListing = asyncHandler(async (req) => {
   let query = {};
 
   // Building query programmatically
-  if (req.body.area) {
-    query = { ...query, "formattedAddress.area": { $regex: req.body.area, $options: "i" } };
+  if (req.query.area) {
+    query = { ...query, "formattedAddress.area": { $regex: req.query.area, $options: "i" } };
   }
 
   const storageListings = await StorageListing.find(query)
