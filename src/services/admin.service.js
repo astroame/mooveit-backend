@@ -5,7 +5,20 @@ import ErrorResponse from "../utils/errorResponse.js";
 // STORAGE LISTING
 
 export const approveListing = asyncHandler(async ({ req, next }) => {
-  const storageListing = await StorageListing.findByIdAndUpdate(req.params.storageId, req.body, { new: true });
+  let query;
+
+  if (req.body.status == "approved") {
+    query = { ...req.body };
+  }
+
+  if (req.body.status == "disapproved") {
+    query = { ...req.body, completed: false };
+  }
+
+  const storageListing = await StorageListing.findByIdAndUpdate(req.params.storageId, query, { new: true })
+    .lean()
+    .populate({ path: "user", select: ["email", "firstName"] });
+
   if (!storageListing) return next(new ErrorResponse("There is no listing with that ID", 404));
   return storageListing;
 });

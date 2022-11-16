@@ -11,7 +11,6 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
 //Get a single user
 export const getSingleUser = asyncHandler(async (req, res, next) => {
   const user = await UserService.getSingleUser({ ...req.params, next });
-
   sendResponse(res, true, 200, user);
 });
 
