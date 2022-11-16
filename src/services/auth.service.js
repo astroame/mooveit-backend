@@ -5,7 +5,7 @@ import otpGenerator from "otp-generator";
 export const register = asyncHandler(async (query) => {
   const { email, firstName, lastName, password, role, next, model } = query;
 
-  if (!firstName || !lastName || !password || !email || !role) {
+  if (!firstName || !lastName || !password || !email) {
     return next(new ErrorResponse(`Please fill in all fields`, 400));
   }
 

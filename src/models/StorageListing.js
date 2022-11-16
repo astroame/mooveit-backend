@@ -40,6 +40,7 @@ const StorageListingSchema = Schema(
     // PRICING
     monthlyRate: Number,
     hourlyRate: Number,
+    priceType: { type: String, default: "custom", enum: ["custom", "elastic"] },
 
     // User
     user: { type: Schema.Types.ObjectId, ref: "User" },
@@ -47,7 +48,7 @@ const StorageListingSchema = Schema(
     // general
     completed: { type: Boolean, default: false },
     featured: { type: Boolean, default: false },
-    status: { type: String, default: "pending", enum: ["pending", "approved"] },
+    status: { type: String, default: "pending", enum: ["pending", "approved", "disapproved"] },
     started: { type: Boolean, default: false },
   },
   { timestamps: true }
