@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"alexander.joshua2018@gmail.com\",\n    \"firstName\": \"Joshua\",\n    \"lastName\": \"Testing\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
+							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
+							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\",\n    \"password\": \"Partner@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"yaweko1691@abudat.com\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"Admin\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkeyjk.com\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -286,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotlinev.com\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkey.com\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -427,14 +427,14 @@
 					"response": []
 				},
 				{
-					"name": "Update Storage Listing",
+					"name": "Approve Storage Listing",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NzQwNzgzNywiZXhwIjoxNjY5OTk5ODM3fQ.PRT-tR4mnYQAsMLWEgPYj4n6il8LfIdqIWbHlAynUDg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2ODYxMzAxNCwiZXhwIjoxNjcxMjA1MDE0fQ.diKO8Iaawo650KhxitoTobgumcKL7lA46we63FGHVyE",
 									"type": "string"
 								}
 							]
@@ -443,7 +443,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"approved\",\n    \"featured\": true\n}",
+							"raw": "{\n    \"status\": \"approved\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -451,14 +451,52 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/admin/listings/63513d7140141a4e890f1f47",
+							"raw": "{{URL}}/admin/listings/6373c08842471d954f0cdfaf",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
 								"listings",
-								"63513d7140141a4e890f1f47"
+								"6373c08842471d954f0cdfaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disapprove Storage Listing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2ODYxMzAxNCwiZXhwIjoxNjcxMjA1MDE0fQ.diKO8Iaawo650KhxitoTobgumcKL7lA46we63FGHVyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"disapproved\",\n    \"message\": \"Hey, this is to notify you that your listing was not approved due to some reason. Thank you\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/listings/6373c08842471d954f0cdfaf",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"listings",
+								"6373c08842471d954f0cdfaf"
 							]
 						}
 					},
@@ -472,7 +510,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NjM2NDgyOCwiZXhwIjoxNjY4OTU2ODI4fQ.r6pC_-tIOknzJYNUFZl5W-LKYR60IYr-1QfZIBcYse8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2ODYxMzAxNCwiZXhwIjoxNjcxMjA1MDE0fQ.diKO8Iaawo650KhxitoTobgumcKL7lA46we63FGHVyE",
 									"type": "string"
 								}
 							]
@@ -724,8 +762,8 @@
 									"key": "media",
 									"type": "file",
 									"src": [
-										"/Users/mac/Downloads/Birthday cake.png",
-										"/Users/mac/Downloads/carbon (1).png"
+										"/Users/mac/Downloads/1666016644157photo.jpeg",
+										"/Users/mac/Downloads/1667218321632 - Birthday cake.png"
 									]
 								}
 							]
@@ -788,7 +826,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"area\": \"ikeja, la\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -796,13 +834,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/users/listings",
+							"raw": "{{URL}}/users/listings?area=lag",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"users",
 								"listings"
+							],
+							"query": [
+								{
+									"key": "area",
+									"value": "lag"
+								}
 							]
 						}
 					},
@@ -831,7 +875,17 @@
 					"name": "Get Featured Listing",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/featured-listing",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"featured-listing"
+							]
+						}
 					},
 					"response": []
 				}
