@@ -90,7 +90,9 @@ export const createListing = asyncHandler(async ({ req }) => {
 });
 
 export const updateListing = asyncHandler(async ({ req, next }) => {
+  console.log(req.body);
   const storageListing = await StorageListing.findByIdAndUpdate(req.params.storageId, req.body, { new: true });
+  await storageListing.checkIfCompleted(storageListing);
 
   if (!storageListing) {
     return next(new ErrorResponse("There is no listing with that id", 404));
@@ -100,7 +102,6 @@ export const updateListing = asyncHandler(async ({ req, next }) => {
 });
 
 export const getListingByPartners = asyncHandler(async ({ req }) => {
-  console.log(req.user._id);
   const storageListings = await StorageListing.find({ user: req.user._id })
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
