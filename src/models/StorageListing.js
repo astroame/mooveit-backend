@@ -15,15 +15,13 @@ const StorageListingSchema = Schema(
       street: String,
       area: String,
     },
-
+    storageNumber: Number,
     // SPACE DETAILS
     storageSize: {
-      type: String,
+      name: String,
+      description: String,
+      visualization: String,
     },
-    // storageSize: {
-    //   name: String,
-    //   visualization: String,
-    // },
     streetView: { type: Boolean, default: false },
     media: [String],
     storageTitle: String,
@@ -56,61 +54,6 @@ const StorageListingSchema = Schema(
   },
   { timestamps: true }
 );
-
-StorageListingSchema.methods.checkIfCompleted = async function (storageListing) {
-  const {
-    address,
-    storageType,
-    storageFloor,
-    storageFeatures,
-    formattedAddress,
-    storageSize,
-    media,
-    storageTitle,
-    description,
-    unavailabilityPeriods,
-    storageAccessPeriod,
-    storageAccessType,
-    packingInstruction,
-    bookingDuration,
-    bookingNotice,
-    monthlyRate,
-    hourlyRate,
-    priceType,
-    _id,
-  } = storageListing;
-
-  if (
-    address &&
-    storageType &&
-    storageFloor &&
-    storageFeatures.length > 0 &&
-    Object.keys(formattedAddress).length &&
-    storageSize &&
-    media.length > 0 &&
-    storageTitle &&
-    description &&
-    unavailabilityPeriods.length > 0 &&
-    storageAccessPeriod &&
-    storageAccessType &&
-    packingInstruction &&
-    bookingDuration &&
-    bookingNotice &&
-    monthlyRate &&
-    hourlyRate &&
-    priceType
-  ) {
-    await StorageListing.findOneAndUpdate(
-      { _id },
-      {
-        completed: true,
-      },
-      { new: true }
-    );
-  }
-
-  return;
-};
 
 const StorageListing = model("StorageListing", StorageListingSchema);
 

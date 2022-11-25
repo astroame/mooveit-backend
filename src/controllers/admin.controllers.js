@@ -38,3 +38,24 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   const users = await UserService.getAllUser();
   sendResponse(res, true, 200, users);
 });
+
+// CONFIGURATIONS
+export const getConfiguration = asyncHandler(async (req, res, next) => {
+  const configuration = await AdminService.getConfiguration();
+  sendResponse(res, true, 200, configuration);
+});
+
+export const createConfiguration = asyncHandler(async (req, res, next) => {
+  const configuration = await AdminService.createConfiguration({ req, res, next });
+  sendResponse(res, true, 200, configuration);
+});
+
+export const updateConfiguration = asyncHandler(async (req, res, next) => {
+  const configuration = await AdminService.updateConfiguration({ req, next });
+  sendResponse(res, true, 200, configuration);
+});
+
+export const uploadImage = asyncHandler(async (req, res, next) => {
+  const media = await AdminService.uploadImage({ req, next });
+  sendResponse(res, true, 200, media);
+});
