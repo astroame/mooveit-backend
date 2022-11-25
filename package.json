@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server",
     "doc": "docgen build -i mooveit-api.postman_collection.json -o ./src/public/index.html",
-    "git": "yarn doc && git add . && git commit -m 'Updated api documentation' && git push origin main",
+    "git": "yarn doc && git add . && git commit -m 'Updated api documentation' && ggpush",
     "start": "NODE_ENV=production node server"
   },
   "dependencies": {

@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"ptsfvmcgtnzrw@spacehotline.com\",\n    \"password\": \"Partner@123\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -566,6 +566,146 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin/configurations",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2OTIwMDE4OSwiZXhwIjoxNjcxNzkyMTg5fQ.4eKbS93-XdhMbDqaAWe2sWg4ArUYDFrNlgjeM-pRTTo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/configurations",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2OTIwMDE4OSwiZXhwIjoxNjcxNzkyMTg5fQ.4eKbS93-XdhMbDqaAWe2sWg4ArUYDFrNlgjeM-pRTTo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"storageFeatures\": {\n        \"name\": \"String\",\n        \"image\": \"String\"\n    },\n    \"storageType\": \"String\",\n    \"storageAccessType\": \"String\",\n    \"storageFloor\": \"String\",\n    \"storageSize\": {\n        \"name\": \"String\",\n        \"description\": \"String\",\n        \"visualization\": \"String\"\n    },\n    \"services\": {\n        \"value\": \"Boolean\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/configurations/637feb7de8c06b23fafad49b",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations",
+								"637feb7de8c06b23fafad49b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Configuration Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2OTIwMDE4OSwiZXhwIjoxNjcxNzkyMTg5fQ.4eKbS93-XdhMbDqaAWe2sWg4ArUYDFrNlgjeM-pRTTo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "media",
+									"type": "file",
+									"src": "/Users/mac/Downloads/josh.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/admin/configurations/637f74652f0b2b399b94c6a8/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations",
+								"637f74652f0b2b399b94c6a8",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "media",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -619,7 +759,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NzQ3OTY4OCwiZXhwIjoxNjcwMDcxNjg4fQ.vx_p_OfAUAP77X1m9z_ErwoyWwMcGBp5VrM3Q2M6y-A",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2YTU5NjZkZjMyNjAzY2QwNWFiOCIsImlhdCI6MTY2OTIwMDI1OSwiZXhwIjoxNjcxNzkyMjU5fQ.VnHxPW4uPrkJ_YOrYTDBAK61cy0ikQxrUVxwrwirP7c",
 									"type": "string"
 								}
 							]
@@ -655,7 +795,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NjM2NDA1NiwiZXhwIjoxNjY4OTU2MDU2fQ.yAyWDgVCA1v9g7jJ_PIcc9MwQ0WYYzhUKwfsWvuuSms",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2YTU5NjZkZjMyNjAzY2QwNWFiOCIsImlhdCI6MTY2OTIwMDI1OSwiZXhwIjoxNjcxNzkyMjU5fQ.VnHxPW4uPrkJ_YOrYTDBAK61cy0ikQxrUVxwrwirP7c",
 									"type": "string"
 								}
 							]
@@ -664,7 +804,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"formattedAddress\": {\n      \"street\": \"Some default address\",\n      \"area\": \"Ikeja, Lagos\"\n    }\n}",
+							"raw": "{\n    \"packingInstruction\": \"Please add some instruction here\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -672,13 +812,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/listings/636420131fc112cc0e6167d3",
+							"raw": "{{URL}}/listings/63657be50c9730aac126bb84",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"listings",
-								"636420131fc112cc0e6167d3"
+								"63657be50c9730aac126bb84"
 							]
 						}
 					},
