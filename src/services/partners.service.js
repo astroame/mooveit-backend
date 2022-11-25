@@ -27,34 +27,8 @@ export const createListing = asyncHandler(async ({ req }) => {
     hourlyRate,
     formattedAddress,
     priceType,
+    storageNumber,
   } = req.body;
-
-  let completed;
-
-  // if (
-  //   address &&
-  //   storageType &&
-  //   storageFloor &&
-  //   storageFeatures &&
-  //   delivery &&
-  // parking &&
-  //   storageSize &&
-  //   streetView &&
-  //   image &&
-  //   storageTitle &&
-  //   description &&
-  //   unavailabilityReason &&
-  //   unavailabilityPeriodStart &&
-  //   unavailabilityPeriodEnd &&
-  //   storageAccessPeriod &&
-  //   storageAccessType &&
-  //   parkingPermit &&
-  //   parkingInstruction &&
-  //   bookingDuration &&
-  //   bookingNotice
-  // ) {
-  //   completed = true;
-  // }
 
   const storageListing = await StorageListing.create({
     address,
@@ -64,6 +38,7 @@ export const createListing = asyncHandler(async ({ req }) => {
     delivery,
     packing,
     storageSize,
+    storageNumber,
     streetView,
     storageTitle,
     description,
@@ -86,13 +61,10 @@ export const createListing = asyncHandler(async ({ req }) => {
   });
 
   return storageListing;
-  // return true;
 });
 
 export const updateListing = asyncHandler(async ({ req, next }) => {
-  console.log(req.body);
   const storageListing = await StorageListing.findByIdAndUpdate(req.params.storageId, req.body, { new: true });
-  await storageListing.checkIfCompleted(storageListing);
 
   if (!storageListing) {
     return next(new ErrorResponse("There is no listing with that id", 404));
