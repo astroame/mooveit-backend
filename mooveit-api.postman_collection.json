@@ -681,19 +681,19 @@
 								{
 									"key": "media",
 									"type": "file",
-									"src": "/Users/mac/Downloads/josh.jpeg"
+									"src": "/Users/mac/Downloads/1668531148192 - 9-1-5bfbd3651475f__700-2.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/admin/configurations/637f74652f0b2b399b94c6a8/upload",
+							"raw": "{{URL}}/admin/configurations/637feb7de8c06b23fafad49b/upload",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
 								"configurations",
-								"637f74652f0b2b399b94c6a8",
+								"637feb7de8c06b23fafad49b",
 								"upload"
 							],
 							"query": [
@@ -1024,6 +1024,167 @@
 							"path": [
 								"users",
 								"featured-listing"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "Add a driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"driver@gmail.com\",\n    \"firstName\": \"First\",\n    \"lastName\": \"Driver\",\n    \"phone\": \"0987654321\",\n    \"licenseNo\": \"2345678\",\n    \"vehicleNo\": \"dnud567990\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/drivers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Alade\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/drivers/638540f9794c449239fa3474",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers",
+								"638540f9794c449239fa3474"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Drivers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/drivers",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/drivers/638540f9794c449239fa3474",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers",
+								"638540f9794c449239fa3474"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete driver",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/drivers/638540f9794c449239fa3474",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers",
+								"638540f9794c449239fa3474"
 							]
 						}
 					},
