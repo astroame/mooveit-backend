@@ -6,11 +6,8 @@ export const sendEmail = asyncHandler(
   async ({ subject, req, user, path, buttonText, body, method, errorResponse, userToken, userTokenExpire }) => {
     // Get reset token
     const token = await method;
-
-    const hostName = await req.get("host");
-
     // send the invite
-    const url = hostName + "/" + path + "/" + token;
+    const url = `${req.headers.origin}/${path}/${token}`;
 
     const message = `
     <html>
