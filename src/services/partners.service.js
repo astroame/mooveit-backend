@@ -27,6 +27,7 @@ export const createListing = asyncHandler(async ({ req }) => {
     hourlyRate,
     formattedAddress,
     priceType,
+    completed,
     storageNumber,
   } = req.body;
 
