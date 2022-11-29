@@ -59,3 +59,18 @@ export const uploadImage = asyncHandler(async (req, res, next) => {
   const media = await AdminService.uploadImage({ req, next });
   sendResponse(res, true, 200, media);
 });
+
+export const deleteUser = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteUser({ req, next });
+  sendResponse(res, true, 200);
+});
+
+export const deleteAdmin = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteAdmin({ req, next });
+  sendResponse(res, true, 200);
+});
+
+export const getAllAdmin = asyncHandler(async (req, res, next) => {
+  const admins = await AdminService.getAllAdmin();
+  sendResponse(res, true, 200, admins);
+});

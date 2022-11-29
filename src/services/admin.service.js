@@ -68,3 +68,22 @@ export const uploadImage = asyncHandler(async ({ req, next }) => {
   let media = req.files[0].location;
   return media;
 });
+
+export const deleteUser = asyncHandler(async ({ req, next }) => {
+  const user = await UserModel.findOneAndDelete(req.params.id);
+  if (!user) return next(new ErrorResponse("There is no user with that id", 404));
+
+  return true;
+});
+
+export const deleteAdmin = asyncHandler(async ({ req, next }) => {
+  const user = await AdminModel.findOneAndDelete(req.params.id);
+  if (!user) return next(new ErrorResponse("There is no user with that id", 404));
+
+  return true;
+});
+
+export const getAllAdmin = asyncHandler(async () => {
+  const admins = await AdminModel.find();
+  return admins;
+});
