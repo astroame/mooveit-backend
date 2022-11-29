@@ -10,6 +10,9 @@ import {
   createConfiguration,
   updateConfiguration,
   uploadImage,
+  deleteUser,
+  deleteAdmin,
+  getAllAdmin,
 } from "../controllers/admin.controllers.js";
 
 import {
@@ -44,6 +47,10 @@ router.route("/update-password").post(updatePassword);
 router.route("/listings").get(viewAllListings);
 
 router.route("/users").get(getAllUsers);
+router.route("/users/:id").delete(deleteUser);
+
+router.route("/").get(getAllAdmin);
+router.route("/:id").delete(deleteAdmin);
 
 router.route("/listings/:storageId").patch(approveListing);
 

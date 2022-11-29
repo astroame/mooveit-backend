@@ -236,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkeyjk.com\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkey.com\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -706,6 +706,61 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get all admins",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTE5NiwiZXhwIjoxNjcyMzIxMTk2fQ.cNXe2NZRCZ5znFKPOrUoW-f1W6oqjcv3YDHGYNQ5o08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTE5NiwiZXhwIjoxNjcyMzIxMTk2fQ.cNXe2NZRCZ5znFKPOrUoW-f1W6oqjcv3YDHGYNQ5o08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin/63860b126744eeef1d7402f2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"63860b126744eeef1d7402f2"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -935,7 +990,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NjM2MzU2MCwiZXhwIjoxNjY4OTU1NTYwfQ.fHLsN25_KmhxkKyKqT8oZZzzuoxpdm0L3dumWwqsKDs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTI1MSwiZXhwIjoxNjcyMzIxMjUxfQ.AxJlFRV8hS-dudRheTxYQ3F0zTM1YC6kv-45JNyKDz8",
 									"type": "string"
 								}
 							]
@@ -1028,6 +1083,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTI1MSwiZXhwIjoxNjcyMzIxMjUxfQ.AxJlFRV8hS-dudRheTxYQ3F0zTM1YC6kv-45JNyKDz8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin/users/6373bb4a42471d954f0cdf51",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"6373bb4a42471d954f0cdf51"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1087,7 +1171,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Alade\"\n}",
+							"raw": "{\n    \"lastName\": \"Micheals\",\n    \"booking\": \"12345678987657654\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
