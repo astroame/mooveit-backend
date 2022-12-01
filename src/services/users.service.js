@@ -32,11 +32,23 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 });
 
 export const getAllListing = asyncHandler(async (req) => {
-  let query = {};
+  let query = { ...req.body };
 
   // Building query programmatically
-  if (req.query.area) {
-    query = { ...query, "formattedAddress.area": { $regex: req.query.area, $options: "i" } };
+  if (req.body.area) {
+    query = { ...query, "formattedAddress.area": { $regex: req.body.area, $options: "i" } };
+  }
+
+  if (req.body.storageSize) {
+    query = { ...query, storageSize: { name: req.body.storageSize } };
+  }
+
+  if (req.body.type == "hour") {
+    query = { ...query, hourlyRate: { $gte: req.body.minPrice, $lte: req.body.maxPrice } };
+  }
+
+  if (req.body.type == "month") {
+    query = { ...query, monthlyRate: { $gte: req.body.minPrice, $lte: req.body.maxPrice } };
   }
 
   const storageListings = await StorageListing.find(query)

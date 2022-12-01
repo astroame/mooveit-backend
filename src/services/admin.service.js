@@ -26,7 +26,7 @@ export const approveListing = asyncHandler(async ({ req, next }) => {
 export const viewAllListings = asyncHandler(async () => {
   const storageListing = await StorageListing.find({ completed: true })
     .lean()
-    .populate({ path: "user", select: ["firstName", "lastName"] });
+    .populate({ path: "user", select: ["firstName", "lastName", "email"] });
 
   return storageListing;
 });
@@ -77,7 +77,8 @@ export const deleteUser = asyncHandler(async ({ req, next }) => {
 });
 
 export const deleteAdmin = asyncHandler(async ({ req, next }) => {
-  const user = await AdminModel.findOneAndDelete(req.params.id);
+  const user = await AdminModel.findByIdAndDelete(req.params.id);
+  console.log(user);
   if (!user) return next(new ErrorResponse("There is no user with that id", 404));
 
   return true;
