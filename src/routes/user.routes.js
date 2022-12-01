@@ -12,7 +12,7 @@ import { authorize, protect } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.route("/listings").get(getAllListing);
+router.route("/listings").post(getAllListing);
 
 router.route("/featured-listing").get(getFeaturedListing);
 
