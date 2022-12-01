@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"firstName\": \"Customer\",\n    \"lastName\": \"Account\",\n    \"password\": \"Customer@123\",\n    \"role\": \"customer\"\n}",
+							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"firstName\": \"Partner\",\n    \"lastName\": \"Account\",\n    \"password\": \"Partner@123\",\n    \"role\": \"partner\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -236,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkey.com\",\n    \"firstName\": \"Admin\",\n    \"lastName\": \"Account\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"test@karenkey.com\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"Admin\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -286,7 +286,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"xanahdwwivzx@karenkey.com\",\n    \"password\": \"Admin@123\"\n}",
+							"raw": "{\n    \"email\": \"test@karenkey.com\",\n    \"password\": \"Admin@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -510,7 +510,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2ODYxMzAxNCwiZXhwIjoxNjcxMjA1MDE0fQ.diKO8Iaawo650KhxitoTobgumcKL7lA46we63FGHVyE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg3MGFmMmM1MzBmYTFkMjkyM2Y3OSIsImlhdCI6MTY2OTg4NjEzMiwiZXhwIjoxNjcyNDc4MTMyfQ.uwqXdFARj2l5JiqNNIAWqlXt38y1HhfwaygGmLuC5Yk",
 									"type": "string"
 								}
 							]
@@ -715,7 +715,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTE5NiwiZXhwIjoxNjcyMzIxMTk2fQ.cNXe2NZRCZ5znFKPOrUoW-f1W6oqjcv3YDHGYNQ5o08",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg5MjIxZGExNmM2NzkxMTM1MWU5NSIsImlhdCI6MTY2OTg5NDY5NCwiZXhwIjoxNjcyNDg2Njk0fQ.yUyU1YXyRMFvev4NDc9G1StllLJBp6NrxSvUKUOq6H0",
 									"type": "string"
 								}
 							]
@@ -742,7 +742,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTE5NiwiZXhwIjoxNjcyMzIxMTk2fQ.cNXe2NZRCZ5znFKPOrUoW-f1W6oqjcv3YDHGYNQ5o08",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg5MjIxZGExNmM2NzkxMTM1MWU5NSIsImlhdCI6MTY2OTg5NDY5NCwiZXhwIjoxNjcyNDg2Njk0fQ.yUyU1YXyRMFvev4NDc9G1StllLJBp6NrxSvUKUOq6H0",
 									"type": "string"
 								}
 							]
@@ -750,13 +750,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/admin/63860b126744eeef1d7402f2",
+							"raw": "{{URL}}/admin/638889a136649dd0e467c53f",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
-								"63860b126744eeef1d7402f2"
+								"638889a136649dd0e467c53f"
+							],
+							"query": [
+								{
+									"key": "jb",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1021,7 +1028,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"area\": \"lag\",\n    \"type\": \"hour\",\n    \"maxPrice\": 1,\n    \"minPrice\": 12\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1029,19 +1036,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/users/listings?area=lag",
+							"raw": "{{URL}}/users/listings",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"users",
 								"listings"
-							],
-							"query": [
-								{
-									"key": "area",
-									"value": "lag"
-								}
 							]
 						}
 					},
