@@ -1020,15 +1020,14 @@
 				{
 					"name": "Get All Lisitngs",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
 					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"area\": \"lag\",\n    \"type\": \"hour\",\n    \"maxPrice\": 1,\n    \"minPrice\": 12\n}",
+							"raw": "{\n    \"area\": \"lag\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

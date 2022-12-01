@@ -188,15 +188,12 @@
 <span class=badge>5</span></h3></div><div class=panel-body><p><div class=request-item><div class=panel-group id=accordion-Users><div class="panel panel-info" id=jump-Users-GetAllUsers><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllUsers><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Users</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
-{{URL}}/admin/users</h4></a></div><div id=collapse-Users-GetAllUsers class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-info" id=jump-Users-GetAllLisitngs><div class=panel-heading><small class="pull-right text-muted">raw</small>
-<a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllLisitngs><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Lisitngs</strong> &nbsp;|&nbsp;
-<strong class="request-method border-info">GET</strong>
+{{URL}}/admin/users</h4></a></div><div id=collapse-Users-GetAllUsers class="panel-collapse collapse"><div class=panel-body></div></div></div><div class="panel panel-success" id=jump-Users-GetAllLisitngs><div class=panel-heading><small class="pull-right text-muted">raw</small>
+<a class=text-success data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-GetAllLisitngs><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get All Lisitngs</strong> &nbsp;|&nbsp;
+<strong class="request-method border-success">POST</strong>
 &nbsp;
 {{URL}}/users/listings</h4></a></div><div id=collapse-Users-GetAllLisitngs class="panel-collapse collapse"><div class=panel-body><h5 class="label label-primary">Body</h5><span class=resp-prettyprint>{
-&#34;area&#34;: &#34;lag&#34;,
-&#34;type&#34;: &#34;hour&#34;,
-&#34;maxPrice&#34;: 1,
-&#34;minPrice&#34;: 12
+&#34;area&#34;: &#34;lag&#34;
 }</span><div class=clearfix></div></div></div></div><div class="panel panel-info" id=jump-Users-Getonelistingwithid><div class=panel-heading><small class="pull-right text-muted"></small><a class=text-info data-toggle=collapse data-parent=#accordion-Users href=#collapse-Users-Getonelistingwithid><h4 class=panel-title><span class="glyphicon glyphicon-plus"></span><strong>Get one listing with id</strong> &nbsp;|&nbsp;
 <strong class="request-method border-info">GET</strong>
 &nbsp;
@@ -241,4 +238,4 @@ if(IsJsonString(html)){var obj=JSON.parse(html);var formattedJson=JSON.stringify
 function IsJsonString(str){try{JSON.parse(str);}catch(e){return false;}
 return true;}
 String.prototype.replaceAll=function(replaceThis,withThis){var re=new RegExp(RegExp.quote(replaceThis),"g");return this.replace(re,withThis);};RegExp.quote=function(str){return str.replace(/([.?*+^$[\]\\(){}-])/g,"\\$1");};function syntaxHighlight(json){json=json.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,function(match){var cls='number';if(/^"/.test(match)){if(/:$/.test(match)){cls='key';}else{cls='string';}}else if(/true|false/.test(match)){cls='boolean';}else if(/null/.test(match)){cls='null';}
-return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-12-01 14:08:18 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
+return '<span class="'+cls+'">'+match+'</span>';});}</script><br><br><footer class="navbar-default navbar-fixed-bottom"><div class=container-fluid><div class="span12 text-center"><span data-toggle=tooltip title="If the application help you, please feel free to give a star to the project in github. Your star inspire me to work more on open-source projects like this!">Generated at 2022-12-01 14:56:19 by <a href=https://github.com/thedevsaddam/docgen target=_blank class=text-muted>docgen</a></span></div></div></footer>
