@@ -32,7 +32,7 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 });
 
 export const getAllListing = asyncHandler(async (req) => {
-  let query = { ...req.body };
+  let query = { status: "approved", ...req.body };
 
   // Building query programmatically
   if (req.body.area) {
