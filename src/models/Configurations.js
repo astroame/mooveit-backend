@@ -5,7 +5,8 @@ const ConfigurationsSchema = Schema(
   {
     storageFeatures: [
       {
-        name: String,
+        value: String,
+        label: String,
         image: String,
       },
     ],
@@ -27,7 +28,8 @@ const ConfigurationsSchema = Schema(
 
     storageSize: [
       {
-        name: String,
+        value: String,
+        label: String,
         description: String,
         visualization: String,
       },

@@ -34,22 +34,40 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 export const getAllListing = asyncHandler(async (req) => {
   let query = { status: "approved", ...req.body };
 
+  console.log(query, "top");
+
+  if (req.body.area === "") delete query.area;
+  if (req.body.storageType === "") delete query.storageType;
+  if (req.body.delivery === null) delete query.delivery;
+  if (req.body.packing === null) delete query.packing;
+
   // Building query programmatically
   if (req.body.area) {
     query = { ...query, "formattedAddress.area": { $regex: req.body.area, $options: "i" } };
+    delete query.area;
   }
 
-  if (req.body.storageSize) {
+  if (req.body.storageSize && req.body.storageSize !== "") {
     query = { ...query, storageSize: { name: req.body.storageSize } };
+  } else {
+    delete query.storageSize;
   }
 
   if (req.body.type == "hour") {
     query = { ...query, hourlyRate: { $gte: req.body.minPrice, $lte: req.body.maxPrice } };
+    delete query.type;
+    delete query.minPrice;
+    delete query.maxPrice;
   }
 
   if (req.body.type == "month") {
     query = { ...query, monthlyRate: { $gte: req.body.minPrice, $lte: req.body.maxPrice } };
+    delete query.type;
+    delete query.minPrice;
+    delete query.maxPrice;
   }
+
+  console.log(query, "bottom");
 
   const storageListings = await StorageListing.find(query)
     .lean()
