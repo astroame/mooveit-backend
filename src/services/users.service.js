@@ -34,8 +34,6 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 export const getAllListing = asyncHandler(async (req) => {
   let query = { status: "approved", ...req.body };
 
-  console.log(query, "top");
-
   if (req.body.area === "") delete query.area;
   if (req.body.storageType === "") delete query.storageType;
   if (req.body.delivery === null) delete query.delivery;
@@ -66,8 +64,6 @@ export const getAllListing = asyncHandler(async (req) => {
     delete query.minPrice;
     delete query.maxPrice;
   }
-
-  console.log(query, "bottom");
 
   const storageListings = await StorageListing.find(query)
     .lean()
