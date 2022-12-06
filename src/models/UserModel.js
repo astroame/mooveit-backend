@@ -20,10 +20,14 @@ const UserSchema = Schema(
     },
     profilePicture: { type: String },
     phone: { type: String },
-    category: { type: String, default: "", enum: ["email", "text"] },
-    reminders: { type: Boolean, default: false },
-    accountSupport: { type: Boolean, default: false },
-    marketing: { type: Boolean, default: false },
+    enable2fa: { type: Boolean, default: false },
+    supportEmail: { type: Boolean, default: false },
+    supportText: { type: Boolean, default: false },
+    reminderEmail: { type: Boolean, default: false },
+    reminderText: { type: Boolean, default: false },
+    marketingEmail: { type: Boolean, default: false },
+    marketingText: { type: Boolean, default: false },
+
     role: {
       type: String,
       enum: ["partner", "customer"],
