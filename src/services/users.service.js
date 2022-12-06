@@ -15,11 +15,11 @@ export const getSingleUser = asyncHandler(async ({ id, next }) => {
   return user;
 });
 
-export const updateUserProfile = asyncHandler(async (req, next) => {
+export const updateUserProfile = asyncHandler(async ({ req, next }) => {
   const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
-  });
+  }).select(["-otp", "-verifyOtpExpire"]);
 
   if (!user) return next(new ErrorResponse("There is no user with that id", 404));
 
@@ -33,6 +33,8 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 
 export const getAllListing = asyncHandler(async (req) => {
   let query = { status: "approved", ...req.body };
+
+  console.log(query, "before");
 
   if (req.body.area === "") delete query.area;
   if (req.body.storageType === "") delete query.storageType;
@@ -65,6 +67,8 @@ export const getAllListing = asyncHandler(async (req) => {
     delete query.maxPrice;
   }
 
+  console.log(query, "after");
+
   const storageListings = await StorageListing.find(query)
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
@@ -88,4 +92,20 @@ export const getFeaturedListing = asyncHandler(async () => {
     .populate({ path: "user", select: ["firstName", "lastName"] });
 
   return storageListing;
+});
+
+export const uploadImage = asyncHandler(async ({ req, next }) => {
+  let image = req.files[0].location;
+
+  const upload = await UserModel.findByIdAndUpdate(
+    req.params.id,
+    {
+      profilePicture: image,
+    },
+    { new: true }
+  );
+
+  if (!upload) return next(new ErrorResponse("No listing with that id", 404));
+
+  return upload;
 });

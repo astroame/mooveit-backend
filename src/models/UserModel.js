@@ -18,6 +18,12 @@ const UserSchema = Schema(
         "Please enter a valid email address",
       ],
     },
+    profilePicture: { type: String },
+    phone: { type: String },
+    category: { type: String, default: "", enum: ["email", "text"] },
+    reminders: { type: Boolean, default: false },
+    accountSupport: { type: Boolean, default: false },
+    marketing: { type: Boolean, default: false },
     role: {
       type: String,
       enum: ["partner", "customer"],
@@ -142,6 +148,46 @@ UserSchema.methods.verifyTokenExpired = function () {
 
 UserSchema.methods.verifyOtpExpired = function () {
   return Date.now() > this.verifyOtpExpire;
+};
+
+// Update Password
+UserSchema.methods.updatePassword = async function (query) {
+  let { oldPassword, newPassword, confirmPassword, next, user } = query;
+
+  console.log("old password");
+
+  // Check if password matches
+  const isMatch = await bcrypt.compare(oldPassword, user.password);
+
+  if (!isMatch)
+    return next(new ErrorResponse("The old password you provided does not match the password in our database", 400));
+
+  if (newPassword !== confirmPassword)
+    return next(new ErrorResponse("Your new password and confirm password does not match", 400));
+
+  // Validate Password
+  const regex = new RegExp(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/i);
+  if (!newPassword.match(regex))
+    return next(
+      new ErrorResponse(
+        "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
+        400
+      )
+    );
+
+  // Hash and salt the password
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(newPassword, salt);
+
+  await User.findOneAndUpdate(
+    { _id: user._id },
+    {
+      password,
+    },
+    { runValidators: true }
+  );
+
+  return user;
 };
 
 const User = model("User", UserSchema);

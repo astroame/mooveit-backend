@@ -147,7 +147,8 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
 });
 
 export const updatePassword = asyncHandler(async (req, res, next) => {
-  let query = { ...req.body, req, next, model: req.originalUrl.includes("admin") && AdminModel };
+  let query = { ...req.body, req, next, model: req.originalUrl.includes("admin") ? AdminModel : UserModel };
+
   await AuthService.updatePassword(query);
 
   res.status(200).json({

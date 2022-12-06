@@ -67,7 +67,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{TOKEN}}",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -219,6 +219,43 @@
 							"path": [
 								"auth",
 								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MDI3MTM4NCwiZXhwIjoxNjcyODYzMzg0fQ.UX8Jl7lROc3VXQYxBX4HaHhXL9qeKnHN94AueYjHny0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"Adminn@123\",\n    \"newPassword\": \"Admin@123\",\n    \"confirmPassword\": \"Admin@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/update-password",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"update-password"
 							]
 						}
 					},
@@ -538,12 +575,12 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTEyYWI4NjcwMTUzZTE1MGQ3ZWZhYSIsImlhdCI6MTY2NjI2MzczOSwiZXhwIjoxNjY4ODU1NzM5fQ.VhYiZ_6e0s0UUPjumsUtj-TlwBnXAroigVDjPwvjV0s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MDI2MTUxMSwiZXhwIjoxNjcyODUzNTExfQ.NCe9lNL_KstyDFI4clcLme23DE-3VCPllubTx8WKdL8",
 									"type": "string"
 								}
 							]
 						},
-						"method": "POST",
+						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -997,7 +1034,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYwYmFiYTIyNDk2M2Q5NmQ4ZmM0ZSIsImlhdCI6MTY2OTcyOTI1MSwiZXhwIjoxNjcyMzIxMjUxfQ.AxJlFRV8hS-dudRheTxYQ3F0zTM1YC6kv-45JNyKDz8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDMyMTY0NCwiZXhwIjoxNjcyOTEzNjQ0fQ.fcBdPpQr7CyrymlQOiLhInXIwScTNGoX7-Zkmi17Xw0",
 									"type": "string"
 								}
 							]
@@ -1069,7 +1106,7 @@
 				{
 					"name": "Get Featured Listing",
 					"request": {
-						"method": "GET",
+						"method": "PATCH",
 						"header": [],
 						"url": {
 							"raw": "{{URL}}/users/featured-listing",
@@ -1108,6 +1145,82 @@
 								"admin",
 								"users",
 								"6373bb4a42471d954f0cdf51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MDMyMTY5NSwiZXhwIjoxNjcyOTEzNjk1fQ.emNOaTEAFY8ZnQK-_alyhrvIwxifkuWxF4gtyXzXKlc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\": \"email\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/638618862c530fa1d2923f70",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"638618862c530fa1d2923f70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload profile image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MDMyMTY5NSwiZXhwIjoxNjcyOTEzNjk1fQ.emNOaTEAFY8ZnQK-_alyhrvIwxifkuWxF4gtyXzXKlc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/Users/mac/Downloads/1666016644157photo.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/users/638618862c530fa1d2923f70/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"638618862c530fa1d2923f70",
+								"upload"
 							]
 						}
 					},

@@ -10,10 +10,10 @@ import {
 
 const router = express.Router();
 
-import { protect, authorize } from "../middlewares/auth.js";
+import { protectUser, authorize } from "../middlewares/auth.js";
 import upload from "../utils/s3.js";
 
-router.use(protect);
+router.use(protectUser);
 router.use(authorize("partner"));
 
 router.route("/").post(createListing).get(getListingByPartners);

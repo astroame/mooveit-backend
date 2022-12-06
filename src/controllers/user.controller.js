@@ -46,3 +46,8 @@ export const getFeaturedListing = asyncHandler(async (req, res, next) => {
   const storageListing = await UserService.getFeaturedListing();
   sendResponse(res, true, 200, storageListing);
 });
+
+export const uploadImage = asyncHandler(async (req, res, next) => {
+  const media = await UserService.uploadImage({ req, next });
+  sendResponse(res, true, 200, media);
+});

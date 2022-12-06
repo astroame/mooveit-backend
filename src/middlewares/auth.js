@@ -4,16 +4,12 @@ import { UserModel, AdminModel } from "../models/index.js";
 import asyncHandler from "./async.js";
 
 // protect routes
-export const protect = asyncHandler(async (req, res, next) => {
+export const protectUser = asyncHandler(async (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
   }
-
-  // else if (req.cookies.token) {
-  //   token = req.cookies.token
-  // }
 
   if (!token) return next(new ErrorResponse("Not authorized to access this route", 401));
 
@@ -39,7 +35,7 @@ export const protectAdmin = asyncHandler(async (req, res, next) => {
   //   token = req.cookies.token
   // }
 
-  if (!token) return next(new ErrorResponse("Not authorized to access this route", 401));
+  if (!token) return next(new ErrorResponse("Not authorized to access this route...", 401));
 
   try {
     // Verify token
