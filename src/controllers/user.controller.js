@@ -1,6 +1,7 @@
 import asyncHandler from "../middlewares/async.js";
 import { UserService } from "../services/index.js";
 import sendResponse from "../utils/sendResponse.js";
+import sendTokenResponse from "../utils/sendToken.js";
 
 // Get all users
 export const getAllUsers = asyncHandler(async (req, res, next) => {
@@ -17,7 +18,7 @@ export const getSingleUser = asyncHandler(async (req, res, next) => {
 // update user profile
 export const updateUserProfile = asyncHandler(async (req, res, next) => {
   const user = await UserService.updateUserProfile({ req, next });
-  sendResponse(res, true, 200, user);
+  sendTokenResponse(user, 200, res, "Profile updated successfully");
 });
 
 //Delete User
@@ -48,6 +49,6 @@ export const getFeaturedListing = asyncHandler(async (req, res, next) => {
 });
 
 export const uploadImage = asyncHandler(async (req, res, next) => {
-  const media = await UserService.uploadImage({ req, next });
-  sendResponse(res, true, 200, media);
+  const user = await UserService.uploadImage({ req, next });
+  sendTokenResponse(user, 200, res, "Image has been uploaded");
 });
