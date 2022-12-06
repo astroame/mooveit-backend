@@ -42,7 +42,7 @@ router.route("/configurations").get(getConfiguration);
 router.use(protectAdmin);
 router.use(authorize("admin"));
 
-router.route("/update-password").post(updatePassword);
+router.route("/update-password").patch(updatePassword);
 
 router.route("/listings").get(viewAllListings);
 

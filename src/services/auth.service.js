@@ -106,9 +106,16 @@ export const resetPassword = asyncHandler(async (query) => {
 
 export const updatePassword = asyncHandler(async (query) => {
   const { model, req } = query;
+
+  console.log(req.user);
+
   const user = await model.findOne({ _id: req.user }).select("+password");
+
+  console.log(user);
   query = { ...query, user };
   await user.updatePassword(query);
+
+  console.log("I got here");
   return user;
 });
 

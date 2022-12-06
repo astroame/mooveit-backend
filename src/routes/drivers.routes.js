@@ -3,9 +3,9 @@ import { addDriver, deleteDriver, getAllDrivers, getDriver, updateDriver } from 
 
 const router = express.Router();
 
-import { protect, authorize } from "../middlewares/auth.js";
+import { protectUser, authorize } from "../middlewares/auth.js";
 
-router.use(protect);
+router.use(protectUser);
 router.use(authorize("partner"));
 
 router.route("/").post(addDriver).get(getAllDrivers);
