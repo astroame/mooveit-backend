@@ -39,6 +39,16 @@ export const getAllUsers = asyncHandler(async (req, res, next) => {
   sendResponse(res, true, 200, users);
 });
 
+export const getUserByID = asyncHandler(async (req, res, next) => {
+  const user = await AdminService.getUserByID({ req, next });
+  sendResponse(res, true, 200, user);
+});
+
+export const verifyPartner = asyncHandler(async (req, res, next) => {
+  const user = await AdminService.verifyPartner({ req, next });
+  sendResponse(res, true, 200, user);
+});
+
 // CONFIGURATIONS
 export const getConfiguration = asyncHandler(async (req, res, next) => {
   const configuration = await AdminService.getConfiguration();
@@ -52,6 +62,16 @@ export const createConfiguration = asyncHandler(async (req, res, next) => {
 
 export const updateConfiguration = asyncHandler(async (req, res, next) => {
   const configuration = await AdminService.updateConfiguration({ req, next });
+  sendResponse(res, true, 200, configuration);
+});
+
+export const updateIndividualConfiguration = asyncHandler(async (req, res, next) => {
+  const configuration = await AdminService.updateIndividualConfiguration({ req, next });
+  sendResponse(res, true, 200, configuration);
+});
+
+export const deleteIndividualConfiguration = asyncHandler(async (req, res, next) => {
+  const configuration = await AdminService.deleteIndividualConfiguration({ req, next });
   sendResponse(res, true, 200, configuration);
 });
 

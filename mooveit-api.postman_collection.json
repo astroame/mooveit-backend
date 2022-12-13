@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"firstName\": \"Partner\",\n    \"lastName\": \"Account\",\n    \"password\": \"Partner@123\",\n    \"role\": \"partner\"\n}",
+							"raw": "{\n    \"email\": \"partner21@gmail.com\",\n    \"firstName\": \"Partner\",\n    \"lastName\": \"Account\",\n    \"password\": \"Partner@123\",\n    \"role\": \"partner\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -630,7 +630,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2OTIwMDE4OSwiZXhwIjoxNjcxNzkyMTg5fQ.4eKbS93-XdhMbDqaAWe2sWg4ArUYDFrNlgjeM-pRTTo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
 									"type": "string"
 								}
 							]
@@ -667,7 +667,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2ZGJkNjZkZjMyNjAzY2QwNWFiZSIsImlhdCI6MTY2OTIwMDE4OSwiZXhwIjoxNjcxNzkyMTg5fQ.4eKbS93-XdhMbDqaAWe2sWg4ArUYDFrNlgjeM-pRTTo",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
 									"type": "string"
 								}
 							]
@@ -676,7 +676,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"storageFeatures\": {\n        \"name\": \"String\",\n        \"image\": \"String\"\n    },\n    \"storageType\": \"String\",\n    \"storageAccessType\": \"String\",\n    \"storageFloor\": \"String\",\n    \"storageSize\": {\n        \"name\": \"String\",\n        \"description\": \"String\",\n        \"visualization\": \"String\"\n    },\n    \"services\": {\n        \"value\": \"Boolean\"\n    }\n}",
+							"raw": "{\n    \"services\": {\n        \"label\": \"delivery\",\n        \"value\": false\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -684,14 +684,92 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/admin/configurations/637feb7de8c06b23fafad49b",
+							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
 								"configurations",
-								"637feb7de8c06b23fafad49b"
+								"6391bcaadf7c8cfee67c925e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Individual Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"services\": {\n        \"label\": \"pin code\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e/6391bcf7df7c8cfee67c9266",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations",
+								"6391bcaadf7c8cfee67c925e",
+								"6391bcf7df7c8cfee67c9266"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Individual Configuration",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"storageAccessType\": {\n        \"label\": \"pin code\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e/6391e6227d70090061afff75",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"configurations",
+								"6391bcaadf7c8cfee67c925e",
+								"6391e6227d70090061afff75"
 							]
 						}
 					},
@@ -1034,7 +1112,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDMyMTY0NCwiZXhwIjoxNjcyOTEzNjQ0fQ.fcBdPpQr7CyrymlQOiLhInXIwScTNGoX7-Zkmi17Xw0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDkzOTc2MCwiZXhwIjoxNjczNTMxNzYwfQ.CySxqKdtnSprUKy8jPNqMU9hn-XGy0l3SX9U5TvRqVc",
 									"type": "string"
 								}
 							]
@@ -1167,7 +1245,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"category\": \"email\"\n}",
+							"raw": "{\n    \"marketingText\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1221,6 +1299,73 @@
 								"users",
 								"638618862c530fa1d2923f70",
 								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDkzOTc2MCwiZXhwIjoxNjczNTMxNzYwfQ.CySxqKdtnSprUKy8jPNqMU9hn-XGy0l3SX9U5TvRqVc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/admin/users/63656cc466df32603cd05abb",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"63656cc466df32603cd05abb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify a partner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDkzOTc2MCwiZXhwIjoxNjczNTMxNzYwfQ.CySxqKdtnSprUKy8jPNqMU9hn-XGy0l3SX9U5TvRqVc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAdminVerified\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/users/636586b4d48922f7ca3dd8ec",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								"636586b4d48922f7ca3dd8ec"
 							]
 						}
 					},

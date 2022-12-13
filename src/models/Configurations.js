@@ -5,40 +5,48 @@ const ConfigurationsSchema = Schema(
   {
     storageFeatures: [
       {
-        value: String,
-        label: String,
+        value: { type: String, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
         image: String,
       },
     ],
 
-    storageType: {
-      type: Array,
-      default: ["warehose", "basement", "loft"],
-    },
+    storageType: [
+      {
+        value: { type: String, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
+      },
+    ],
 
-    storageAccessType: {
-      type: Array,
-      default: ["key", "pin code", "fingerprint scanner"],
-    },
+    storageAccessType: [
+      {
+        value: { type: String, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
+      },
+    ],
 
-    storageFloor: {
-      type: Array,
-      default: ["1st floor", "2nd floor"],
-    },
+    storageFloor: [
+      {
+        value: { type: String, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
+      },
+    ],
 
     storageSize: [
       {
-        value: String,
-        label: String,
+        value: { type: String, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
         description: String,
         visualization: String,
       },
     ],
 
-    services: {
-      type: Array,
-      default: [{ packing: false }, { delivery: false }],
-    },
+    services: [
+      {
+        value: { type: Boolean, required: [true, "Please add a value"] },
+        label: { type: String, required: [true, "Please add a label"] },
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -27,6 +27,7 @@ const UserSchema = Schema(
     reminderText: { type: Boolean, default: false },
     marketingEmail: { type: Boolean, default: false },
     marketingText: { type: Boolean, default: false },
+    isAdminVerified: { type: Boolean, default: false },
 
     role: {
       type: String,
@@ -44,7 +45,6 @@ const UserSchema = Schema(
         "Password must contain at least 6 characters, 1 uppercase, 1 lowercase and 1 special character",
       ],
     },
-    isVerified: { type: Boolean, default: false },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     verifyToken: String,
@@ -60,6 +60,7 @@ UserSchema.pre("save", async function (req, res, next) {
   if (!this.isModified("password")) {
     next();
   }
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
