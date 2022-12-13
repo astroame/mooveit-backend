@@ -51,6 +51,27 @@ const UserSchema = Schema(
     verifyTokenExpire: Date,
     otp: String,
     verifyOtpExpire: Date,
+
+    // PROFESSIONAL PARTNER OBJECT
+    isVatRegistered: { type: Boolean, default: false },
+    vatRegistrationNumber: { type: String },
+    companyName: { type: String },
+    companyNumber: { type: String },
+
+    // ACCOUNT VERIFICATION
+    idType: { type: String },
+    firstNameOnId: { type: String },
+    lastNameOnId: { type: String },
+    verificationDocument: { type: String },
+
+    // ACCOUNT INFORMATION
+    accountType: { type: String },
+    country: { type: String },
+    accountNumber: { type: String },
+    sortCode: { type: String },
+    address: { type: String },
+    city: { type: String },
+    dob: { type: Date },
   },
   { timestamps: true }
 );
