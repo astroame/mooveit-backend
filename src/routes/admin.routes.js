@@ -13,6 +13,10 @@ import {
   deleteUser,
   deleteAdmin,
   getAllAdmin,
+  updateIndividualConfiguration,
+  deleteIndividualConfiguration,
+  getUserByID,
+  verifyPartner,
 } from "../controllers/admin.controllers.js";
 
 import {
@@ -47,7 +51,7 @@ router.route("/update-password").patch(updatePassword);
 router.route("/listings").get(viewAllListings);
 
 router.route("/users").get(getAllUsers);
-router.route("/users/:id").delete(deleteUser);
+router.route("/users/:id").delete(deleteUser).get(getUserByID).patch(verifyPartner);
 
 router.route("/").get(getAllAdmin);
 router.route("/:id").delete(deleteAdmin);
@@ -57,6 +61,11 @@ router.route("/listings/:storageId").patch(approveListing);
 router.route("/configurations").post(createConfiguration);
 
 router.route("/configurations/:id").patch(updateConfiguration);
+
+router
+  .route("/configurations/:configId/:id")
+  .patch(updateIndividualConfiguration)
+  .delete(deleteIndividualConfiguration);
 
 router.route("/configurations/:id/upload").patch(upload.array("media", 1), uploadImage);
 
