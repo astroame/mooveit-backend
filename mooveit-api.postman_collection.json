@@ -1545,7 +1545,7 @@
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -1558,13 +1558,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/drivers/6399f7d4c7ba9653b31d7be8/upload",
+							"raw": "{{URL}}/drivers/upload",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"drivers",
-								"6399f7d4c7ba9653b31d7be8",
 								"upload"
 							]
 						}

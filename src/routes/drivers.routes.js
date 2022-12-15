@@ -16,10 +16,10 @@ import upload from "../utils/s3.js";
 router.use(protectUser);
 router.use(authorize("partner"));
 
+router.route("/upload").post(upload.array("profilePicture", 1), uploadDriversImage);
+
 router.route("/").post(addDriver).get(getAllDrivers);
 
 router.route("/:id").patch(updateDriver).delete(deleteDriver).get(getDriver);
-
-router.route("/:id/upload").patch(upload.array("profilePicture", 1), uploadDriversImage);
 
 export default router;

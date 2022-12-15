@@ -88,6 +88,6 @@ export const updateDriver = asyncHandler(async (req, res, next) => {
 });
 
 export const uploadDriversImage = asyncHandler(async (req, res, next) => {
-  const user = await PartnerService.uploadDriversImage({ req, next });
+  const user = await PartnerService.uploadDriversImage(req);
   sendResponse(res, true, 200, user, "Image has been uploaded");
 });
