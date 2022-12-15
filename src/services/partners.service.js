@@ -180,18 +180,8 @@ export const updateDriver = asyncHandler(async ({ req, next }) => {
   return driver;
 });
 
-export const uploadDriversImage = asyncHandler(async ({ req, next }) => {
+export const uploadDriversImage = asyncHandler(async (req) => {
   let image = req.files[0].location;
-
-  const upload = await Drivers.findByIdAndUpdate(
-    req.params.id,
-    {
-      profilePicture: image,
-    },
-    { new: true }
-  );
-
-  if (!upload) return next(new ErrorResponse("No listing with that id", 404));
-
-  return upload;
+  console.log(image);
+  return image;
 });
