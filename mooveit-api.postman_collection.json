@@ -1320,14 +1320,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/admin/users/63656cc466df32603cd05abb",
+							"raw": "{{URL}}/admin/users/638618862c530fa1d2923f70",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"admin",
 								"users",
-								"63656cc466df32603cd05abb"
+								"638618862c530fa1d2923f70"
 							]
 						}
 					},
@@ -1457,7 +1457,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODQ4YWQ1OThlZTRkNzVlMzBiMmQ1MSIsImlhdCI6MTY2OTY2NTIzMSwiZXhwIjoxNjcyMjU3MjMxfQ.83Q_vKZ0n9wNNzZY2I8DZbOQ_jIGdoy_dQ-BAtSb4fU",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MTEwMDU0MCwiZXhwIjoxNjczNjkyNTQwfQ.bMOAFET5XIRPcCMwm7Gm4rHi4PIEV92gF-gYIWa_8ZM",
 									"type": "string"
 								}
 							]
@@ -1527,6 +1527,45 @@
 							"path": [
 								"drivers",
 								"638540f9794c449239fa3474"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload profile picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MTEwMDU0MCwiZXhwIjoxNjczNjkyNTQwfQ.bMOAFET5XIRPcCMwm7Gm4rHi4PIEV92gF-gYIWa_8ZM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/Users/mac/Downloads/18:52HL143.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/drivers/6399f7d4c7ba9653b31d7be8/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"drivers",
+								"6399f7d4c7ba9653b31d7be8",
+								"upload"
 							]
 						}
 					},
