@@ -119,7 +119,7 @@ export const uploadImages = asyncHandler(async ({ req, next }) => {
 
 // DRIVERS
 export const addDriver = asyncHandler(async ({ req, next }) => {
-  const { firstName, lastName, phone, email, vehicleNo, licenseNo } = req.body;
+  const { firstName, lastName, phone, email, vehicleNo, licenseNo, profilePicture } = req.body;
 
   if (!firstName || !lastName || !phone || !email || !vehicleNo || !licenseNo) {
     return next(new ErrorResponse("Please fill in all fields", 400));
@@ -132,6 +132,7 @@ export const addDriver = asyncHandler(async ({ req, next }) => {
     phone,
     vehicleNo,
     licenseNo,
+    profilePicture,
     partner: req.user,
   });
 
