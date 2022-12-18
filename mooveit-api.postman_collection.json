@@ -605,177 +605,6 @@
 					"response": []
 				},
 				{
-					"name": "Get Configuration",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/admin/configurations",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin",
-								"configurations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Configuration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/admin/configurations",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin",
-								"configurations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Configuration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"services\": {\n        \"label\": \"delivery\",\n        \"value\": false\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin",
-								"configurations",
-								"6391bcaadf7c8cfee67c925e"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Individual Configuration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"services\": {\n        \"label\": \"pin code\"\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e/6391bcf7df7c8cfee67c9266",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin",
-								"configurations",
-								"6391bcaadf7c8cfee67c925e",
-								"6391bcf7df7c8cfee67c9266"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Individual Configuration",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MDQ5NTM0NywiZXhwIjoxNjczMDg3MzQ3fQ.ydKe1lCcqobRoih3U8L8YvxV3nRT8Ae26u9zxShimsA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"storageAccessType\": {\n        \"label\": \"pin code\"\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{URL}}/admin/configurations/6391bcaadf7c8cfee67c925e/6391e6227d70090061afff75",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"admin",
-								"configurations",
-								"6391bcaadf7c8cfee67c925e",
-								"6391e6227d70090061afff75"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Upload Configuration Image",
 					"request": {
 						"auth": {
@@ -936,7 +765,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2YTU5NjZkZjMyNjAzY2QwNWFiOCIsImlhdCI6MTY2OTIwMDI1OSwiZXhwIjoxNjcxNzkyMjU5fQ.VnHxPW4uPrkJ_YOrYTDBAK61cy0ikQxrUVxwrwirP7c",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MTEyMDYwMiwiZXhwIjoxNjczNzEyNjAyfQ.3bwdsjBebyhJJnRwZzORvTxNDnvoB_S-Uqd1RSBIVcA",
 									"type": "string"
 								}
 							]
@@ -1565,6 +1394,803 @@
 							"path": [
 								"drivers",
 								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Configurations",
+			"item": [
+				{
+					"name": "Get All Services",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/services",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Storage Access Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Storage Size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-size",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-size"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Storage Features",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-features",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Storage Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Storage Floor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-floor",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-floor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"false\",\n    \"label\": \"packing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/services",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage AccessType",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"pin-code\",\n    \"label\": \"Pin Code\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage Size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"9sf-3ft\",\n    \"label\": \"9 sq ft - 3ft high locker\",\n    \"description\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-size",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-size"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage Features",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"feature\",\n    \"label\": \"feature\",\n    \"image\": \"image-url-here\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-features",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-features"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"warehouse\",\n    \"label\": \"warehouse\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage Floor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"1st-floor\",\n    \"label\": \"First Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-floor",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-floor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/services/639d120c92cc9ddcff124dd3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"services",
+								"639d120c92cc9ddcff124dd3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Storage Access Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"key\",\n    \"label\": \"Key\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-type/639f98b17299a4b53f6fcedb",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-type",
+								"639f98b17299a4b53f6fcedb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Storage Size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Some random description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-size/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-size",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Storage Features",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Some random description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-features/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-features",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Storage Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"Some random value\",\n    \"label\": \"label\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-type/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-type",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Storage Floor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"Some value\",\n    \"label\": \"some label\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-floor/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-floor",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/services/639d120c92cc9ddcff124dd3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"services",
+								"639d120c92cc9ddcff124dd3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Access type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-type/639f99b0fcbccc62334e5c41",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-type",
+								"639f99b0fcbccc62334e5c41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Size",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-size/639f9da19ca2a82c65d5c553",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-size",
+								"639f9da19ca2a82c65d5c553"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Features",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-features/639f9da19ca2a82c65d5c553",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-features",
+								"639f9da19ca2a82c65d5c553"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-type/639f9da19ca2a82c65d5c553",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-type",
+								"639f9da19ca2a82c65d5c553"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Floor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-floor/639f9da19ca2a82c65d5c553",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-floor",
+								"639f9da19ca2a82c65d5c553"
 							]
 						}
 					},
