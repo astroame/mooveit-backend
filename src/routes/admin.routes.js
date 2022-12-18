@@ -6,15 +6,10 @@ import {
   approveListing,
   viewAllListings,
   getAllUsers,
-  getConfiguration,
-  createConfiguration,
-  updateConfiguration,
   uploadImage,
   deleteUser,
   deleteAdmin,
   getAllAdmin,
-  updateIndividualConfiguration,
-  deleteIndividualConfiguration,
   getUserByID,
   verifyPartner,
 } from "../controllers/admin.controllers.js";
@@ -41,8 +36,6 @@ router.route("/reset-password/:resetToken").patch(resetPassword).get(verifyReset
 
 router.route("/verify").post(verifyUserEmail);
 
-router.route("/configurations").get(getConfiguration);
-
 router.use(protectAdmin);
 router.use(authorize("admin"));
 
@@ -57,15 +50,6 @@ router.route("/").get(getAllAdmin);
 router.route("/:id").delete(deleteAdmin);
 
 router.route("/listings/:storageId").patch(approveListing);
-
-router.route("/configurations").post(createConfiguration);
-
-router.route("/configurations/:id").patch(updateConfiguration);
-
-router
-  .route("/configurations/:configId/:id")
-  .patch(updateIndividualConfiguration)
-  .delete(deleteIndividualConfiguration);
 
 router.route("/configurations/:id/upload").patch(upload.array("media", 1), uploadImage);
 

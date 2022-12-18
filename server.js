@@ -26,6 +26,7 @@ import userRoutes from "./src/routes/user.routes.js";
 import partnerRoutes from "./src/routes/partners.routes.js";
 import adminRoutes from "./src/routes/admin.routes.js";
 import driversRoutes from "./src/routes/drivers.routes.js";
+import configurationsRoutes from "./src/routes/configurations.routes.js";
 
 // Set up CORS
 app.use(cors());
@@ -65,6 +66,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/listings", partnerRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/drivers", driversRoutes);
+app.use("/api/v1/configurations", configurationsRoutes);
 
 // Error Handling
 app.use(errorHandler);

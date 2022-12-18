@@ -49,32 +49,6 @@ export const verifyPartner = asyncHandler(async (req, res, next) => {
   sendResponse(res, true, 200, user);
 });
 
-// CONFIGURATIONS
-export const getConfiguration = asyncHandler(async (req, res, next) => {
-  const configuration = await AdminService.getConfiguration();
-  sendResponse(res, true, 200, configuration);
-});
-
-export const createConfiguration = asyncHandler(async (req, res, next) => {
-  const configuration = await AdminService.createConfiguration({ req, res, next });
-  sendResponse(res, true, 200, configuration);
-});
-
-export const updateConfiguration = asyncHandler(async (req, res, next) => {
-  const configuration = await AdminService.updateConfiguration({ req, next });
-  sendResponse(res, true, 200, configuration);
-});
-
-export const updateIndividualConfiguration = asyncHandler(async (req, res, next) => {
-  const configuration = await AdminService.updateIndividualConfiguration({ req, next });
-  sendResponse(res, true, 200, configuration);
-});
-
-export const deleteIndividualConfiguration = asyncHandler(async (req, res, next) => {
-  const configuration = await AdminService.deleteIndividualConfiguration({ req, next });
-  sendResponse(res, true, 200, configuration);
-});
-
 export const uploadImage = asyncHandler(async (req, res, next) => {
   const media = await AdminService.uploadImage({ req, next });
   sendResponse(res, true, 200, media);
@@ -93,4 +67,148 @@ export const deleteAdmin = asyncHandler(async (req, res, next) => {
 export const getAllAdmin = asyncHandler(async (req, res, next) => {
   const admins = await AdminService.getAllAdmin();
   sendResponse(res, true, 200, admins);
+});
+
+// CONFIGURATIONS
+export const getAllServices = asyncHandler(async (req, res, next) => {
+  const services = await AdminService.getAllServices();
+  sendResponse(res, true, 200, services);
+});
+
+export const createService = asyncHandler(async (req, res, next) => {
+  const service = await AdminService.createService({ req, next });
+  sendResponse(res, true, 200, service);
+});
+
+export const updateService = asyncHandler(async (req, res, next) => {
+  const service = await AdminService.updateService({ req, next });
+  sendResponse(res, true, 200, service);
+});
+
+export const deleteService = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteService(req);
+  return res.status(200).json({
+    status: true,
+    message: "service has been deleted",
+  });
+});
+
+// STORAGE ACCESS TYPE
+export const getAllStorageAccessType = asyncHandler(async (req, res, next) => {
+  const storageAccessType = await AdminService.getAllStorageAccessType();
+  sendResponse(res, true, 200, storageAccessType);
+});
+
+export const createStorageAccessType = asyncHandler(async (req, res, next) => {
+  const storageAccessType = await AdminService.createStorageAccessType({ req, next });
+  sendResponse(res, true, 200, storageAccessType);
+});
+
+export const updateStorageAccessType = asyncHandler(async (req, res, next) => {
+  const storageAccessType = await AdminService.updateStorageAccessType({ req, next });
+  sendResponse(res, true, 200, storageAccessType);
+});
+
+export const deleteStorageAccessType = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageAccessType(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage AccessType has been deleted",
+  });
+});
+
+// STORAGE SIZE
+export const getAllStorageSize = asyncHandler(async (req, res, next) => {
+  const storageSize = await AdminService.getAllStorageSize();
+  sendResponse(res, true, 200, storageSize);
+});
+
+export const createStorageSize = asyncHandler(async (req, res, next) => {
+  const storageSize = await AdminService.createStorageSize({ req, next });
+  sendResponse(res, true, 200, storageSize);
+});
+
+export const updateStorageSize = asyncHandler(async (req, res, next) => {
+  const storageSize = await AdminService.updateStorageSize({ req, next });
+  sendResponse(res, true, 200, storageSize);
+});
+
+export const deleteStorageSize = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageSize(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage Size has been deleted",
+  });
+});
+
+// STORAGE FEATURES
+export const getAllStorageFeatures = asyncHandler(async (req, res, next) => {
+  const storageFeatures = await AdminService.getAllStorageFeatures();
+  sendResponse(res, true, 200, storageFeatures);
+});
+
+export const createStorageFeatures = asyncHandler(async (req, res, next) => {
+  const storageFeatures = await AdminService.createStorageFeatures({ req, next });
+  sendResponse(res, true, 200, storageFeatures);
+});
+
+export const updateStorageFeatures = asyncHandler(async (req, res, next) => {
+  const storageFeatures = await AdminService.updateStorageFeatures({ req, next });
+  sendResponse(res, true, 200, storageFeatures);
+});
+
+export const deleteStorageFeatures = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageFeatures(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage Features has been deleted",
+  });
+});
+
+// STORAGE TYPE
+export const getAllStorageType = asyncHandler(async (req, res, next) => {
+  const storageType = await AdminService.getAllStorageType();
+  sendResponse(res, true, 200, storageType);
+});
+
+export const createStorageType = asyncHandler(async (req, res, next) => {
+  const storageType = await AdminService.createStorageType({ req, next });
+  sendResponse(res, true, 200, storageType);
+});
+
+export const updateStorageType = asyncHandler(async (req, res, next) => {
+  const storageType = await AdminService.updateStorageType({ req, next });
+  sendResponse(res, true, 200, storageType);
+});
+
+export const deleteStorageType = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageType(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage Type has been deleted",
+  });
+});
+
+// STORAGE FLOOR
+export const getAllStorageFloor = asyncHandler(async (req, res, next) => {
+  const storageFloor = await AdminService.getAllStorageFloor();
+  sendResponse(res, true, 200, storageFloor);
+});
+
+export const createStorageFloor = asyncHandler(async (req, res, next) => {
+  const storageFloor = await AdminService.createStorageFloor({ req, next });
+  sendResponse(res, true, 200, storageFloor);
+});
+
+export const updateStorageFloor = asyncHandler(async (req, res, next) => {
+  const storageFloor = await AdminService.updateStorageFloor({ req, next });
+  sendResponse(res, true, 200, storageFloor);
+});
+
+export const deleteStorageFloor = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageFloor(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage Floor has been deleted",
+  });
 });

@@ -1,5 +1,15 @@
 import asyncHandler from "../middlewares/async.js";
-import { AdminModel, StorageListing, UserModel, Configurations } from "../models/index.js";
+import {
+  AdminModel,
+  StorageListing,
+  UserModel,
+  Services,
+  StorageAccessType,
+  StorageSize,
+  StorageFeatures,
+  StorageType,
+  StorageFloor,
+} from "../models/index.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 // STORAGE LISTING
@@ -48,72 +58,6 @@ export const verifyPartner = asyncHandler(async ({ req, next }) => {
   return user;
 });
 
-// CONFIGURATIONS
-export const getConfiguration = asyncHandler(async () => {
-  const configuration = await Configurations.find();
-  return configuration;
-});
-
-export const createConfiguration = asyncHandler(async ({ req, next }) => {
-  const checkConfiguration = await Configurations.find();
-
-  if (checkConfiguration && checkConfiguration.length == 1) {
-    return next(new ErrorResponse("Configuration already created.", 400));
-  }
-
-  const configuration = await Configurations.create(req.body);
-  return configuration;
-});
-
-export const updateConfiguration = asyncHandler(async ({ req, next }) => {
-  const configuration = await Configurations.findOneAndUpdate(
-    { _id: req.params.id },
-    { $push: { ...req.body } },
-    { new: true }
-  );
-
-  if (!configuration) return next(new ErrorResponse("There is no configuration with that listing", 404));
-  return configuration;
-});
-
-export const updateIndividualConfiguration = asyncHandler(async ({ req, next }) => {
-  console.log(Object.keys(req.body), "keys");
-  console.log(Object.keys(req.body)[0], "keys");
-  console.log(Object.values(req.body), "values");
-  console.log(Object.entries(req.body), "entries");
-
-  const mainKey = Object.keys(req.body)[0];
-
-  const label = `services.$[elem].value`;
-
-  console.log(label, "label");
-
-  const configuration = await Configurations.findOneAndDelete(
-    {
-      _id: req.params.configId,
-    },
-    {
-      arrayFilters: [{ "elem._id": req.params.id }],
-      new: true,
-    }
-  );
-
-  if (!configuration) return next(new ErrorResponse("There is no configuration with that listing", 404));
-  return configuration;
-});
-
-export const deleteIndividualConfiguration = asyncHandler(async ({ req, next }) => {
-  const configuration = await Configurations.findOneAndDelete(
-    {
-      _id: req.params.configId,
-    },
-    { $pull: { services: { _id: req.param.id } } }
-  );
-
-  if (!configuration) return next(new ErrorResponse("There is no configuration with that listing", 404));
-  return configuration;
-});
-
 export const uploadImage = asyncHandler(async ({ req, next }) => {
   let media = req.files[0].location;
   return media;
@@ -137,4 +81,192 @@ export const deleteAdmin = asyncHandler(async ({ req, next }) => {
 export const getAllAdmin = asyncHandler(async () => {
   const admins = await AdminModel.find();
   return admins;
+});
+
+// CONFIGURATIONS
+export const getAllServices = asyncHandler(async () => {
+  const services = await Services.find();
+  return services;
+});
+
+export const createService = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (typeof value !== "boolean" && !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const service = await Services.create({ value, label });
+  return service;
+});
+
+export const updateService = asyncHandler(async ({ req, next }) => {
+  const service = await Services.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!service) {
+    return next(new ErrorResponse(`Service with that id cannot be found`, 404));
+  }
+
+  return service;
+});
+
+export const deleteService = asyncHandler(async (req) => {
+  await Services.findByIdAndDelete(req.params.id);
+
+  return true;
+});
+
+// STORAGE ACCESS TYPE
+export const getAllStorageAccessType = asyncHandler(async () => {
+  const storageAccessType = await StorageAccessType.find();
+  return storageAccessType;
+});
+
+export const createStorageAccessType = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageAccessType = await StorageAccessType.create({ value, label });
+  return storageAccessType;
+});
+
+export const updateStorageAccessType = asyncHandler(async ({ req, next }) => {
+  const storageAccessType = await StorageAccessType.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!storageAccessType) {
+    return next(new ErrorResponse(`storageAccessType with that id cannot be found`, 404));
+  }
+  return storageAccessType;
+});
+
+export const deleteStorageAccessType = asyncHandler(async (req) => {
+  await StorageAccessType.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// STORAGE SIZE
+export const getAllStorageSize = asyncHandler(async () => {
+  const storageSize = await StorageSize.find();
+  return storageSize;
+});
+
+export const createStorageSize = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageSize = await StorageSize.create({ ...req.body });
+  return storageSize;
+});
+
+export const updateStorageSize = asyncHandler(async ({ req, next }) => {
+  const storageSize = await StorageSize.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!storageSize) {
+    return next(new ErrorResponse(`storageSize with that id cannot be found`, 404));
+  }
+  return storageSize;
+});
+
+export const deleteStorageSize = asyncHandler(async (req) => {
+  await StorageSize.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// STORAGE FEATURES
+export const getAllStorageFeatures = asyncHandler(async () => {
+  const storageFeatures = await StorageFeatures.find();
+  return storageFeatures;
+});
+
+export const createStorageFeatures = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageFeatures = await StorageFeatures.create({ ...req.body });
+  return storageFeatures;
+});
+
+export const updateStorageFeatures = asyncHandler(async ({ req, next }) => {
+  const storageFeatures = await StorageFeatures.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!storageFeatures) {
+    return next(new ErrorResponse(`storageFeatures with that id cannot be found`, 404));
+  }
+  return storageFeatures;
+});
+
+export const deleteStorageFeatures = asyncHandler(async (req) => {
+  await StorageFeatures.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// STORAGE TYPE
+export const getAllStorageType = asyncHandler(async () => {
+  const storageType = await StorageType.find();
+  return storageType;
+});
+
+export const createStorageType = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageType = await StorageType.create({ ...req.body });
+  return storageType;
+});
+
+export const updateStorageType = asyncHandler(async ({ req, next }) => {
+  const storageType = await StorageType.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!storageType) {
+    return next(new ErrorResponse(`storageType with that id cannot be found`, 404));
+  }
+  return storageType;
+});
+
+export const deleteStorageType = asyncHandler(async (req) => {
+  await StorageType.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// STORAGE FLOOR
+export const getAllStorageFloor = asyncHandler(async () => {
+  const storageFloor = await StorageFloor.find();
+  return storageFloor;
+});
+
+export const createStorageFloor = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageFloor = await StorageFloor.create({ ...req.body });
+  return storageFloor;
+});
+
+export const updateStorageFloor = asyncHandler(async ({ req, next }) => {
+  const storageFloor = await StorageFloor.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!storageFloor) {
+    return next(new ErrorResponse(`storageFloor with that id cannot be found`, 404));
+  }
+  return storageFloor;
+});
+
+export const deleteStorageFloor = asyncHandler(async (req) => {
+  await StorageFloor.findByIdAndDelete(req.params.id);
+  return true;
 });
