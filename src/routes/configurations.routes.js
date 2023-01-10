@@ -47,8 +47,8 @@ router.route("/services").post(createService);
 router.route("/services/:id").patch(updateService).delete(deleteService);
 
 // STORAGE ACCESS TYPE
-router.route("/storagea-access-type").post(createStorageAccessType);
-router.route("/storagea-access-type/:id").patch(updateStorageAccessType).delete(deleteStorageAccessType);
+router.route("/storage-access-type").post(createStorageAccessType);
+router.route("/storage-access-type/:id").patch(updateStorageAccessType).delete(deleteStorageAccessType);
 
 // STORAGE SIZE
 router.route("/storage-size").post(createStorageSize);

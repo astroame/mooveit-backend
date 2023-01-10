@@ -13,17 +13,10 @@ import {
 import ErrorResponse from "../utils/errorResponse.js";
 
 // STORAGE LISTING
-
 export const approveListing = asyncHandler(async ({ req, next }) => {
-  let query;
+  let query = { ...req.body };
 
-  if (req.body.status == "approved") {
-    query = { ...req.body };
-  }
-
-  if (req.body.status == "disapproved") {
-    query = { ...req.body, completed: false };
-  }
+  if (req.body.status == "disapproved") query.completed = false;
 
   const storageListing = await StorageListing.findByIdAndUpdate(req.params.storageId, query, { new: true })
     .lean()
