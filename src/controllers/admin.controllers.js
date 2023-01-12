@@ -189,6 +189,30 @@ export const deleteStorageType = asyncHandler(async (req, res, next) => {
   });
 });
 
+// STORAGE ACCESS PERIOD
+export const getAllStorageAccessPeriod = asyncHandler(async (req, res, next) => {
+  const storageAccessPeriod = await AdminService.getAllStorageAccessPeriod();
+  sendResponse(res, true, 200, storageAccessPeriod);
+});
+
+export const createStorageAccessPeriod = asyncHandler(async (req, res, next) => {
+  const storageAccessPeriod = await AdminService.createStorageAccessPeriod({ req, next });
+  sendResponse(res, true, 200, storageAccessPeriod);
+});
+
+export const updateStorageAccessPeriod = asyncHandler(async (req, res, next) => {
+  const storageAccessPeriod = await AdminService.updateStorageAccessPeriod({ req, next });
+  sendResponse(res, true, 200, storageAccessPeriod);
+});
+
+export const deleteStorageAccessPeriod = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteStorageAccessPeriod(req);
+  return res.status(200).json({
+    status: true,
+    message: "Storage AccessPeriod has been deleted",
+  });
+});
+
 // STORAGE FLOOR
 export const getAllStorageFloor = asyncHandler(async (req, res, next) => {
   const storageFloor = await AdminService.getAllStorageFloor();
@@ -210,5 +234,53 @@ export const deleteStorageFloor = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     status: true,
     message: "Storage Floor has been deleted",
+  });
+});
+
+// BOOKING PERIOD
+export const getAllBookingPeriod = asyncHandler(async (req, res, next) => {
+  const bookingPeriod = await AdminService.getAllBookingPeriod();
+  sendResponse(res, true, 200, bookingPeriod);
+});
+
+export const createBookingPeriod = asyncHandler(async (req, res, next) => {
+  const bookingPeriod = await AdminService.createBookingPeriod({ req, next });
+  sendResponse(res, true, 200, bookingPeriod);
+});
+
+export const updateBookingPeriod = asyncHandler(async (req, res, next) => {
+  const bookingPeriod = await AdminService.updateBookingPeriod({ req, next });
+  sendResponse(res, true, 200, bookingPeriod);
+});
+
+export const deleteBookingPeriod = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteBookingPeriod(req);
+  return res.status(200).json({
+    status: true,
+    message: "Booking Period has been deleted",
+  });
+});
+
+// BOOKING PERIOD
+export const getAllNoticePeriod = asyncHandler(async (req, res, next) => {
+  const noticePeriod = await AdminService.getAllNoticePeriod();
+  sendResponse(res, true, 200, noticePeriod);
+});
+
+export const createNoticePeriod = asyncHandler(async (req, res, next) => {
+  const noticePeriod = await AdminService.createNoticePeriod({ req, next });
+  sendResponse(res, true, 200, noticePeriod);
+});
+
+export const updateNoticePeriod = asyncHandler(async (req, res, next) => {
+  const noticePeriod = await AdminService.updateNoticePeriod({ req, next });
+  sendResponse(res, true, 200, noticePeriod);
+});
+
+export const deleteNoticePeriod = asyncHandler(async (req, res, next) => {
+  await AdminService.deleteNoticePeriod(req);
+  return res.status(200).json({
+    status: true,
+    message: "Notice Period has been deleted",
   });
 });
