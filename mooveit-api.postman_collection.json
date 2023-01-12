@@ -1461,6 +1461,34 @@
 					"response": []
 				},
 				{
+					"name": "Get All Storage Access Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get All Storage Size",
 					"request": {
 						"auth": {
@@ -1496,7 +1524,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTczMTE3NiwiZXhwIjoxNjc0MzIzMTc2fQ.KWRYZxw9o27rfb13rmSAWlQOxOwWYHyzgxlsQtnuc_g",
 									"type": "string"
 								}
 							]
@@ -1573,6 +1601,62 @@
 					"response": []
 				},
 				{
+					"name": "Get All Booking Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/booking-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"booking-period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Notice Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/notice-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"notice-period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Service",
 					"request": {
 						"auth": {
@@ -1641,6 +1725,43 @@
 							"path": [
 								"configurations",
 								"storage-access-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Storage Access Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"pin-code\",\n    \"label\": \"Pin Code\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-period"
 							]
 						}
 					},
@@ -1795,6 +1916,80 @@
 					"response": []
 				},
 				{
+					"name": "Create Booking Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"1st-floor\",\n    \"label\": \"First Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/booking-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"booking-period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Notice Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"1st-floor\",\n    \"label\": \"First Floor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/notice-period",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"notice-period"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update service",
 					"request": {
 						"auth": {
@@ -1871,6 +2066,44 @@
 					"response": []
 				},
 				{
+					"name": "Update Storage Access Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"key\",\n    \"label\": \"Key\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-period/639f98b17299a4b53f6fcedb",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-period",
+								"639f98b17299a4b53f6fcedb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update Storage Size",
 					"request": {
 						"auth": {
@@ -1925,7 +2158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"description\": \"Some random description\"\n}",
+							"raw": "{\n    \"value\": \"test value\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1933,14 +2166,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/configurations/storage-features/639f9d354757b0a24f0e5ad1",
+							"raw": "{{URL}}/configurations/storage-features/63a494a47689256d313d19bd",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"configurations",
 								"storage-features",
-								"639f9d354757b0a24f0e5ad1"
+								"63a494a47689256d313d19bd"
 							]
 						}
 					},
@@ -2023,6 +2256,82 @@
 					"response": []
 				},
 				{
+					"name": "Update Booking Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"Some value\",\n    \"label\": \"some label\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/booking-period/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"booking-period",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Notice Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"Some value\",\n    \"label\": \"some label\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/configurations/notice-period/639f9d354757b0a24f0e5ad1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"notice-period",
+								"639f9d354757b0a24f0e5ad1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Service",
 					"request": {
 						"auth": {
@@ -2074,6 +2383,35 @@
 							"path": [
 								"configurations",
 								"storage-access-type",
+								"639f99b0fcbccc62334e5c41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Storage Access Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/storage-access-period/639f99b0fcbccc62334e5c41",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"storage-access-period",
 								"639f99b0fcbccc62334e5c41"
 							]
 						}
@@ -2168,7 +2506,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Storage Floor",
+					"name": "Delete Booking Period",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2183,13 +2521,42 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/configurations/storage-floor/639f9da19ca2a82c65d5c553",
+							"raw": "{{URL}}/configurations/booking-period/639f9da19ca2a82c65d5c553",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"configurations",
-								"storage-floor",
+								"booking-period",
+								"639f9da19ca2a82c65d5c553"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notice Period",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/configurations/notice-period/639f9da19ca2a82c65d5c553",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"configurations",
+								"notice-period",
 								"639f9da19ca2a82c65d5c553"
 							]
 						}
@@ -2197,6 +2564,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:8000/api/v1"
 		}
 	]
 }
