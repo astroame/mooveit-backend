@@ -9,6 +9,9 @@ import {
   StorageFeatures,
   StorageType,
   StorageFloor,
+  StorageAccessPeriod,
+  BookingPeriod,
+  NoticePeriod,
 } from "../models/index.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
@@ -140,6 +143,41 @@ export const deleteStorageAccessType = asyncHandler(async (req) => {
   return true;
 });
 
+// STORAGE ACCESS PERDIOD
+export const getAllStorageAccessPeriod = asyncHandler(async () => {
+  const storageAccessPeriod = await StorageAccessPeriod.find();
+  return storageAccessPeriod;
+});
+
+export const createStorageAccessPeriod = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const storageAccessPeriod = await StorageAccessPeriod.create({ value, label });
+  return storageAccessPeriod;
+});
+
+export const updateStorageAccessPeriod = asyncHandler(async ({ req, next }) => {
+  const storageAccessPeriod = await StorageAccessPeriod.findByIdAndUpdate(
+    req.params.id,
+    { ...req.body },
+    { new: true }
+  );
+
+  if (!storageAccessPeriod) {
+    return next(new ErrorResponse(`storageAccessPeriod with that id cannot be found`, 404));
+  }
+  return storageAccessPeriod;
+});
+
+export const deleteStorageAccessPeriod = asyncHandler(async (req) => {
+  await StorageAccessPeriod.findByIdAndDelete(req.params.id);
+  return true;
+});
+
 // STORAGE SIZE
 export const getAllStorageSize = asyncHandler(async () => {
   const storageSize = await StorageSize.find();
@@ -261,5 +299,67 @@ export const updateStorageFloor = asyncHandler(async ({ req, next }) => {
 
 export const deleteStorageFloor = asyncHandler(async (req) => {
   await StorageFloor.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// BOOKING PERIOD
+export const getAllBookingPeriod = asyncHandler(async () => {
+  const bookingPeriod = await BookingPeriod.find();
+  return bookingPeriod;
+});
+
+export const createBookingPeriod = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const bookingPeriod = await BookingPeriod.create({ ...req.body });
+  return bookingPeriod;
+});
+
+export const updateBookingPeriod = asyncHandler(async ({ req, next }) => {
+  const bookingPeriod = await BookingPeriod.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!bookingPeriod) {
+    return next(new ErrorResponse(`BookingPeriod with that id cannot be found`, 404));
+  }
+  return bookingPeriod;
+});
+
+export const deleteBookingPeriod = asyncHandler(async (req) => {
+  await BookingPeriod.findByIdAndDelete(req.params.id);
+  return true;
+});
+
+// NOTICE PERIOD
+export const getAllNoticePeriod = asyncHandler(async () => {
+  const noticePeriod = await NoticePeriod.find();
+  return noticePeriod;
+});
+
+export const createNoticePeriod = asyncHandler(async ({ req, next }) => {
+  const { value, label } = req.body;
+
+  if (!value || !label) {
+    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  }
+
+  const noticePeriod = await NoticePeriod.create({ ...req.body });
+  return noticePeriod;
+});
+
+export const updateNoticePeriod = asyncHandler(async ({ req, next }) => {
+  const noticePeriod = await NoticePeriod.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+
+  if (!noticePeriod) {
+    return next(new ErrorResponse(`NoticePeriod with that id cannot be found`, 404));
+  }
+  return noticePeriod;
+});
+
+export const deleteNoticePeriod = asyncHandler(async (req) => {
+  await NoticePeriod.findByIdAndDelete(req.params.id);
   return true;
 });

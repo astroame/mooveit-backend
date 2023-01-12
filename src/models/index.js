@@ -10,3 +10,6 @@ export { default as StorageFloor } from "./Configurations/StorageFloor.js";
 export { default as StorageType } from "./Configurations/StorageType.js";
 export { default as StorageFeatures } from "./Configurations/StorageFeatures.js";
 export { default as StorageAccessType } from "./Configurations/StorageAccessType.js";
+export { default as StorageAccessPeriod } from "./Configurations/StorageAccessPeriod.js";
+export { default as BookingPeriod } from "./Configurations/BookingPeriod.js";
+export { default as NoticePeriod } from "./Configurations/NoticePeriod.js";
