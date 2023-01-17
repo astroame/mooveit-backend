@@ -69,6 +69,12 @@ export const getAllAdmin = asyncHandler(async (req, res, next) => {
   sendResponse(res, true, 200, admins);
 });
 
+// update user profile
+export const updateAdminProfile = asyncHandler(async (req, res, next) => {
+  const admin = await AdminService.updateAdminProfile({ req, next });
+  sendResponse(res, true, 200, admin);
+});
+
 // CONFIGURATIONS
 export const getAllServices = asyncHandler(async (req, res, next) => {
   const services = await AdminService.getAllServices();

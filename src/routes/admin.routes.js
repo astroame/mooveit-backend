@@ -12,6 +12,7 @@ import {
   getAllAdmin,
   getUserByID,
   verifyPartner,
+  updateAdminProfile,
 } from "../controllers/admin.controllers.js";
 
 import {
@@ -47,10 +48,12 @@ router.route("/users").get(getAllUsers);
 router.route("/users/:id").delete(deleteUser).get(getUserByID).patch(verifyPartner);
 
 router.route("/").get(getAllAdmin);
-router.route("/:id").delete(deleteAdmin);
+router.route("/:id").delete(deleteAdmin).patch(updateAdminProfile);
 
 router.route("/listings/:storageId").patch(approveListing);
 
 router.route("/configurations/:id/upload").patch(upload.array("media", 1), uploadImage);
+
+router.route("/:id/upload").patch(upload.array("profilePicture", 1), uploadImage);
 
 export default router;

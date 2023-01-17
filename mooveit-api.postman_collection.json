@@ -659,7 +659,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODg5MjIxZGExNmM2NzkxMTM1MWU5NSIsImlhdCI6MTY2OTg5NDY5NCwiZXhwIjoxNjcyNDg2Njk0fQ.yUyU1YXyRMFvev4NDc9G1StllLJBp6NrxSvUKUOq6H0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3Mzk2NDgwMCwiZXhwIjoxNjc2NTU2ODAwfQ.eopWkxmcwcOpdGdAdL-h3OHy-o55gLCAfa4pQQaI4Uo",
 									"type": "string"
 								}
 							]
@@ -708,6 +708,75 @@
 									"value": null,
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin Profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/admin/638e4e8d9c3340ed910acba0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"638e4e8d9c3340ed910acba0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3Mzk2NDgwMCwiZXhwIjoxNjc2NTU2ODAwfQ.eopWkxmcwcOpdGdAdL-h3OHy-o55gLCAfa4pQQaI4Uo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/admin/638618862c530fa1d2923f70/upload",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"admin",
+								"638618862c530fa1d2923f70",
+								"upload"
 							]
 						}
 					},
