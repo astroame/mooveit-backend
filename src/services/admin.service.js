@@ -79,6 +79,17 @@ export const getAllAdmin = asyncHandler(async () => {
   return admins;
 });
 
+export const updateAdminProfile = asyncHandler(async ({ req, next }) => {
+  const admin = await AdminModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  }).select(["-otp", "-verifyOtpExpire"]);
+
+  if (!admin) return next(new ErrorResponse("There is no admin with that id", 404));
+
+  return admin;
+});
+
 // CONFIGURATIONS
 export const getAllServices = asyncHandler(async () => {
   const services = await Services.find();
