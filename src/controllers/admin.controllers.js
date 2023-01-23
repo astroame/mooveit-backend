@@ -1,6 +1,7 @@
 import asyncHandler from "../middlewares/async.js";
 import { AdminService, EmailService, UserService } from "../services/index.js";
 import sendResponse from "../utils/sendResponse.js";
+import sendTokenResponse from "../utils/sendToken.js";
 
 // STORAGE LISTING ENDPOINT
 export const approveListing = asyncHandler(async (req, res, next) => {
@@ -72,7 +73,7 @@ export const getAllAdmin = asyncHandler(async (req, res, next) => {
 // update user profile
 export const updateAdminProfile = asyncHandler(async (req, res, next) => {
   const admin = await AdminService.updateAdminProfile({ req, next });
-  sendResponse(res, true, 200, admin);
+  sendTokenResponse(admin, 200, res, "Profile updated successfully");
 });
 
 // CONFIGURATIONS
