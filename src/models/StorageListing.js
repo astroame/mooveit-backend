@@ -8,8 +8,7 @@ const StorageListingSchema = Schema(
     storageType: String,
     storageFloor: String,
     storageFeatures: [String],
-    packing: { type: Boolean, default: false },
-    delivery: { type: Boolean, default: false },
+    services: [String],
     coordinates: { lat: String, lng: String },
     formattedAddress: {
       street: String,
