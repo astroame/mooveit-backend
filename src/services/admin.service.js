@@ -97,18 +97,19 @@ export const getAllServices = asyncHandler(async () => {
 });
 
 export const createService = asyncHandler(async ({ req, next }) => {
-  const { value, label } = req.body;
+  const { label } = req.body;
 
-  if (typeof value !== "boolean" && !label) {
-    return next(new ErrorResponse(`Please fill in all fields`, 400));
+  if (!label) {
+    return next(new ErrorResponse(`Please add a label`, 400));
   }
 
-  const service = await Services.create({ value, label });
+  const service = await Services.create({ label });
   return service;
 });
 
 export const updateService = asyncHandler(async ({ req, next }) => {
-  const service = await Services.findByIdAndUpdate(req.params.id, { ...req.body }, { new: true });
+  const { label } = req.body;
+  const service = await Services.findByIdAndUpdate(req.params.id, { label }, { new: true });
 
   if (!service) {
     return next(new ErrorResponse(`Service with that id cannot be found`, 404));
