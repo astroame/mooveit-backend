@@ -13,6 +13,7 @@ const BookingSchema = Schema(
     endDate: { type: Date },
     moving: { type: Boolean },
     packing: { type: Boolean },
+    type: { type: String, enum: ["hourly", "monthly"] },
   },
   { timestamps: true }
 );
