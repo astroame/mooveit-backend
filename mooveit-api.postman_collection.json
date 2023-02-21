@@ -717,7 +717,14 @@
 					"name": "Update Admin Profile",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3NDQ5MDkxMiwiZXhwIjoxNjc3MDgyOTEyfQ.-3tV9cXgjlIrp0Y6W5P4haJZPCc5ylzc9wPs_GQHCFY",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -834,7 +841,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3MTEyMDYwMiwiZXhwIjoxNjczNzEyNjAyfQ.3bwdsjBebyhJJnRwZzORvTxNDnvoB_S-Uqd1RSBIVcA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3Njk3OTI2OSwiZXhwIjoxNjc5NTcxMjY5fQ.blhWkYL7mfTVJ-_jI1wqgcL8anu_Shm4o53JIPAOOzg",
 									"type": "string"
 								}
 							]
@@ -935,7 +942,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmIwMTI4N2ZjOTM0NWNkZTVkNjQ3YyIsImlhdCI6MTY2NDE4ODkyMSwiZXhwIjoxNjY2NzgwOTIxfQ.5cjXTW3vhUSNzwkyB5fMg2JwyHSkR3QXy7BSnFYdUX8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3NjkwNDkzNiwiZXhwIjoxNjc5NDk2OTM2fQ.P2LEDLnmP2O7rjb_kP8tx_4ZTD8Z7kkJ0DB6JqnqGeE",
 									"type": "string"
 								}
 							]
@@ -943,13 +950,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/listings/6332ec5cf280bb4fce7f0d6a",
+							"raw": "{{URL}}/listings/63861a275a46a16521164a3a",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"listings",
-								"6332ec5cf280bb4fce7f0d6a"
+								"63861a275a46a16521164a3a"
 							]
 						}
 					},
@@ -1264,6 +1271,25 @@
 								"admin",
 								"users",
 								"636586b4d48922f7ca3dd8ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Listing Using Live Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/listings/live-location",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"listings",
+								"live-location"
 							]
 						}
 					},
@@ -1733,7 +1759,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3NDU1MzQxNywiZXhwIjoxNjc3MTQ1NDE3fQ.MqdO2Lac_H8Xt1YIiqnwDNCjMOrPs9oRNveGF35gCdU",
 									"type": "string"
 								}
 							]
@@ -1742,7 +1768,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"value\": \"false\",\n    \"label\": \"packing\"\n}",
+							"raw": "{\n    \"label\": \"packing\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2066,7 +2092,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3MTIzNjYzMCwiZXhwIjoxNjczODI4NjMwfQ.XjX5jX5GT2BWbcLhy77bq1nBcbYuO5pjGP2TPE6In4U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3NDU1MzQxNywiZXhwIjoxNjc3MTQ1NDE3fQ.MqdO2Lac_H8Xt1YIiqnwDNCjMOrPs9oRNveGF35gCdU",
 									"type": "string"
 								}
 							]
@@ -2075,7 +2101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"value\": false\n}",
+							"raw": "{\n    \"label\": \"delivery\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2083,14 +2109,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/configurations/services/639d120c92cc9ddcff124dd3",
+							"raw": "{{URL}}/configurations/services/63cfa85e78099a394652857a",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"configurations",
 								"services",
-								"639d120c92cc9ddcff124dd3"
+								"63cfa85e78099a394652857a"
 							]
 						}
 					},
@@ -2627,6 +2653,139 @@
 								"configurations",
 								"notice-period",
 								"639f9da19ca2a82c65d5c553"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create a booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk3MzUyMywiZXhwIjoxNjc5NTY1NTIzfQ.KOSO-55rl3iEm9QU1yR_qWbue3XOM2mE61HC5ZR7N7o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"storageListing\": \"63861a275a46a16521164a3a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/booking",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all bookings by a user or partner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk3OTYzNCwiZXhwIjoxNjc5NTcxNjM0fQ.H-YH31OokRW_slrBNbW_Ydlsm2DR_fg6hpztcc41C54",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/booking",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all bookings by a user or partner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk3OTYzNCwiZXhwIjoxNjc5NTcxNjM0fQ.H-YH31OokRW_slrBNbW_Ydlsm2DR_fg6hpztcc41C54",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/booking/63f4af33623909f76e00a390",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"63f4af33623909f76e00a390"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve listing by a partner",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3Njk3OTg2OSwiZXhwIjoxNjc5NTcxODY5fQ.PZg9vQC3KzwbxfCPLMj1QS0x-tUhspjKhzf_KTDURKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"disapproved\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/booking/63f4af33623909f76e00a390",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"63f4af33623909f76e00a390"
 							]
 						}
 					},
