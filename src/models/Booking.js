@@ -14,6 +14,9 @@ const BookingSchema = Schema(
     moving: { type: Boolean },
     packing: { type: Boolean },
     type: { type: String, enum: ["hourly", "monthly"] },
+    paymentLink: { type: String },
+    status: { type: String },
+    paymentId: { type: String },
   },
   { timestamps: true }
 );

@@ -1,17 +1,18 @@
 import Stripe from "stripe";
+const stripe = new Stripe(process.env.STRIPE_TEST_SECRET_KEY);
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2023-02-21",
-});
+export const createPaymentLink = async (data) => {
+  const { price, storageListing } = data;
 
-export const createPayment = async (data) => {
-  const { price } = data;
-  console.log(data, "stripe");
   try {
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
-          price_data: { currency: "usd", product_data: { name: "T-shirt" }, unit_amount: 2000 },
+          price_data: {
+            currency: "gbp",
+            product_data: { name: storageListing.storageTitle, images: [...storageListing.media] },
+            unit_amount: price * 100,
+          },
           quantity: 1,
         },
       ],
@@ -20,7 +21,11 @@ export const createPayment = async (data) => {
       cancel_url: "http://localhost:4242/cancel.html",
     });
 
-    console.log(session, "session");
+    return {
+      paymentLink: session.url,
+      id: session.id,
+      status: session.status,
+    };
   } catch (error) {
     console.log(error);
   }

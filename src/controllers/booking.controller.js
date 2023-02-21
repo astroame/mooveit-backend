@@ -24,8 +24,5 @@ export const approveBooking = asyncHandler(async (req, res, next) => {
 
 export const createPayment = asyncHandler(async (req, res, next) => {
   const response = await BookingService.createPayment({ req, res, next });
-
-  console.log(response, "controller");
-
-  return true;
+  sendResponse(res, true, 200, response);
 });
