@@ -1,8 +1,12 @@
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_KEY);
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2023-02-21",
+});
 
 export const createPayment = async (data) => {
+  const { price } = data;
+  console.log(data, "stripe");
   try {
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -16,7 +20,7 @@ export const createPayment = async (data) => {
       cancel_url: "http://localhost:4242/cancel.html",
     });
 
-    console.log(session);
+    console.log(session, "session");
   } catch (error) {
     console.log(error);
   }

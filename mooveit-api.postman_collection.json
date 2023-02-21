@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"partner@gmail.com\",\n    \"password\": \"Partner@123\"\n}",
+							"raw": "{\n    \"email\": \"customer@gmail.com\",\n    \"password\": \"Customer@123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2680,7 +2680,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"storageListing\": \"63861a275a46a16521164a3a\"\n}",
+							"raw": "{\n    \"storageListing\": \"63861a275a46a16521164a3a\",\n    \"price\": 2000,\n    \"pickupAddress\": \"some randome address\",\n    \"startDate\": \"date\",\n    \"endDate\": \"date\",\n    \"moving\": false,\n    \"packing\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2727,7 +2727,7 @@
 					"response": []
 				},
 				{
-					"name": "Get all bookings by a user or partner",
+					"name": "Get booking by a user or partner",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2786,6 +2786,43 @@
 							"path": [
 								"booking",
 								"63f4af33623909f76e00a390"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk4ODQ0MSwiZXhwIjoxNjc5NTgwNDQxfQ.k08rMc5tdYgWYQ_YPeVNoUWT9dCaqBBboiFLFmeAQLw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\": \"Hello\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/booking/create-payment",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"create-payment"
 							]
 						}
 					},
