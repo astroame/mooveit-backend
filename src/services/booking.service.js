@@ -1,6 +1,6 @@
 import asyncHandler from "../middlewares/async.js";
 import { Booking, StorageListing } from "../models/index.js";
-import ErrorResponse from "../utils/errorResponse.js";
+import { createPaymentLink } from "../utils/stripe.js";
 
 export const createBooking = asyncHandler(async ({ req, next }) => {
   const partnerId = await StorageListing.findById(req.body.storageListing);
@@ -94,8 +94,9 @@ export const approveBooking = asyncHandler(async ({ req, res, next }) => {
 });
 
 export const createPayment = asyncHandler(async ({ req, res, next }) => {
-  console.log(req.body.bookingId);
-  const booking = await Booking.findById("63f4af33623909f76e00a390");
+  const booking = await Booking.findById(req.body.bookingId).populate([
+    { path: "storageListing", select: ["storageTitle", "address", "media"] },
+  ]);
 
   if (booking.status !== "approved") {
     return res.status(400).json({
@@ -103,7 +104,13 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
     });
   }
 
-  const response = await createPayment(booking);
+  const response = await createPaymentLink(booking);
+
+  await Booking.findByIdAndUpdate(req.body.bookingId, {
+    status: response.status,
+    paymentLink: response.paymentLink,
+    paymentId: response.id,
+  });
 
   return response;
 });

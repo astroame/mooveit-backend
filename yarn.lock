@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@stripe/stripe-js@^1.46.0":
+  version "1.46.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.46.0.tgz#2b9acca0dfa7b90aaecd909e678a049f799a27d6"
+  integrity sha512-dkm0zCEoRLu5rTnsIgwDf/QG2DKcalOT2dk1IVgMySOHWTChLyOvQwMYhEduGgLvyYWTwNhAUV4WOLPQvjwLwA==
+
 "@types/node@*":
   version "18.7.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.13.tgz#23e6c5168333480d454243378b69e861ab5c011a"
@@ -1249,10 +1254,10 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-stripe@^11.8.0:
-  version "11.8.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.8.0.tgz#4c163bbfa30b2f20d642c9dc40ac05bd8fade1fb"
-  integrity sha512-aGwrJDqYzpjQj0ejt7oN7BE7kUjZFxhUz/gDeyDCS7CBpZhDb26Eb6z9sS8KdbsbmuS8rkkn2lBY4koK7L1ZCw==
+stripe@^11.11.0:
+  version "11.11.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.11.0.tgz#9817317a9709a44ec4548dfa18f33f58beb8040d"
+  integrity sha512-CT8TZJ+bUaMmqCOljHdKwHTWym0bscrCHrKmvK2KoTaz/9gDIzG+lXTJOFUOb3K7Jwaoaori4yEVzOgA7U46+g==
   dependencies:
     "@types/node" ">=8.1.0"
     qs "^6.11.0"

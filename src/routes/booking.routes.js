@@ -16,6 +16,6 @@ router.use(authorize("customer", "partner"));
 router.route("/").post(createBooking).get(getBooking);
 router.route("/:id").patch(approveBooking).get(getABooking);
 
-router.route("/create-payment").post(createPayment);
+router.route("/create-payment-link").post(createPayment);
 
 export default router;

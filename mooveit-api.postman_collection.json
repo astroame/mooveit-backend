@@ -2792,7 +2792,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Payment",
+					"name": "Create Payment Link",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2808,7 +2808,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bookingId\": \"Hello\"\n}",
+							"raw": "{\n    \"bookingId\": \"63f4af33623909f76e00a390\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2816,13 +2816,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/booking/create-payment",
+							"raw": "{{URL}}/booking/create-payment-link",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"booking",
-								"create-payment"
+								"create-payment-link"
 							]
 						}
 					},
