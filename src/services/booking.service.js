@@ -26,7 +26,7 @@ export const getBooking = asyncHandler(async ({ req, next }) => {
 
   // Fetch bookings by roles (customer or partner)
   if (role == "customer") {
-    bookings = await Booking.find({ user: req.user }).populate([
+    bookings = await Booking.find({ user: req.user._id }).populate([
       { path: "user", select: ["firstName", "lastName", "email"] },
       { path: "partner", select: ["firstName", "lastName", "email"] },
       "storageListing",
@@ -91,4 +91,19 @@ export const approveBooking = asyncHandler(async ({ req, res, next }) => {
     });
 
   return booking;
+});
+
+export const createPayment = asyncHandler(async ({ req, res, next }) => {
+  console.log(req.body.bookingId);
+  const booking = await Booking.findById("63f4af33623909f76e00a390");
+
+  if (booking.status !== "approved") {
+    return res.status(400).json({
+      message: "You can't make payment until your listing has been approved",
+    });
+  }
+
+  const response = await createPayment(booking);
+
+  return response;
 });
