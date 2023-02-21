@@ -35,6 +35,14 @@ export const getAllListing = asyncHandler(async (req, res, next) => {
   sendResponse(res, true, 200, storageListings);
 });
 
+// @desc    Get All Listing
+// @route   GET /api/v1/listing
+// @access  Private
+export const getListingByLocation = asyncHandler(async (req, res, next) => {
+  const storageListings = await UserService.getListingByLocation(req);
+  sendResponse(res, true, 200, storageListings);
+});
+
 // @desc    Get single Listing
 // @route   GET /api/v1/listing
 // @access  Private

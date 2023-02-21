@@ -8,6 +8,7 @@ import {
   getSingleListing,
   getFeaturedListing,
   uploadImage,
+  getListingByLocation,
 } from "../controllers/user.controller.js";
 import { authorize, protectUser } from "../middlewares/auth.js";
 import upload from "../utils/s3.js";
@@ -15,6 +16,8 @@ import upload from "../utils/s3.js";
 const router = express.Router();
 
 router.route("/listings").post(getAllListing);
+
+router.route("/listings/live-location").post(getListingByLocation);
 
 router.route("/featured-listing").get(getFeaturedListing);
 
