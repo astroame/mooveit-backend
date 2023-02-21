@@ -9,7 +9,11 @@ const StorageListingSchema = Schema(
     storageFloor: String,
     storageFeatures: [String],
     services: [String],
-    coordinates: { lat: String, lng: String },
+    coordinates: {
+      type: { type: String, default: "Point" },
+      coordinates: { type: [Number] },
+    },
+    // coordinates: { lat: String, lng: String },
     formattedAddress: {
       street: String,
       area: String,
@@ -53,6 +57,8 @@ const StorageListingSchema = Schema(
   },
   { timestamps: true }
 );
+
+// StorageListingSchema.createIndex({ coordinates: "2dsphere" });
 
 const StorageListing = model("StorageListing", StorageListingSchema);
 

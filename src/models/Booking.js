@@ -4,8 +4,9 @@ const { Schema, model } = mongoose;
 const BookingSchema = Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: "User" },
+    partner: { type: Schema.Types.ObjectId, ref: "User" },
     storageListing: { type: Schema.Types.ObjectId, ref: "StorageListing" },
-    dateBooked: { type: Date },
+    status: { type: String, default: "pending", enum: ["approved", "disapproved", "pending"] },
   },
   { timestamps: true }
 );

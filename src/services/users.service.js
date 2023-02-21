@@ -1,5 +1,5 @@
 import asyncHandler from "../middlewares/async.js";
-import { UserModel, StorageListing } from "../models/index.js";
+import { UserModel, StorageListing, Booking } from "../models/index.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const getAllUser = asyncHandler(async () => {
@@ -70,6 +70,21 @@ export const getAllListing = asyncHandler(async (req) => {
   console.log(query, "after");
 
   const storageListings = await StorageListing.find(query)
+    .lean()
+    .populate({ path: "user", select: ["firstName", "lastName"] });
+
+  return storageListings;
+});
+
+export const getListingByLocation = asyncHandler(async (req) => {
+  const storageListings = await StorageListing.find({
+    coordinates: {
+      $nearSphere: {
+        $geometry: { type: "Point", coordinates: [-73.93414657, 40.82302903] },
+        $maxDistance: 10 * 1609.34,
+      },
+    },
+  })
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });
 
