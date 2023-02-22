@@ -28,6 +28,10 @@ export const createListing = asyncHandler(async ({ req }) => {
     priceType,
     completed,
     storageNumber,
+    vehicleType,
+    costPerKm,
+    packagingSize,
+    costPerSize,
   } = req.body;
 
   const storageListing = await StorageListing.create({
@@ -57,6 +61,10 @@ export const createListing = asyncHandler(async ({ req }) => {
     hourlyRate,
     formattedAddress,
     priceType,
+    vehicleType,
+    costPerKm,
+    packagingSize,
+    costPerSize,
   });
 
   return storageListing;

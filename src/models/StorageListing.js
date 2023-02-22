@@ -54,6 +54,10 @@ const StorageListingSchema = Schema(
     featured: { type: Boolean, default: false },
     status: { type: String, default: "pending", enum: ["pending", "approved", "disapproved"] },
     started: { type: Boolean, default: false },
+    vehicleType: { type: String },
+    costPerKm: { type: String },
+    packagingSize: { type: String },
+    costPerSize: { type: String },
   },
   { timestamps: true }
 );

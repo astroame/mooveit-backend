@@ -98,13 +98,15 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
     { path: "storageListing", select: ["storageTitle", "address", "media"] },
   ]);
 
-  if (booking.status !== "approved") {
+  if (booking.approvalStatus !== "approved") {
     return res.status(400).json({
       message: "You can't make payment until your listing has been approved",
     });
   }
 
-  const response = await createPaymentLink(booking);
+  const userEmail = req.user.email;
+
+  const response = await createPaymentLink(booking, userEmail);
 
   await Booking.findByIdAndUpdate(req.body.bookingId, {
     status: response.status,
