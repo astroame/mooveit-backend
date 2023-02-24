@@ -76,7 +76,7 @@ export const getABooking = asyncHandler(async ({ req, res, next }) => {
 export const approveBooking = asyncHandler(async ({ req, res, next }) => {
   const booking = await Booking.findOneAndUpdate(
     { partner: req.user._id, _id: req.params.id },
-    { status: req.body.status },
+    { approvalStatus: req.body.approvalStatus },
     { new: true }
   ).populate([
     { path: "user", select: ["firstName", "lastName", "email"] },
@@ -109,7 +109,6 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
   const response = await createPaymentLink(booking, userEmail);
 
   await Booking.findByIdAndUpdate(req.body.bookingId, {
-    status: response.status,
     paymentLink: response.paymentLink,
     paymentId: response.id,
   });
