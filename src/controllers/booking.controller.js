@@ -26,3 +26,8 @@ export const createPayment = asyncHandler(async (req, res, next) => {
   const response = await BookingService.createPayment({ req, res, next });
   sendResponse(res, true, 200, response);
 });
+
+export const handleFufilledOrRejectedPayment = asyncHandler(async (req, res, next) => {
+  const response = await BookingService.handleFufilledOrRejectedPayment({ req, res });
+  sendResponse(res, true, 200, response);
+});

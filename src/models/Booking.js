@@ -16,6 +16,7 @@ const BookingSchema = Schema(
     type: { type: String, enum: ["hourly", "monthly"] },
     paymentLink: { type: String },
     paymentId: { type: String },
+    paymentStatus: { type: String, default: null },
   },
   { timestamps: true }
 );
