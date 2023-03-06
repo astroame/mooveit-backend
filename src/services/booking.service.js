@@ -1,6 +1,8 @@
 import asyncHandler from "../middlewares/async.js";
 import { Booking, StorageListing } from "../models/index.js";
-import { createPaymentLink } from "../utils/stripe.js";
+import { createPaymentLink, stripe } from "../utils/stripe.js";
+import { v4 as uuidv4 } from "uuid";
+import CryptoJS from "crypto-js";
 
 export const createBooking = asyncHandler(async ({ req, next }) => {
   const partnerId = await StorageListing.findById(req.body.storageListing);
@@ -105,13 +107,47 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
   }
 
   const userEmail = req.user.email;
+  const paymentId = uuidv4();
 
-  const response = await createPaymentLink(booking, userEmail);
+  const response = await createPaymentLink(booking, userEmail, paymentId);
 
   await Booking.findByIdAndUpdate(req.body.bookingId, {
     paymentLink: response.paymentLink,
-    paymentId: response.id,
+    paymentId,
   });
 
   return response;
+});
+
+export const handleFufilledOrRejectedPayment = asyncHandler(async ({ req, res }) => {
+  const { response, bookingId, paymentId } = req.query;
+
+  const replaced = paymentId.replace(/ /g, "+");
+
+  // Decrypt
+  const bytes = CryptoJS.AES.decrypt(replaced, process.env.ENCRYPTION_KEY);
+  const decryptedPaymentId = bytes.toString(CryptoJS.enc.Utf8);
+
+  const exist = await Booking.findOne({ _id: bookingId, paymentId: decryptedPaymentId });
+
+  if (!exist) {
+    return res.status(400).json({
+      message: "Your payment failed, please try again",
+    });
+  }
+
+  const booking = await Booking.findOneAndUpdate(
+    {
+      _id: bookingId,
+      paymentId: decryptedPaymentId,
+    },
+    {
+      paymentLink: null,
+      paymentId: null,
+      paymentStatus: response,
+    },
+    { new: true }
+  );
+
+  return booking;
 });

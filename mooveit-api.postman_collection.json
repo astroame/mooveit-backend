@@ -2707,7 +2707,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk3OTYzNCwiZXhwIjoxNjc5NTcxNjM0fQ.H-YH31OokRW_slrBNbW_Ydlsm2DR_fg6hpztcc41C54",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODYxODg2MmM1MzBmYTFkMjkyM2Y3MCIsImlhdCI6MTY3NzA2ODM1NCwiZXhwIjoxNjc5NjYwMzU0fQ.aU-8TZd8hmB2gD07mLEdbJX5HXl7UOct0pag35H4sxM",
 									"type": "string"
 								}
 							]
@@ -2771,7 +2771,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"disapproved\"\n}",
+							"raw": "{\n    \"approvalStatus\": \"disapproved\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2823,6 +2823,49 @@
 							"path": [
 								"booking",
 								"create-payment-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Handle Successful or Failed Payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3ODEwODE3NCwiZXhwIjoxNjgwNzAwMTc0fQ.zMffM-QVg7JjXXP3zgyXLTEBCKLGt6DfAo2tXTx3ng0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/booking/payment/confirm?paymentId=U2FsdGVkX1+u1Vi4bq4QD9ju0ht59YzF04+F4SFM9KqHxh/9qww+mnE4EiyZ/2L1C00JyjnDAU6JDTlBU2KeRQ==&response=successful&bookingId=63f4af33623909f76e00a390",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"payment",
+								"confirm"
+							],
+							"query": [
+								{
+									"key": "paymentId",
+									"value": "U2FsdGVkX1+u1Vi4bq4QD9ju0ht59YzF04+F4SFM9KqHxh/9qww+mnE4EiyZ/2L1C00JyjnDAU6JDTlBU2KeRQ=="
+								},
+								{
+									"key": "response",
+									"value": "successful"
+								},
+								{
+									"key": "bookingId",
+									"value": "63f4af33623909f76e00a390"
+								}
 							]
 						}
 					},
