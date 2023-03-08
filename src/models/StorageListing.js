@@ -9,11 +9,11 @@ const StorageListingSchema = Schema(
     storageFloor: String,
     storageFeatures: [String],
     services: [String],
-    coordinates: {
-      type: { type: String, default: "Point" },
-      coordinates: { type: [Number] },
-    },
-    // coordinates: { lat: String, lng: String },
+    // coordinates: {
+    //   type: { type: String, default: "Point" },
+    //   coordinates: { type: [Number] },
+    // },
+    coordinates: { lat: String, lng: String },
     formattedAddress: {
       street: String,
       area: String,
