@@ -120,7 +120,7 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
 });
 
 export const handleFufilledOrRejectedPayment = asyncHandler(async ({ req, res }) => {
-  const { response, bookingId, paymentId } = req.query;
+  const { response, bookingId, paymentId } = req.body;
 
   const replaced = paymentId.replace(/ /g, "+");
 
