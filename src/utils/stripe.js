@@ -27,8 +27,8 @@ export const createPaymentLink = async (booking, userEmail, paymentId) => {
       ],
       customer_email: userEmail,
       mode: "payment",
-      success_url: `${process.env.REDIRECT_URL_LOCAL}/your-storage/payment-successful/${_id}?paymentId=${encryptedPaymentId}&response=successful&bookingId=${_id}`,
-      cancel_url: `${process.env.REDIRECT_URL_LOCAL}/your-storage/${_id}?paymentId=${encryptedPaymentId}&response=failed&bookingId=${_id}`,
+      success_url: `${process.env.REDIRECT_URL_LOCAL}/your-storage/payment-successful?paymentId=${encryptedPaymentId}&response=successful&bookingId=${_id}`,
+      cancel_url: `${process.env.REDIRECT_URL_LOCAL}/your-storage/payment-error?paymentId=${encryptedPaymentId}&response=failed&bookingId=${_id}`,
     });
 
     return { paymentLink: session.url };
