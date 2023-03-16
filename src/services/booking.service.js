@@ -14,8 +14,8 @@ export const createBooking = asyncHandler(async ({ req, next }) => {
   });
 
   await booking.populate([
-    { path: "user", select: ["firstName", "lastName", "email"] },
-    { path: "partner", select: ["firstName", "lastName", "email"] },
+    { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+    { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
     "storageListing",
   ]);
 
@@ -29,16 +29,16 @@ export const getBooking = asyncHandler(async ({ req, next }) => {
   // Fetch bookings by roles (customer or partner)
   if (role == "customer") {
     bookings = await Booking.find({ user: req.user._id }).populate([
-      { path: "user", select: ["firstName", "lastName", "email"] },
-      { path: "partner", select: ["firstName", "lastName", "email"] },
+      { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+      { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
       "storageListing",
     ]);
   }
 
   if (role == "partner") {
     bookings = await Booking.find({ partner: req.user._id }).populate([
-      { path: "user", select: ["firstName", "lastName", "email"] },
-      { path: "partner", select: ["firstName", "lastName", "email"] },
+      { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+      { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
       "storageListing",
     ]);
   }
@@ -48,8 +48,8 @@ export const getBooking = asyncHandler(async ({ req, next }) => {
 
 export const getBookingByAdmin = asyncHandler(async ({ req, next }) => {
   const bookings = await Booking.find().populate([
-    { path: "user", select: ["firstName", "lastName", "email"] },
-    { path: "partner", select: ["firstName", "lastName", "email"] },
+    { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+    { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
     "storageListing",
   ]);
 
@@ -63,16 +63,16 @@ export const getABooking = asyncHandler(async ({ req, res, next }) => {
   // Fetch bookings by roles (customer or partner)
   if (role == "customer") {
     booking = await Booking.findOne({ user: req.user, _id: req.params.id }).populate([
-      { path: "user", select: ["firstName", "lastName", "email"] },
-      { path: "partner", select: ["firstName", "lastName", "email"] },
+      { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+      { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
       "storageListing",
     ]);
   }
 
   if (role == "partner") {
     booking = await Booking.findOne({ partner: req.user._id, _id: req.params.id }).populate([
-      { path: "user", select: ["firstName", "lastName", "email"] },
-      { path: "partner", select: ["firstName", "lastName", "email"] },
+      { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+      { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
       "storageListing",
     ]);
   }
@@ -87,8 +87,8 @@ export const getABooking = asyncHandler(async ({ req, res, next }) => {
 
 export const getABookingByAdmin = asyncHandler(async ({ req, res, next }) => {
   const booking = await Booking.findById(req.params.id).populate([
-    { path: "user", select: ["firstName", "lastName", "email"] },
-    { path: "partner", select: ["firstName", "lastName", "email"] },
+    { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+    { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
     "storageListing",
   ]);
 
@@ -106,8 +106,8 @@ export const approveBooking = asyncHandler(async ({ req, res, next }) => {
     { approvalStatus: req.body.approvalStatus },
     { new: true }
   ).populate([
-    { path: "user", select: ["firstName", "lastName", "email"] },
-    { path: "partner", select: ["firstName", "lastName", "email"] },
+    { path: "user", select: ["firstName", "lastName", "email", "profilePicture"] },
+    { path: "partner", select: ["firstName", "lastName", "email", "profilePicture"] },
     ,
     "storageListing",
   ]);
