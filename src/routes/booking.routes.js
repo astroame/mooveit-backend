@@ -6,10 +6,15 @@ import {
   getABooking,
   createPayment,
   handleFufilledOrRejectedPayment,
+  getBookingByAdmin,
+  getABookingByAdmin,
 } from "../controllers/booking.controller.js";
-import { authorize, protectUser } from "../middlewares/auth.js";
+import { authorize, protectUser, protectAdmin } from "../middlewares/auth.js";
 
 const router = express.Router();
+
+router.route("/admin", protectAdmin, authorize("admin")).get(getBookingByAdmin);
+router.route("/admin/:id", protectAdmin, authorize("admin")).get(getABookingByAdmin);
 
 router.use(protectUser);
 router.use(authorize("customer", "partner"));

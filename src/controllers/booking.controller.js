@@ -12,8 +12,18 @@ export const getBooking = asyncHandler(async (req, res, next) => {
   sendResponse(res, true, 200, bookings);
 });
 
+export const getBookingByAdmin = asyncHandler(async (req, res, next) => {
+  const bookings = await BookingService.getBookingByAdmin({ req, next });
+  sendResponse(res, true, 200, bookings);
+});
+
 export const getABooking = asyncHandler(async (req, res, next) => {
   const bookings = await BookingService.getABooking({ req, res, next });
+  sendResponse(res, true, 200, bookings);
+});
+
+export const getABookingByAdmin = asyncHandler(async (req, res, next) => {
+  const bookings = await BookingService.getABookingByAdmin({ req, res, next });
   sendResponse(res, true, 200, bookings);
 });
 

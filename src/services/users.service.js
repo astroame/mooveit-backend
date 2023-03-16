@@ -67,8 +67,6 @@ export const getAllListing = asyncHandler(async (req) => {
     delete query.maxPrice;
   }
 
-  console.log(query, "after");
-
   const storageListings = await StorageListing.find(query)
     .lean()
     .populate({ path: "user", select: ["firstName", "lastName"] });

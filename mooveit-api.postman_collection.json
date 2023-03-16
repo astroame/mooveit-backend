@@ -2755,6 +2755,35 @@
 					"response": []
 				},
 				{
+					"name": "Get a booking by an admin with booking id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk3OTYzNCwiZXhwIjoxNjc5NTcxNjM0fQ.H-YH31OokRW_slrBNbW_Ydlsm2DR_fg6hpztcc41C54",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/booking/admin/640a6c29a4629a977138ddb1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"admin",
+								"640a6c29a4629a977138ddb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Approve listing by a partner",
 					"request": {
 						"auth": {
@@ -2799,7 +2828,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3Njk4ODQ0MSwiZXhwIjoxNjc5NTgwNDQxfQ.k08rMc5tdYgWYQ_YPeVNoUWT9dCaqBBboiFLFmeAQLw",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNjU2Y2M0NjZkZjMyNjAzY2QwNWFiYiIsImlhdCI6MTY3ODM1NzU5OCwiZXhwIjoxNjgwOTQ5NTk4fQ.S0UaOgbbtxtv2QwRep8Fbti5Vl5gq5LAVxHXzKzldAQ",
 									"type": "string"
 								}
 							]
@@ -2808,7 +2837,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bookingId\": \"63f4af33623909f76e00a390\"\n}",
+							"raw": "{\n    \"bookingId\": \"63fa1fd47e609bdd6dc69b4b\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2844,7 +2873,7 @@
 						"method": "PATCH",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/booking/payment/confirm?paymentId=U2FsdGVkX1+u1Vi4bq4QD9ju0ht59YzF04+F4SFM9KqHxh/9qww+mnE4EiyZ/2L1C00JyjnDAU6JDTlBU2KeRQ==&response=successful&bookingId=63f4af33623909f76e00a390",
+							"raw": "{{URL}}/booking/payment/confirm?paymentId=U2FsdGVkX18h5MSSljthBZB4i/ZhJOMfYavadkrgMFR0D/60c6RsUTCOMBqXb19V3uU41NZkCfINhZneLUOy+Q==&response=successful&bookingId=63f4af33623909f76e00a390",
 							"host": [
 								"{{URL}}"
 							],
@@ -2856,7 +2885,7 @@
 							"query": [
 								{
 									"key": "paymentId",
-									"value": "U2FsdGVkX1+u1Vi4bq4QD9ju0ht59YzF04+F4SFM9KqHxh/9qww+mnE4EiyZ/2L1C00JyjnDAU6JDTlBU2KeRQ=="
+									"value": "U2FsdGVkX18h5MSSljthBZB4i/ZhJOMfYavadkrgMFR0D/60c6RsUTCOMBqXb19V3uU41NZkCfINhZneLUOy+Q=="
 								},
 								{
 									"key": "response",
@@ -2866,6 +2895,34 @@
 									"key": "bookingId",
 									"value": "63f4af33623909f76e00a390"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all bookings by an admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGU0ZThkOWMzMzQwZWQ5MTBhY2JhMCIsImlhdCI6MTY3ODk2NDk3MCwiZXhwIjoxNjgxNTU2OTcwfQ.ZkwB-M18tfcHJ2AoX_C41rrHATeIHbksvEmMoqIWwVI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/booking/admin",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"booking",
+								"admin"
 							]
 						}
 					},
