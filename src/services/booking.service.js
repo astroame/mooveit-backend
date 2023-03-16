@@ -46,6 +46,16 @@ export const getBooking = asyncHandler(async ({ req, next }) => {
   return bookings;
 });
 
+export const getBookingByAdmin = asyncHandler(async ({ req, next }) => {
+  const bookings = await Booking.find().populate([
+    { path: "user", select: ["firstName", "lastName", "email"] },
+    { path: "partner", select: ["firstName", "lastName", "email"] },
+    "storageListing",
+  ]);
+
+  return bookings;
+});
+
 export const getABooking = asyncHandler(async ({ req, res, next }) => {
   const role = req.user.role;
   let booking;
@@ -66,6 +76,21 @@ export const getABooking = asyncHandler(async ({ req, res, next }) => {
       "storageListing",
     ]);
   }
+
+  if (!booking)
+    return res.status(404).json({
+      message: "Booking not found with that ID'",
+    });
+
+  return booking;
+});
+
+export const getABookingByAdmin = asyncHandler(async ({ req, res, next }) => {
+  const booking = await Booking.findById(req.params.id).populate([
+    { path: "user", select: ["firstName", "lastName", "email"] },
+    { path: "partner", select: ["firstName", "lastName", "email"] },
+    "storageListing",
+  ]);
 
   if (!booking)
     return res.status(404).json({
