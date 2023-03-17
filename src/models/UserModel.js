@@ -51,6 +51,7 @@ const UserSchema = Schema(
     verifyTokenExpire: Date,
     otp: String,
     verifyOtpExpire: Date,
+    isVerified: String,
 
     // PROFESSIONAL PARTNER OBJECT
     isVatRegistered: { type: Boolean, default: false },
