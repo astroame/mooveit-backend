@@ -52,6 +52,7 @@ const StorageListingSchema = Schema(
     // general
     completed: { type: Boolean, default: false },
     featured: { type: Boolean, default: false },
+    autoApprove: { type: Boolean, default: false },
     status: { type: String, default: "pending", enum: ["pending", "approved", "disapproved"] },
     started: { type: Boolean, default: false },
     vehicleType: { type: String },
