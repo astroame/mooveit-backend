@@ -5,12 +5,19 @@ import { v4 as uuidv4 } from "uuid";
 import CryptoJS from "crypto-js";
 
 export const createBooking = asyncHandler(async ({ req, next }) => {
-  const partnerId = await StorageListing.findById(req.body.storageListing);
+  const partner = await StorageListing.findById(req.body.storageListing);
+  let query = { ...req.body };
+
+  console.log(partner.user, "partner");
+
+  if (req.body.autoApprove == true) {
+    query = { ...query, approvalStatus: "approved" };
+  }
 
   const booking = await Booking.create({
     user: req.user,
-    partner: partnerId.user,
-    ...req.body,
+    partner: partner.user,
+    ...query,
   });
 
   await booking.populate([
@@ -125,23 +132,31 @@ export const createPayment = asyncHandler(async ({ req, res, next }) => {
     { path: "storageListing", select: ["storageTitle", "address", "media"] },
   ]);
 
+  console.log(req.body.bookingId, "booking id");
+
   if (booking.approvalStatus !== "approved") {
     return res.status(400).json({
       message: "You can't make payment until your listing has been approved",
     });
   }
 
+  console.log(booking, "booking");
+
   const userEmail = req.user.email;
   const paymentId = uuidv4();
 
   const response = await createPaymentLink(booking, userEmail, paymentId);
 
+  console.log(response);
+
+  // if (response) {
   await Booking.findByIdAndUpdate(req.body.bookingId, {
     paymentLink: response.paymentLink,
     paymentId,
   });
 
   return response;
+  // }
 });
 
 export const handleFufilledOrRejectedPayment = asyncHandler(async ({ req, res }) => {
