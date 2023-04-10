@@ -34,8 +34,6 @@ export const deleteUser = asyncHandler(async ({ id }) => {
 export const getAllListing = asyncHandler(async (req) => {
   let query = { status: "approved", ...req.body };
 
-  console.log(query, "before");
-
   if (req.body.area === "") delete query.area;
   if (req.body.storageType === "") delete query.storageType;
   if (req.body.delivery === null) delete query.delivery;
@@ -43,7 +41,7 @@ export const getAllListing = asyncHandler(async (req) => {
 
   // Building query programmatically
   if (req.body.area) {
-    query = { ...query, "formattedAddress.area": { $regex: req.body.area, $options: "i" } };
+    query = { ...query, address: { $regex: req.body.area, $options: "i" } };
     delete query.area;
   }
 

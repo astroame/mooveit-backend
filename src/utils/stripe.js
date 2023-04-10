@@ -11,9 +11,8 @@ export const createPaymentLink = async (booking, userEmail, paymentId) => {
   // Encrypt user object
   const encryptedPaymentId = CryptoJS.AES.encrypt(paymentId, process.env.ENCRYPTION_KEY).toString();
 
-  console.log(encryptedPaymentId, "encryoted");
-
   try {
+    // stripe.
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -30,6 +29,8 @@ export const createPaymentLink = async (booking, userEmail, paymentId) => {
       success_url: `${process.env.WEB_URL}/your-storage/payment-successful?paymentId=${encryptedPaymentId}&response=successful&bookingId=${_id}`,
       cancel_url: `${process.env.WEB_URL}/your-storage/payment-error?paymentId=${encryptedPaymentId}&response=failed&bookingId=${_id}`,
     });
+
+    console.log(session);
 
     return { paymentLink: session.url };
   } catch (error) {
